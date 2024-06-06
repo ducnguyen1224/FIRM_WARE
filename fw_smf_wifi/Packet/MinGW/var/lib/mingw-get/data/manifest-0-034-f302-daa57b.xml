@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-034-f302-daa57b">
+    <release tarname="bzip2-1.0.6-4-mingw32-doc.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-002-a7c6-d7dbb5" />
+    </references>
+    <manifest>
+        <dir path="share/info" />
+        <file path="share/info/bzip2.info" />
+        <dir path="share/doc/MinGW" />
+        <file path="share/doc/MinGW/bzip2.README.txt" />
+        <dir path="share/doc/bzip2/1.0.6" />
+        <file path="share/doc/bzip2/1.0.6/libbz2.def" />
+        <file path="share/doc/bzip2/1.0.6/manual.html" />
+        <file path="share/doc/bzip2/1.0.6/manual.pdf" />
+        <file path="share/doc/bzip2/1.0.6/manual.ps" />
+        <file path="share/doc/bzip2/1.0.6/manual.xml" />
+        <file path="share/doc/bzip2/1.0.6/README.CYGMING" />
+    </manifest>
+</package>

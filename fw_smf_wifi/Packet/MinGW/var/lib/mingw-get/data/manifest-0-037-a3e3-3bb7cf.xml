@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-037-a3e3-3bb7cf">
+    <release tarname="mgwport-0.10.6-1-mingw32-bin.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-002-a7c6-d7dbb5" />
+    </references>
+    <manifest>
+        <file path="bin/mgwport" />
+        <dir path="lib" />
+        <dir path="lib/mgwport" />
+        <file path="lib/mgwport/check_funcs.mgwpart" />
+        <file path="lib/mgwport/compilers.mgwpart" />
+        <file path="lib/mgwport/config_registry.mgwpart" />
+        <file path="lib/mgwport/help.mgwpart" />
+        <file path="lib/mgwport/inheritance.mgwpart" />
+        <file path="lib/mgwport/pkg_cleanup.mgwpart" />
+        <file path="lib/mgwport/pkg_info.mgwpart" />
+        <file path="lib/mgwport/pkg_pkg.mgwpart" />
+        <file path="lib/mgwport/relocatable.mgwpart" />
+        <file path="lib/mgwport/src_compile.mgwpart" />
+        <file path="lib/mgwport/src_fetch.mgwpart" />
+        <file path="lib/mgwport/src_install.mgwpart" />
+        <file path="lib/mgwport/src_postinst.mgwpart" />
+        <file path="lib/mgwport/src_prep.mgwpart" />
+        <file path="lib/mgwport/src_test.mgwpart" />
+        <file path="lib/mgwport/syntax.mgwpart" />
+        <dir path="share/mgwport" />
+        <file path="share/mgwport/autopoint.patch" />
+        <file path="share/mgwport/config.guess" />
+        <file path="share/mgwport/config.sub" />
+        <dir path="share/mgwport/mgwclass" />
+        <file path="share/mgwport/mgwclass/autotools.mgwclass" />
+        <file path="share/mgwport/mgwclass/cross.mgwclass" />
+        <file path="share/mgwport/mgwclass/cvs.mgwclass" />
+        <file path="share/mgwport/mgwclass/git.mgwclass" />
+        <file path="share/mgwport/mgwclass/relocatable.mgwclass" />
+        <file path="share/mgwport/mgwclass/svn.mgwclass" />
+        <file path="share/mgwport/mgwclass/tcl.mgwclass" />
+        <file path="share/mgwport/mgwclass/toolchain.mgwclass" />
+        <file path="share/mgwport/mgwclass/utils.mgwclass" />
+        <file path="share/mgwport/mgwport.nanorc" />
+        <file path="share/mgwport/mirrors" />
+        <file path="share/mgwport/mono.snk" />
+        <file path="share/mgwport/sample.mgwport" />
+        <dir path="share/mgwport/tools" />
+        <file path="share/mgwport/tools/deb2targz" />
+        <file path="share/mgwport/tools/pkgrip" />
+        <file path="share/mgwport/tools/sysrootize" />
+        <file path="share/mgwport/uac-manifest.in" />
+        <dir path="etc" />
+        <dir path="etc/bash_completion.d" />
+        <file path="etc/bash_completion.d/mgwport-bash-completion" />
+        <dir path="etc/defaults" />
+        <dir path="etc/defaults/mingw" />
+        <dir path="etc/defaults/mingw/etc" />
+        <file path="etc/defaults/mingw/etc/mgwport.conf" />
+        <dir path="etc/postinstall" />
+        <file path="etc/postinstall/mgwport.sh" />
+        <dir path="etc/preremove" />
+        <file path="etc/preremove/mgwport.sh" />
+    </manifest>
+</package>

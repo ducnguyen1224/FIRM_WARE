@@ -1,0 +1,177 @@
+mingw bzip2
+===============================================================================
+bzip2 is a freely available, patent free (see below), high-quality data
+compressor. It typically compresses files to within 10% to 15% of the best
+available techniques (the PPM family of statistical compressors), whilst being
+around twice as fast at compression and six times faster at decompression.
+
+Release: bzip2-1.0.6-4-mingw32
+
+Files:   bzip2-1.0.6-4-mingw32-src.tar.gz        (full source code)
+         bzip2-1.0.6-4-mingw32-doc.tar.gz        (FAQ, readmes, etc)
+         bzip2-1.0.6-4-mingw32-lic.tar.gz        (licensing terms)
+         bzip2-1.0.6-4-mingw32-man.tar.gz        (manpages)
+         bzip2-1.0.6-4-mingw32-dev.tar.gz        (libraries and headers)
+         libbz2-1.0.6-4-mingw32-dll-2.tar.gz     (redistributable DLL)
+
+Notes:   This is a binary release of the bzip2 compression/decompression
+         library, compiled for use with mingw32 applications.
+
+         The source code is modified from that distributed by bzip.org,
+         to fix various security holes, correct build errors, and add
+         new features.  In addition, the original build system has been
+         completely replaced by an autoconf-based one (see README.CYGMING
+         for more information).
+
+         The "src" tarball delivers the full unmodified source code from
+         bzip.org, along with the relevant patches and (external) build
+         driver (.mgwport) script.
+
+         The "doc", "lic" and "man" tarballs provide the documentation
+         components, as identified above, abstracted from the source
+         tarball, and repackaged into a file hierarchy structure which
+         is suitable for installation into the user's installed MinGW
+         directory hierarchy; for a standard installation, they should
+         be unpacked into the C:\MinGW directory.
+
+         The "bin" tarball provides the bzip2.exe compression utility, along
+         with several other utilities and scripts. This package should be
+         unpacked into the C:\MinGW directory.
+
+         Developers of mingw32 applications, who wish to link to the
+         bzip2 libraries, will require at least the "dev" tarball; this
+         provides the libbz2.a static version of the library, libbz2.dll.a
+         import library, for linking to a DLL version of the library,
+         and the set of C language headers common to both.  The DLL
+         version of the library, libbz2-2.dll, is provided separately, by
+         the "dll-2" tarball.  As in the case of the installable
+         documentation, each of these tarballs should be unpacked into the
+         C:\MinGW directory.
+
+This distribution incorporates pre-built binary components, which have been
+specifically compiled for the "mingw32" subsystem; in other words, they
+comprise binary executables and object libraries suitable for native use on
+Microsoft's 32-bit Windows operating system.  For the most part, these
+binaries and object libraries have no dependencies on other entities, beyond
+those provided as standard components of the operating system.  Do please be
+advised, however, of the following exceptions to this general principle;
+the following utility programs:--
+
+     bzcmp
+     bzdiff
+     bzegrep
+     bzfgrep
+     bzgrep
+     bzless
+     bzmore
+
+are provided in the form of Bourne shell scripts, and thus require a Bourne
+shell to execute; (the MinGW Project recommends the use of their own MSYS
+shell system, but other products may suffice; YMMV); these scripts CANNOT be
+invoked directly from Microsoft's cmd.exe.
+
+The preceding exception does NOT apply, in the case of:--
+
+     bzip2.exe
+     bzip2recover.exe
+     bunzip2.exe
+     bzcat.exe
+
+Each of the above IS suitable for use, directly from cmd.exe.
+
+
+Requires:
+  mingw32-libgcc-dll-1      4.6.1-2
+
+Build Requires:
+  mingw32-gcc-core-bin      4.6.1-2
+  mingw32-binutils-bin      2.21.53-1
+  mingw32-w32api-dev        3.17-2
+  mingw32-mgwport-bin       0.10.5-1
+  mingw32-autoconf2.5-bin   2.68-1
+  msys-core-bin             1.0.17-1
+  msys-coreutils-bin        5.97-3
+  msys-bash-bin             3.1.17-4
+  msys-patch-bin            2.6.1-1
+  msys-make-bin             3.82-5
+  msys-tar-bin              1.23-1
+  msys-xz-bin               4.999.9beta_20100401-1
+  msys-lndir-bin            1.0.1-2
+  msys-wget-bin             1.12-1
+  msys-texinfo-bin          4.13a-2
+
+Canonical homepage:
+  http://www.bzip2.org/
+
+Canonical download:
+  http://www.bzip2.org/1.0.6/
+
+License:
+  modified BSD (3-clause).
+  (Actually, it's a four-clause old-style BSD, but the offensive
+  advertising clause is turned into a "request")
+
+Language:
+  C
+
+===============================================================================
+
+Build instructions:
+  unpack bzip2-1.0.6-4-mingw32-src.tar.lzma
+  mgwport bzip2-1.0.6-3.mgwport all
+
+This will create:
+  bzip2-1.0.6-4-mingw32-src.tar.lzma
+  bzip2-1.0.6-4-mingw32-bin.tar.lzma
+  bzip2-1.0.6-4-mingw32-doc.tar.lzma
+  bzip2-1.0.6-4-mingw32-man.tar.lzma
+  bzip2-1.0.6-4-mingw32-lic.tar.lzma
+  bzip2-1.0.6-4-mingw32-dev.tar.lzma
+  libbz2-1.0.6-4-mingw32-dll-2.tar.lzma
+
+See `mgwport --help' for other options.
+
+===============================================================================
+
+Test suite results
+This section of this document is updated with each new release.
+No history is maintained here.
+
+All currently enabled tests have passed.
+
+===============================================================================
+Port Notes:
+
+1) While upstream bzip2 creates a DLL whose functions are exported using
+   the WINAPI (stdcall) calling convention, mingw.org's DLL uses the
+   cdecl calling convention instead, as that is the default calling
+   convention for gcc.
+
+2) (internal:) the original, and rather dated and inflexible, build system
+   has been completely replaced by a new autoconf-based one, contributed
+   by Keith Marshall. This allows for (a) out-of-tree builds, (b) cross-
+   compiler builds, and (c) better handling for win32/cygwin builds.
+
+3) (internal:) The build and packaging is driven by an external .mgwport
+   script, to handle the specifics of package creation and naming suitable
+   for use with the mingw-get installation program.
+
+===============================================================================
+
+----------  bzip2-1.0.6-4 -- 2011 Sep 18 -----------
+* Rebuild with gcc-4.6.1
+
+----------  bzip2-1.0.6-3 -- 2011 Sep 01 ----------- unreleased ----------
+* Update build driver system to use mgwport
+
+----------  bzip2-1.0.6-2 -- 2011 Jun 08 ----------- unreleased ----------
+* Update pkgbuild driver script to latest
+* Update documentation, correct various errors and omissions
+
+----------  bzip2-1.0.6-1 -- 2011 May 20 -----------
+* Update to latest upstream release
+  - fixes CVE-2010-0405
+* Add --show-progress option to bzip2
+* Compiled using gcc4
+* First bzip2 release with a changelog
+

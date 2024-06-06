@@ -1,0 +1,176 @@
+msys libtool
+========================================================================
+This is not the libtool you are looking for.
+
+This is the current version of libtool, the GNU shared library generation
+tool, as modified specifically for use in the MSYS DVLPR environment;
+that is, it is intended to be used only when producing binary packages
+for the MSYS subsystem.  If you intend to produce executables for the
+native "mingw32" subsystem (that is, applications that should work on
+Microsoft Windows installations without the MSYS DLL), then you should
+use the following version instead, which is generally installed into
+the /mingw (C:\MinGW) directory:
+   libtool-2.4-1-mingw32-bin
+   libltdl-2.4-1-mingw32-dll-7
+   libltdl-2.4-1-mingw32-dev
+
+This msys-specific version of libtool, and the related msys-specific
+versions of autoconf, automake, and gettext, are NOT intended for use
+other than from within the MSYS DVLPR environment.  These packages are
+installed into /bin, but the /mingw/bin directory typically precedes
+that directory in the PATH -- and the "normal" versions of the autotools
+should be installed into /mingw/bin, so they usually take precedence.
+Only in the MSYS DVLPR environment would this version of libtool be
+encounted.
+
+Proper operation of this libtool distribution requires a working
+MSYS installation, as well as certain other elements available from
+the MinGW team (http://www.mingw.org/) as listed below.  This libtool
+distribution was configured as part of the "msys" subsystem, and should
+be installed into the / directory (which is usually, but not always, 
+C:\msys\1.0 or C:\MinGW\msys\1.0).
+
+
+Runtime requirements
+  MSYS Environment
+    msysCORE-1.0.15-1-msys-1.0.15-bin
+    perl-5.6.1_2-2-msys-1.0.13-bin
+    libcrypt-1.1_1-3-msys-1.0.13-dll-0
+    libgdbm-1.8.3-3-msys-1.0.13-dll-3
+    zlib-1.2.3-2-msys-1.0.13-dll
+    coreutils-5.97-3-msys-1.0.13-bin
+    coreutils-5.97-3-msys-1.0.13-ext
+    m4-1.4.14-1-msys-1.0.13-bin
+    cvs-1.12.13-2-msys-1.0.13-bin
+
+Build requirements (these, or newer)
+  Same as above, plus
+
+  MSYS toolchain
+    binutils-2.19.51-3-msys-1.0.13-bin
+    gcc-3.4.4-3-msys-1.0.13-bin
+    w32api-3.14-3-msys-1.0.12-dev
+    msysCORE-1.0.15-1-msys-1.0.15-dev
+
+  Devel Tools and Dependent Libraries 
+    autoconf-2.67-1-msys-1.0.15-bin
+    automake-1.11.1-1-msys-1.0.13-bin
+
+  MSYS Environment
+    msysCORE-1.0.15-1-msys-1.0.15-dev
+    coreutils-5.97-3-msys-1.0.13-bin
+    bash-3.1.17-3-msys-1.0.13-bin
+    make-3.81-3-msys-1.0.13-bin
+    tar-1.23-1-msys-1.0.13-bin
+    bzip2-1.0.5-2-msys-1.0.13-bin
+    xz-4.999.9beta_20100401-1-msys-1.0.13
+    libbz2-1.0.5-2-msys-1.0.13-dll-1
+    liblzma-4.999.9beta_20100401-1-msys-1.0.13-dll-1
+
+Canonical homepage:
+  http://www.gnu.org/software/libtool/libtool.html
+
+Canonical download:
+  ftp://ftp.gnu.org/pub/gnu/libtool/
+
+License:
+  GPL (libltdl: LGPL)
+
+Language:
+  m4, sh (libltdl: C)
+
+===========================================================
+
+Build instructions:
+  unpack libtool-2.4-1-msys-1.0.15-src.tar.lzma
+  ./msys-build-libtool libtool-2.4.tar.xz
+
+This will create:
+  libtool-2.4-1-msys-1.0.15-src.tar.lzma
+  libtool-2.4-1-msys-1.0.15-bin.tar.lzma
+  libtool-2.4-1-msys-1.0.15-lic.tar.lzma
+  libtool-2.4-1-msys-1.0.15-doc.tar.lzma
+  libltdl-2.4-1-msys-1.0.15-dll-7.tar.lzma
+  libltdl-2.4-1-msys-1.0.15-dev.tar.lzma
+
+===========================================================
+
+Test suite results: no regressions from 2.2.11a-1
+
+"Old" tests:
+All 104 tests passed
+(2 tests were not run)
+(18 fortran tests were not even included in the total, because
+there is no msys fortran compiler)
+
+"New" tests:
+ERROR: 103 tests were run,
+  6 failed (4 expected failures).
+  17 tests were skipped.
+
+(unexpected) failures were:
+ 53: bindir basic lib test          FAILED (bindir.at:178)
+ 54: bindir install tests           FAILED (bindir.at:295)
+
+These errors appear to be due to confusion, within libtool, about
+MSYS's /usr = / mount structure, and the particular paths chosen
+within the tests to exercise the bindir features.  However, "regular"
+paths seem to work ok, so I'm ignoring these failures. 
+
+These two failures are the same as the previous 2.2.11a-1 release,
+and so are not "regressions".
+
+===========================================================
+References:
+
+For a discussion of the packaging standards used by the MinGW
+project for pre-built components -- especially as related to
+the autotools such as autoconf, automake, and libtool, see:
+
+  here:     http://www.mingw.org/PackageIdentificationHOWTO
+  here:     http://article.gmane.org/gmane.comp.gnu.mingw.devel/3330
+  and here: http://article.gmane.org/gmane.comp.gnu.mingw.devel/3305
+
+If you're REALLY curious, the following threads are quite
+informative, if extremely long, and detail the discussion and
+reasoning behind the current packaging schema. Presented in
+reverse chronological order:
+  
+  "New Packages"
+  2009-06-21 22:38:19 GMT
+  http://thread.gmane.org/gmane.comp.gnu.mingw.devel/3297
+
+  "GCC 4.4.0: Naming conventions"
+  2009-04-18 06:35:28 GMT
+  http://thread.gmane.org/gmane.comp.gnu.mingw.devel/3225
+
+  "Standards for Building MinGW Release Packages"
+  2008-03-27 12:36:25 GMT
+  http://thread.gmane.org/gmane.comp.gnu.mingw.devel/2739
+
+===========================================================
+
+Port Notes:
+
+---------- libtool-2.4-1 -- 2010 Sep 25 -----------
+* Updated to latest upstream release 2.4
+  with patches from cygwin libtool-2.4-1
+
+---------- libtool-2.2.7a-2 -- 2010 Jan 31 -----------
+* Based on git master from 2009-12-30
+  78f270a9ab4b56dc9c09020282e77a3b861099a1
+  with patches from cygwin libtool-2.2.7a-15, plus mingw fixes
+  and msys support.
+* Rebuild against msys-1.0.13, using (msys)gcc-3.4.4
+  and (msys)binutils-2.19.51.
+* Use -O3 -fno-unit-at-a-time to avoid optimization bug
+  in latest msys-gcc. Also, don't use -mms-bitfields
+  when compiling msys binaries.
+
+----------  libtool-2.2.7a-1 -- 2009 Jul 30 -----------
+* First release of libtool for msys under the new packaging standard.
+* Based on git master from 2009-06-30
+  00558363daebeb41c02ab8eaa9cb5218caf97867
+  with patches from cygwin libtool-2.2.7a-14, plus mingw fixes
+  and msys support.
+

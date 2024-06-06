@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-038-4507-f0741d">
+    <release tarname="libtool-2.4-1-msys-1.0.15-lic.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <file path="share/doc/libtool/2.4/COPYING" />
+    </manifest>
+</package>

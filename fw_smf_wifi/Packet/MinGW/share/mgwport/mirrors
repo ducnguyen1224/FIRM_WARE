@@ -1,0 +1,394 @@
+################################################################################
+#
+# mirrors - default list for mirror:// URI resolution
+#
+# Part of mgwport - MinGW/MSYS packaging application
+# Copyright (C) 2006, 2007, 2008, 2009, 2010 Yaakov Selkowitz
+# Copyright (C) 2011 Charles Wilson
+# Provided by the MinGW project <http://mingw.org/>
+#
+# mgwport is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# mgwport is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with mgwport.  If not, see <http://www.gnu.org/licenses/>.
+#
+################################################################################
+
+#****** Downloading/Mirrors
+#  INTRODUCTION
+#  Many large software projects and hosting sites provide multiple download
+#  mirrors for their projects, allowing users to choose a site closer to them
+#  and to help distribute the bandwidth demands around the world.
+#
+#  Within mgwport, the mirror:// notation can be used in SRC_URI and PATCH_URI
+#  to allow package maintainers both the ability to choose their favourite
+#  mirrors and use an abbreviated URI for common sites.
+#
+#  The default mirrors are usually the central download site or a redirector.
+#  Users can select their favourite mirrors by redefining the mirror_*
+#  variables listed below (as a string containing one or more mirror sites)
+#  in their mgwport.conf.
+#  HINT
+#  Custom per-package "mirrors" can also be defined in a .mgwport (.msysport)
+#  file.  This can be useful if SRC_URI or PATCH_URI contain a large number of
+#  long URIs.
+#  NOTE
+#  Mirror providers change frequently.  If you define your own default mirror,
+#  you may experience errors or delays downloading if your mirror goes offline.
+#****
+
+#****d* Mirrors/mirror_apache
+#  DESCRIPTION
+#  Apache Software Foundation project hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://apache/projectname/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://www.apache.org/dist
+#  MIRROR LIST
+#  http://www.apache.org/mirrors/index.html
+#  SEE ALSO
+#  apache1.cygclass, apache2.cygclass
+#****
+# grep -h '^  <TD ALIGN="RIGHT"><A HREF=' index.html \
+# | sed -e 's#<TD ALIGN="RIGHT"><A HREF="\(.*\)/">.*#\1#g' \
+# | cut -d '"' -f 1 | sed -e 's#^  #\t#g' -e 's#/$##g'
+mirror_apache+=" http://www.apache.org/dist"
+
+
+#****d* Mirrors/mirror_berlios
+#  DESCRIPTION
+#  BerliOS project hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://berlios/projectname/${P}.tar.gz"
+#  DEFAULT MIRROR
+#  http://download.berlios.de
+#  MIRROR LIST
+#  http://developer.berlios.de/mirrors/
+#****
+# The FTP server listed is not for project releases
+mirror_berlios+="
+	http://download.berlios.de
+	http://download2.berlios.de
+"	# mirror_berlios
+
+
+#****d* Mirrors/mirror_cpan
+#  DESCRIPTION
+#  Comprehensive Perl Archive Network
+#  SYNOPSIS
+#  SRC_URI="mirror://cpan/authors/id/A/AU/AUTHOR/${ORIG_PN}-${PV}.tar.gz"
+#  DEFAULT MIRROR
+#  http://search.cpan.org/CPAN
+#  MIRROR LIST
+#  http://www.cpan.org/SITES.html
+#  SEE ALSO
+#  perl.cygclass
+#****
+# cat SITES.html | egrep '^ *<A HREF=.*(CPAN|cpan).*(ht|f)tp:' | \
+#   sed -e 's! *<A HREF="!\t!g' -e 's!">.*!!g' -e 's!/$!!g'
+mirror_cpan+=" http://search.cpan.org/CPAN"
+
+
+#****d* Mirrors/mirror_cran
+#  DESCRIPTION
+#  Comprehensive R Archive Network
+#  SYNOPSIS
+#  SRC_URI="mirror://cran/src/contrib/${ORIG_PN}_${PV/_/-}.tar.gz"
+#  DEFAULT MIRROR
+#  http://cran.r-project.org/
+#  MIRROR LIST
+#  http://cran.r-project.org/mirrors.html
+#  SEE ALSO
+#  R.cygclass
+#****
+# grep -P '^http.*\n</a>' mirrors.html \
+#   | sed -e '/<\/a>/d' -e 's#^#\t#g' -e 's#/$##g'
+mirror_cran+=" http://cran.r-project.org"
+
+
+#****d* Mirrors/mirror_debian
+#  DESCRIPTION
+#  Debian package pool
+#  SYNOPSIS
+#  SRC_URI="mirror://debian/pool/main/${PN:0:1}/${PN}/${PN}_${PV}.orig.tar.gz"
+#  DEFAULT MIRROR
+#  http://ftp.debian.org/debian
+#  MIRROR LIST
+#  http://www.debian.org/mirror/list
+#****
+# grep '^  <td><a href' list  | sed -e 's#.*"\(.*\)/".*#\t\1#g'
+mirror_debian+=" http://ftp.debian.org/debian"
+
+
+#****d* Mirrors/mirror_gcc
+#  DESCRIPTION
+#  GCC releases and snapshots
+#  SYNOPSIS
+#  SRC_URI="mirror://gcc/releases/gcc-${PV}/gcc-core-${PV}.tar.bz2"
+#  DEFAULT MIRROR
+#  ftp://gcc.gnu.org/pub/gcc/
+#  MIRROR LIST
+#  http://gcc.gnu.org/mirrors.html
+#  SEE ALSO
+#  mirror_gnu
+#****
+# grep '^<li>' mirrors.html | sed -e 's|.*<a href="\([^"]*\).*|\1|g' -e 's|/$||g'
+mirror_gcc+=" ftp://gcc.gnu.org/pub/gcc"
+
+
+#****d* Mirrors/mirror_gentoo
+#  DESCRIPTION
+#  Gentoo Linux distfiles
+#  SYNOPSIS
+#  SRC_URI="mirror://gentoo/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://gentoo.osuosl.org/distfiles
+#  MIRROR LIST
+#  http://www.gentoo.org/main/en/mirrors.xml
+#  SEE ALSO
+#  mirror_portage
+#****
+# egrep '^<a href="(ht|f)tp:.*</a><br>$' mirrors.xml | \
+#	sed -e 's#<a href="\(.*\)".*</a>.*#\t\1#' -e 's#/$##' -e 's#$#/distfiles#'
+mirror_gentoo+=" http://gentoo.osuosl.org/distfiles"
+
+
+#****d* Mirrors/mirror_gnome
+#  DESCRIPTION
+#  GNOME FTP
+#  SYNOPSIS
+#  SRC_URI="mirror://gnome/sources/${PN}/${PV}/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://ftp.gnome.org/pub/gnome
+#  MIRROR LIST
+#  http://ftp.gnome.org/pub/GNOME/MIRRORS
+#  SEE ALSO
+#  gnome.org.cygclass
+#****
+# cat MIRRORS | grep 'tp:' | sed -e 's!/$!!g'
+mirror_gnome+="
+	http://download.gnome.org
+	http://ftp.gnome.org/pub/gnome
+	ftp://ftp.gnome.org/pub/gnome
+"   # mirror_gnome
+
+
+#****d* Mirrors/mirror_gnu
+#  DESCRIPTION
+#  GNU projects FTP hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://gnu/projectname/${P}.tar.gz"
+#  DEFAULT MIRROR
+#  http://ftpmirror.gnu.org
+#  MIRROR LIST
+#  http://www.gnu.org/order/ftp.html
+#****
+# cat ftp.html | grep '<li><a' | \
+#   sed -e 's!.*<li><a href="!\t!g' -e 's!">.*!!g' -e 's!/$!!g'
+mirror_gnu+="
+	http://ftpmirror.gnu.org
+	ftp://ftp.gnu.org/gnu
+"   # mirror_gnu
+
+
+#****d* Mirrors/mirror_gnustep
+#  DESCRIPTION
+#  GNUstep packages
+#  SYNOPSIS
+#  SRC_URI="mirror://gnustep/usr-apps/${ORIG_PN}-${PV}.tar.gz"
+#  DEFAULT MIRROR
+#  http://ftp.gnustep.org/pub/gnustep
+#  MIRROR LIST
+#  http://www.gnustep.org/resources/sources.html
+#  SEE ALSO
+#  gnustep.cygclass
+#****
+mirror_gnustep+="
+	http://ftp.gnustep.org/pub/gnustep
+	ftp://ftp.gnustep.org/pub/gnustep
+"	# mirror_gnustep
+
+
+#****d* Mirrors/mirror_kde
+#  DESCRIPTION
+#  KDE FTP
+#  SYNOPSIS
+#  SRC_URI="mirror://kde/stable/${PV}/src/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  ftp://ftp.kde.org/pub/kde
+#  MIRROR LIST
+#  http://www.kde.org/mirrors/ftp.php
+#  SEE ALSO
+#  kde3.cygclass, kde4.cygclass
+#****
+# cat ftp.php | grep '<dd><a' | \
+#   sed -e 's!.*<dd><a href="!\t!g' -e 's!">.*!!g' -e 's!/$!!g'
+mirror_kde+=" ftp://ftp.kde.org/pub/kde"
+
+
+#****d* Mirrors/mirror_mplayer
+#  DESCRIPTION
+#  MPlayer releases and skins
+#  SYNOPSIS
+#  SRC_URI="mirror://mplayer/releases/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://www1.mplayerhq.hu/MPlayer
+#  MIRROR LIST
+#  http://www.mplayerhq.hu/dload.html
+#  NOTE
+#  MPlayer releases are often outdated; using a SVN checkout is recommended.
+#****
+mirror_mplayer+=" http://www1.mplayerhq.hu/MPlayer"
+
+
+#****d* Mirrors/mirror_mysql
+#  DESCRIPTION
+#  MySQL server and connector downloads
+#  SYNOPSIS
+#  SRC_URI="mirror://mysql/Downloads/MySQL-5.1/${P}.tar.gz"
+#  DEFAULT MIRROR
+#  http://mirrors.dotsrc.org/mysql
+#  MIRROR LIST
+#  http://www.mysql.com/downloads/mirrors.html
+#****
+#  grep '^  <td><a' mirrors.html | sed -e 's|.*href="\(.*\)">.*|\t\1|g' -e 's|/$||g'
+#  List primary mirrors first
+mirror_mysql+="
+	http://mirrors.dotsrc.org/mysql
+	ftp://mirrors.dotsrc.org/mysql
+	http://ftp.gwdg.de/pub/misc/mysql
+	ftp://ftp.gwdg.de/pub/misc/mysql
+	http://www.mirrorservice.org/sites/ftp.mysql.com
+	ftp://ftp.mirrorservice.org/sites/ftp.mysql.com
+	http://mysql.oss.eznetsols.org
+	ftp://ftp.oss.eznetsols.org/mysql
+"	# mirror_mysql
+
+
+#****d* Mirrors/mirror_portage
+#  DESCRIPTION
+#  Gentoo Linux Portage tree (via ViewCVS)
+#  SYNOPSIS
+#  PATCH_URI="mirror://portage/cat-egory/packagename/files/${P}-whatever.patch"
+#  DEFAULT MIRROR
+#  http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86
+#  MIRROR LIST
+#  None
+#  SEE ALSO
+#  mirror_gentoo
+#****
+mirror_portage+=" http://sources.gentoo.org/viewcvs.py/*checkout*/gentoo-x86"
+
+
+#****d* Mirrors/mirror_rubyforge
+#  DESCRIPTION
+#  RubyForge project hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://rubyforge/projectname/${ORIG_PN}-${PV}.tar.gz"
+#  DEFAULT MIRROR
+#  http://files.rubyforge.vm.bytemark.co.uk
+#  MIRROR LIST
+#  http://api.rubyforge.org/
+#  SEE ALSO
+#  ruby.cygclass
+#****
+mirror_rubyforge+=" http://files.rubyforge.vm.bytemark.co.uk"
+
+
+#****d* Mirrors/mirror_savannah
+#  DESCRIPTION
+#  Savannah GNU project hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://savannah/projectname/${P}.tar.gz"
+#  DEFAULT MIRROR
+#  http://download.savannah.nongnu.org/releases
+#  MIRROR LIST
+#  http://download.savannah.nongnu.org/releases-noredirect/00_MIRRORS.txt
+#****
+#  sed -e 's|.* \(.*\)/|\t\1|g' 00_MIRRORS.txt
+mirror_savannah+=" http://download.savannah.nongnu.org/releases"
+
+
+#****d* Mirrors/mirror_sourceforge
+#  DESCRIPTION
+#  SourceForge project hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://sourceforge/projectname/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://downloads.sourceforge.net
+#  MIRROR LIST
+#  https://sourceforge.net/apps/trac/sourceforge/wiki/Mirrors
+#****
+mirror_sourceforge+=" http://downloads.sourceforge.net"
+
+
+#****d* Mirrors/mirror_sourceware
+#  DESCRIPTION
+#  Sourceware.org (aka sources.redhat.com) hosting
+#  SYNOPSIS
+#  SRC_URI="mirror://sourceware/projectname/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  ftp://ftp.sourceware.org/pub (frequently unavailable)
+#  MIRROR LIST
+#  http://sourceware.org/mirrors.html
+#****
+mirror_sourceware+=" ftp://ftp.sourceware.org/pub"
+
+
+#****d* Mirrors/mirror_qt
+#  DESCRIPTION
+#  Qt, QtCreator, and QtJambi downloads
+#  SYNOPSIS
+#  SRC_URI="mirror://qt/qt/source/${ORIG_PN}-${PV}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://download.qt.nokia.com/
+#  MIRROR LIST
+#  ftp://ftp.qt.nokia.com/mirrors
+#****
+mirror_qt+=" http://download.qt.nokia.com"
+
+
+#****d* Mirrors/mirror_trolltech
+#  NOTE
+#  This mirror is deprecated and remains only for backwards compatibility.
+#  New code should use mirror_qt.
+#****
+mirror_trolltech+=" ${mirror_qt}"
+
+
+#****d* Mirrors/mirror_vim
+#  DESCRIPTION
+#  Vim downloads
+#  SYNOPSIS
+#  SRC_URI="mirror://vim/unix/${P}.tar.bz2 mirror://vim/extra/${P}-extra.tar.gz"
+#  DEFAULT MIRROR
+#  http://ftp.vim.org/pub/vim
+#  MIRROR LIST
+#  http://vim.sourceforge.net/mirrors.php
+#****
+# cat mirrors.php | egrep '^  <a href="(ht|f)tp:' | \
+#	sed -e 's#  <a.*>\(.*\)</a>.*#\t\1#' -e 's#/$##'
+mirror_vim+=" http://ftp.vim.org/pub/vim"
+
+
+#****d* Mirrors/mirror_xfce
+#  DESCRIPTION
+#  Xfce sources
+#  SYNOPSIS
+#  SRC_URI="mirror://xfce/src/xfce-${XFCE_VERSION}/src/${P}.tar.bz2"
+#  DEFAULT MIRROR
+#  http://www.xfce.org/archive
+#  MIRROR LIST
+#  http://www.xfce.org/download/
+#  SEE ALSO
+#  xfce4.cygclass
+#****
+mirror_xfce+=" http://www.xfce.org/archive"

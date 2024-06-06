@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-034-309e-35c902">
+    <release tarname="bzip2-1.0.6-4-mingw32-man.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-002-a7c6-d7dbb5" />
+    </references>
+    <manifest>
+        <dir path="share/man" />
+        <dir path="share/man/man1" />
+        <file path="share/man/man1/bzcmp.1.gz" />
+        <file path="share/man/man1/bzdiff.1.gz" />
+        <file path="share/man/man1/bzegrep.1.gz" />
+        <file path="share/man/man1/bzfgrep.1.gz" />
+        <file path="share/man/man1/bzgrep.1.gz" />
+        <file path="share/man/man1/bzip2.1.gz" />
+        <file path="share/man/man1/bzless.1.gz" />
+        <file path="share/man/man1/bzmore.1.gz" />
+    </manifest>
+</package>

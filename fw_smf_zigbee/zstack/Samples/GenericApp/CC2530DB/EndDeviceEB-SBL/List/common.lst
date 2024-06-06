@@ -1,0 +1,399 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.20.1.2476 for 8051                29/Jul/2016  15:40:33
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\common.c
+#    Command line       =  
+#        -f "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg"
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+#        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+#        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x1235
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=2000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+#        -DREJOIN_POLL_RATE=440 "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\common.c" -D
+#        NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC -D
+#        LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -D MAKE_CRC_SHDW -lC
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB-SBL\List\"
+#        -lA "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB-SBL\List\"
+#        --diag_suppress Pe001,Pa010 -o "C:\Users\8470p\Desktop\Z-Stack Mesh
+#        1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB-SBL\Obj\"
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 16 -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+#        -Ohz --require_prototypes
+#    List file          =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB-SBL\List\common.lst
+#    Object file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\EndDeviceEB-SBL\Obj\common.r51
+#
+###############################################################################
+
+C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0 ZED\Projects\zstack\Samples\GenericApp\CC2530DB\common.c
+      1          #include "common.h"
+      2          
+      3          static void delay_1us(void);
+      4          static void delay_1ms(void);
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      5          static void delay_1us(void) {
+   \                     delay_1us:
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+      6            uint32 i = 0;
+      7            for (i = 0; i < 10; i++);
+      8          }
+   \   000000   02....       LJMP    ?BRET
+      9          static void delay_1ms(void){
+     10            uint32 i = 0;
+     11            for (i = 0; i < 400; i++) {
+     12              delay_1us();
+     13            }
+     14          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     15          void delay_us(uint32 time) {
+   \                     delay_us:
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0,R2
+   \   000007   8B..         MOV     ?V1,R3
+   \   000009   8C..         MOV     ?V2,R4
+   \   00000B   8D..         MOV     ?V3,R5
+     16            uint32 i = 0;
+   \   00000D   75..00       MOV     ?V4,#0x0
+   \   000010   75..00       MOV     ?V5,#0x0
+   \   000013   75..00       MOV     ?V6,#0x0
+   \   000016   75..00       MOV     ?V7,#0x0
+     17            for (i = 0; i < time; i++) {
+   \   000019   800B         SJMP    ??delay_us_0
+     18              delay_1us();
+   \                     ??delay_us_1:
+   \   00001B                ; Setup parameters for call to function delay_1us
+   \   00001B   12....       LCALL   `??delay_1us::?relay`; Banked call to: delay_1us
+     19            }
+   \   00001E   90....       MOV     DPTR,#__Constant_1
+   \   000021   78..         MOV     R0,#?V4
+   \   000023   12....       LCALL   ?L_ADD_X
+   \                     ??delay_us_0:
+   \   000026   78..         MOV     R0,#?V0
+   \   000028   79..         MOV     R1,#?V4
+   \   00002A   12....       LCALL   ?UL_GT
+   \   00002D   40EC         JC      ??delay_us_1
+     20          }
+   \   00002F                REQUIRE ?Subroutine0
+   \   00002F                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F08         MOV     R7,#0x8
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+     21          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     22          void delay_ms(uint32 time) {
+   \                     delay_ms:
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0,R2
+   \   000007   8B..         MOV     ?V1,R3
+   \   000009   8C..         MOV     ?V2,R4
+   \   00000B   8D..         MOV     ?V3,R5
+     23            uint32 i = 0;
+   \   00000D   75..00       MOV     ?V4,#0x0
+   \   000010   75..00       MOV     ?V5,#0x0
+   \   000013   75..00       MOV     ?V6,#0x0
+   \   000016   75..00       MOV     ?V7,#0x0
+     24            for (i = 0; i < time; i++) {
+   \   000019   801B         SJMP    ??delay_ms_0
+     25              delay_1ms();
+   \                     ??delay_ms_1:
+   \   00001B   7E90         MOV     R6,#-0x70
+   \   00001D   7F01         MOV     R7,#0x1
+   \                     ??delay_ms_2:
+   \   00001F                ; Setup parameters for call to function delay_1us
+   \   00001F   12....       LCALL   `??delay_1us::?relay`; Banked call to: delay_1us
+   \   000022   EE           MOV     A,R6
+   \   000023   24FF         ADD     A,#-0x1
+   \   000025   1E           DEC     R6
+   \   000026   EF           MOV     A,R7
+   \   000027   34FF         ADDC    A,#-0x1
+   \   000029   FF           MOV     R7,A
+   \   00002A   EE           MOV     A,R6
+   \   00002B   4F           ORL     A,R7
+   \   00002C   70F1         JNZ     ??delay_ms_2
+     26            }
+   \   00002E   90....       MOV     DPTR,#__Constant_1
+   \   000031   78..         MOV     R0,#?V4
+   \   000033   12....       LCALL   ?L_ADD_X
+   \                     ??delay_ms_0:
+   \   000036   78..         MOV     R0,#?V0
+   \   000038   79..         MOV     R1,#?V4
+   \   00003A   12....       LCALL   ?UL_GT
+   \   00003D   40DC         JC      ??delay_ms_1
+     27          }
+   \   00003F   80..         SJMP    ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     28          void get_ieee_string(char *lcd_buf) {
+   \                     get_ieee_string:
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+     29            uint8 *xad;
+     30           // uint8 lcd_buf[Z_EXTADDR_LEN*2+1];
+     31            uint8 i = 0;
+   \   000005   7E00         MOV     R6,#0x0
+     32            // Display the extended address.
+     33            xad = aExtendedAddress + Z_EXTADDR_LEN - 1;
+   \   000007   78..         MOV     R0,#(aExtendedAddress + 7) & 0xff
+   \   000009   79..         MOV     R1,#((aExtendedAddress + 7) >> 8) & 0xff
+     34          
+     35            for (i = 0; i < Z_EXTADDR_LEN*2; xad--)
+     36            {
+     37              uint8 ch;
+     38              ch = (*xad >> 4) & 0x0F;
+   \                     ??get_ieee_string_0:
+   \   00000B   8882         MOV     DPL,R0
+   \   00000D   8983         MOV     DPH,R1
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   C4           SWAP    A
+   \   000011   540F         ANL     A,#0xf
+   \   000013   FD           MOV     R5,A
+     39              lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
+   \   000014   EE           MOV     A,R6
+   \   000015   FF           MOV     R7,A
+   \   000016   7401         MOV     A,#0x1
+   \   000018   2F           ADD     A,R7
+   \   000019   FE           MOV     R6,A
+   \   00001A   ED           MOV     A,R5
+   \   00001B   C3           CLR     C
+   \   00001C   940A         SUBB    A,#0xa
+   \   00001E   5004         JNC     ??get_ieee_string_1
+   \   000020   7C30         MOV     R4,#0x30
+   \   000022   8002         SJMP    ??get_ieee_string_2
+   \                     ??get_ieee_string_1:
+   \   000024   7C37         MOV     R4,#0x37
+   \                     ??get_ieee_string_2:
+   \   000026   ED           MOV     A,R5
+   \   000027   2C           ADD     A,R4
+   \   000028   C0E0         PUSH    A
+   \   00002A   EA           MOV     A,R2
+   \   00002B   2F           ADD     A,R7
+   \   00002C   F582         MOV     DPL,A
+   \   00002E   E4           CLR     A
+   \   00002F   3B           ADDC    A,R3
+   \   000030   F583         MOV     DPH,A
+   \   000032   D0E0         POP     A
+   \   000034   F0           MOVX    @DPTR,A
+     40              ch = *xad & 0x0F;
+   \   000035   8882         MOV     DPL,R0
+   \   000037   8983         MOV     DPH,R1
+   \   000039   E0           MOVX    A,@DPTR
+   \   00003A   540F         ANL     A,#0xf
+   \   00003C   FD           MOV     R5,A
+     41              lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
+   \   00003D   8E..         MOV     ?V0,R6
+   \   00003F   7401         MOV     A,#0x1
+   \   000041   2E           ADD     A,R6
+   \   000042   FE           MOV     R6,A
+   \   000043   ED           MOV     A,R5
+   \   000044   C3           CLR     C
+   \   000045   940A         SUBB    A,#0xa
+   \   000047   5004         JNC     ??get_ieee_string_3
+   \   000049   7C30         MOV     R4,#0x30
+   \   00004B   8002         SJMP    ??get_ieee_string_4
+   \                     ??get_ieee_string_3:
+   \   00004D   7C37         MOV     R4,#0x37
+   \                     ??get_ieee_string_4:
+   \   00004F   ED           MOV     A,R5
+   \   000050   2C           ADD     A,R4
+   \   000051   C0E0         PUSH    A
+   \   000053   AC..         MOV     R4,?V0
+   \   000055   EA           MOV     A,R2
+   \   000056   2C           ADD     A,R4
+   \   000057   F582         MOV     DPL,A
+   \   000059   E4           CLR     A
+   \   00005A   3B           ADDC    A,R3
+   \   00005B   F583         MOV     DPH,A
+   \   00005D   D0E0         POP     A
+   \   00005F   F0           MOVX    @DPTR,A
+     42            }
+   \   000060   E8           MOV     A,R0
+   \   000061   24FF         ADD     A,#-0x1
+   \   000063   18           DEC     R0
+   \   000064   E9           MOV     A,R1
+   \   000065   34FF         ADDC    A,#-0x1
+   \   000067   F9           MOV     R1,A
+   \   000068   EE           MOV     A,R6
+   \   000069   C3           CLR     C
+   \   00006A   9410         SUBB    A,#0x10
+   \   00006C   409D         JC      ??get_ieee_string_0
+     43            lcd_buf[Z_EXTADDR_LEN*2] = '\0';
+   \   00006E   EA           MOV     A,R2
+   \   00006F   2410         ADD     A,#0x10
+   \   000071   F582         MOV     DPL,A
+   \   000073   E4           CLR     A
+   \   000074   3B           ADDC    A,R3
+   \   000075   F583         MOV     DPH,A
+   \   000077   E4           CLR     A
+   \   000078   F0           MOVX    @DPTR,A
+     44          }
+   \   000079   7F01         MOV     R7,#0x1
+   \   00007B   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_1:
+   \   000000   01000000     DD 1
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??delay_1us::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    delay_1us
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??delay_us::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    delay_us
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??delay_ms::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    delay_ms
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??get_ieee_string::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    get_ieee_string
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0     16   delay_1us
+      0     16   delay_ms
+        0     16   -> delay_1us
+      0     16   delay_us
+        0     16   -> delay_1us
+      1      9   get_ieee_string
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       5  ?Subroutine0
+       4  __Constant_1
+       3  delay_1us
+       6  delay_1us::?relay
+      65  delay_ms
+       6  delay_ms::?relay
+      47  delay_us
+       6  delay_us::?relay
+     126  get_ieee_string
+       6  get_ieee_string::?relay
+
+ 
+ 246 bytes in segment BANKED_CODE
+  24 bytes in segment BANK_RELAYS
+   4 bytes in segment XDATA_ROM_C
+ 
+ 270 bytes of CODE  memory
+   0 bytes of CONST memory (+ 4 bytes shared)
+
+Errors: none
+Warnings: none

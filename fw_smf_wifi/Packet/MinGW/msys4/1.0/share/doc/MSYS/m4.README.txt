@@ -1,0 +1,138 @@
+msys m4
+========================================================================
+m4 is a macro processor, in the sense that it copies its input to the
+output, expanding macros as it goes.  Macros are either builtin or
+user-defined, and can take any number of arguments.  Besides just doing
+macro expansion, `m4' has builtin functions for including named files,
+running shell commands, doing integer arithmetic, manipulating text in
+various ways, performing recursion, etc....  `m4' can be used either as
+a front-end to a compiler, or as a macro processor in its own right.
+
+This version has been modified and compiled for use in the MSYS
+environment. It should be installed into the / == /usr directory, which
+is usually but not always, C:\mingw\msys\1.0\.
+
+Runtime requirements:
+  msysCORE-1.0.13-2-msys-1.0.13-bin
+
+Build requirements (these, or newer)
+  MSYS toolchain
+    binutils-2.19.51-3-msys-1.0.13-bin
+    gcc-3.4.4-3-msys-1.0.13-bin
+    w32api-3.14-3-msys-1.0.12-dev
+    msysCORE-1.0.18-1-msys-1.0.18-dev
+
+  Devel Tools and Dependent Libraries
+    autoconf-2.68-1-msys-1.0.17-bin
+    automake-1.11.1-1-msys-1.0.13-bin
+    mgwport-0.10.6-1-mingw32-bin
+ 
+  MSYS Environment
+    msysCORE-1.0.18-1-msys-1.0.18-dev
+    perl-5.8.8-1-msys-1.0.17-bin
+    libcrypt-1.1_1-3-msys-1.0.13-dll-0
+    libgdbm-1.8.3-3-msys-1.0.13-dll-3
+    zlib-1.2.7-1-msys-1.0.17-dll
+    coreutils-5.97-3-msys-1.0.13-bin
+    make-3.81-3-msys-1.0.13-bin
+    bash-3.1.17-4-msys-1.0.16-bin
+    tar-1.23-1-msys-1.0.13-bin
+    xz-5.0.3-1-msys-1.0.17-bin
+    liblzma-5.0.3-1-msys-1.0.17-dll-1
+    file-5.04-1-msys-1.0.13-bin
+    grep-2.5.4-2-msys-1.0.13-bin
+    sed-4.2.1-2-msys-1.0.13-bin
+    gawk-3.1.7-2-msys-1.0.13-bin
+    patch-2.6.1-1-msys-1.0.13-bin
+
+Canonical homepage:
+  http://www.gnu.org/software/m4/
+
+Canonical download:
+  http://ftp.gnu.org/pub/gnu/m4/
+
+License:
+  GPLv3
+
+Language:
+  C
+
+========================================================================
+
+Build instructions:
+  unpack m4-1.4.16-2-msys-1.0.17-src.tar.lzma
+  mgwport m4-1.4.16-2.msysport all
+
+This will create:
+  m4-1.4.16-2-msys-1.0.17-src.tar.lzma
+  m4-1.4.16-2-msys-1.0.17-bin.tar.lzma
+  m4-1.4.16-2-msys-1.0.17-doc.tar.lzma
+  m4-1.4.16-2-msys-1.0.17-lic.tar.lzma
+
+========================================================================
+
+Test suite results
+
+This section of this document is updated with each new release.
+No history is maintained here.
+
+
+FAIL: test-dup2.exe (exit: 1)
+c:\Users\waterlan\src\msys\m4\src\m4-1.4.16-2\build\tests\test-dup2.exe: *** couldn't commit memory for cygwin heap, Win32 error 0
+
+FAIL: test-fopen-safer.exe (exit: 134)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-fopen.h:59: assertion failed
+      0 [sig] test-fopen-safer 2596 open_stackdumpfile: Dumping stack trace to test-fopen-safer.exe.stackdump
+
+FAIL: test-fopen.exe (exit: 134)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-fopen.h:59: assertion failed
+      0 [sig] test-fopen 4472 open_stackdumpfile: Dumping stack trace to test-fopen.exe.stackdump
+
+FAIL: test-lstat.exe (exit: 134)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-lstat.h:38: assertion failed
+      0 [sig] test-lstat 5420 open_stackdumpfile: Dumping stack trace to test-lstat.exe.stackdump
+
+FAIL: test-open.exe (exit: 134)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-open.h:50: assertion failed
+      0 [sig] test-open 1880 open_stackdumpfile: Dumping stack trace to test-open.exe.stackdump
+
+FAIL: test-rename.exe (exit: 134)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-rename.h:455: assertion failed
+      0 [sig] test-rename 4156 open_stackdumpfile: Dumping stack trace to test-rename.exe.stackdump
+
+FAIL: test-setlocale2.sh (exit: 1)
+setlocale did not fail for implicit ar_SA.ISO-8859-1
+
+FAIL: test-sigaction.exe (exit: 1)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-sigaction.c:81: assertion failed
+
+FAIL: test-stat.exe (exit: 134)
+/c/Users/waterlan/src/msys/m4/src/m4-1.4.16-2/src/m4-1.4.16/tests/test-stat.h:39: assertion failed
+      0 [sig] test-stat 5236 open_stackdumpfile: Dumping stack trace to test-stat.exe.stackdump
+
+
+===============================
+9 of 103 tests failed
+(27 tests were not run)
+===============================
+
+========================================================================
+Port Notes:
+
+----------  m4-1.4.16-2 -- 2013 Feb 22 -----------
+* Force strstr linear test outcome to 'no'.
+  msys strstr works in exponential time.
+Erwin Waterlander <waterlan@xs4all.nl>
+
+----------  m4-1.4.16-1 -- 2013 Feb 22 -----------
+* New upstream version.
+* Created mgwport script.
+Erwin Waterlander <waterlan@xs4all.nl>
+
+----------  m4-1.4.14-1 -- 2010 Apr 13 -----------
+* Routine update to latest upstream release
+* Rebuild using new msys-gcc-3.x and msys 1.0.13
+
+----------  m4-1.4.13-1 -- 2009 Aug 08 -----------
+* First release of m4 for msys using new packaging standard.  
+

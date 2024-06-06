@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-037-6e17-e7330b">
+    <release tarname="mktemp-1.6-2-msys-1.0.13-doc.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <dir path="share/doc" />
+        <dir path="share/doc/mktemp" />
+        <dir path="share/doc/mktemp/1.6" />
+        <file path="share/doc/mktemp/1.6/README" />
+        <file path="share/doc/mktemp/1.6/RELEASE_NOTES" />
+        <dir path="share/doc/MSYS" />
+        <file path="share/doc/MSYS/mktemp-1.6-2-msys.RELEASE_NOTES.txt" />
+        <dir path="share/man" />
+        <dir path="share/man/man1" />
+        <file path="share/man/man1/mktemp.1" />
+    </manifest>
+</package>

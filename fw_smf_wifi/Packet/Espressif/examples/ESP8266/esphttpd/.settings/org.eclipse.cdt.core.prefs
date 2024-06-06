@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.toolchain.gnu.mingw.base.966470309/ESPPORT/delimiter=;
+environment/project/cdt.managedbuild.toolchain.gnu.mingw.base.966470309/ESPPORT/operation=append
+environment/project/cdt.managedbuild.toolchain.gnu.mingw.base.966470309/ESPPORT/value=COM10
+environment/project/cdt.managedbuild.toolchain.gnu.mingw.base.966470309/append=true
+environment/project/cdt.managedbuild.toolchain.gnu.mingw.base.966470309/appendContributed=true

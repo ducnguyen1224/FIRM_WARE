@@ -1,0 +1,75 @@
+#! /bin/sh
+###############################################################################
+#
+# sysrootize - retarballs binary package under cross-compiler sysroot
+#
+# Copyright (C) 2010, 2011 Yaakov Selkowitz
+# Copyright (C) 2011 Charles Wilson
+# Provided by the MinGW project <http://mingw.org/>
+#
+# mgwport is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# mgwport is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with mgwport.  If not, see <http://www.gnu.org/licenses/>.
+#
+################################################################################
+
+set -e
+MPFLAVOR=${MPFLAVOR:-i686-pc-mingw32}
+case ${MPFLAVOR} in
+  i686-pc-mingw32 ) __prefix=/mingw ;;
+  * ) __prefix=/usr ;;
+esac
+
+if (( $# < 2 ))
+then
+	echo "sysrootize: No packages specified" >&2
+	exit 1
+fi
+
+case $1 in
+	*/*|*.tar.*) echo "sysrootize: First argument must be a host triplet" >&2 ; exit 2 ;;
+esac
+
+# FIXME: assumes libtool-2.2 installed in /usr
+host=$(${__prefix}/share/libtool/config/config.sub $1 2> /dev/null || true)
+
+if test x"$host" = x
+then
+	echo "sysrootize: unknown host: $1" >&2
+	exit 3
+fi
+
+shift
+
+for tar in $@
+do
+	echo -n "${tar##*/}: "
+
+	if [ ! -f $tar ]
+	then
+		echo "ERROR: file not found"
+		continue
+	fi
+
+	case $tar in
+		*.tar.*) ;;
+		*) echo "ERROR: unsupported format" ; continue ;;
+	esac
+
+	t=$(mktemp -d)
+	mkdir -p $t${__prefix}/$host/sys-root
+	tar axf $tar -C $t${__prefix}/$host/sys-root
+	tar acf $(dirname ${tar})/$host-${tar##*/} -C $t ${__prefix}
+	rm -fr $t
+
+	echo "Success"
+done

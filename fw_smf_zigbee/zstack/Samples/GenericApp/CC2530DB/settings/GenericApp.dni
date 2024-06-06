@@ -1,0 +1,34 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=-401680271
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Count=0
+[ChipconEmu]
+Stop timers on halt=0
+Leave target running=1
+[Aliases]
+A0=_ "D:\Du An\Zigbee\Sources\Z-Stack Mesh 1.0.0 ZED\Components\hal\target\CC2530EB\hal_sleep.c" ""
+A1=_ "D:\Du An\Zigbee\Sources\Z-Stack Mesh 1.0.0 ZED\Projects\zstack\ZMain\TI2530DB\ZMain.c" ""
+A2=_ "E:\WorkSpace\Project\IoT\zigbee\Z-Stack Mesh 1.0.0 ZED\Components\mac\low_level\srf04\single_chip\mac_csp_tx.c" ""
+Count=3
+SuppressDialog=1

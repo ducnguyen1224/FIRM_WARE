@@ -1,0 +1,296 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.20.1.2476 for 8051                01/Aug/2016  00:18:12
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\debug.c
+#    Command line       =  
+#        -f "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wRouter.cfg"
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DRTR_NWK) -f "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+#        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x9669
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=2000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+#        -DREJOIN_POLL_RATE=440 "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\debug.c" -D ZTOOL_P1
+#        -D MT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -lC
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\RouterEB\List\" -lA
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\RouterEB\List\"
+#        --diag_suppress Pe001,Pa010 -o "C:\Users\8470p\Desktop\Z-Stack Mesh
+#        1.0.0 ZED\Projects\zstack\Samples\GenericApp\CC2530DB\RouterEB\Obj\"
+#        -e --no_code_motion --debug --core=plain --dptr=16,1
+#        --data_model=large --code_model=banked
+#        --calling_convention=xdata_reentrant --place_constants=data_rom
+#        --nr_virtual_regs 16 -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+#        -Ohz --require_prototypes
+#    List file          =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\RouterEB\List\debug.lst
+#    Object file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\RouterEB\Obj\debug.r51
+#
+###############################################################################
+
+C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0 ZED\Projects\zstack\Samples\GenericApp\CC2530DB\debug.c
+      1          #include "debug.h"
+      2          #define SOT     '*'
+      3          #define EOT     '#'
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+      4          void uart_put_string(uint8 *data) {
+   \                     uart_put_string:
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+      5            //uint8 c = 0;
+      6            //c = SOT;
+      7            //HalUARTWrite(UART_DEBUG, &c , 1);
+      8            
+      9            HalUARTWrite(UART_DEBUG, data, strlen((char *)data));
+   \   000009                ; Setup parameters for call to function HalUARTWrite
+   \   000009                ; Setup parameters for call to function strlen
+   \   000009   12....       LCALL   `??strlen::?relay`   ; Banked call to: strlen
+   \   00000C   EA           MOV     A,R2
+   \   00000D   FC           MOV     R4,A
+   \   00000E   EB           MOV     A,R3
+   \   00000F   FD           MOV     R5,A
+   \   000010   EE           MOV     A,R6
+   \   000011   FA           MOV     R2,A
+   \   000012   EF           MOV     A,R7
+   \   000013   FB           MOV     R3,A
+   \   000014   7900         MOV     R1,#0x0
+   \   000016   12....       LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+     10            //c = EOT;
+     11            
+     12            //HalUARTWrite(UART_DEBUG, &c, 1);
+     13          
+     14          }
+   \   000019   7F01         MOV     R7,#0x1
+   \   00001B   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     15          void uart_put_byte_array(uint8 *data, uint16 len) {
+   \                     uart_put_byte_array:
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     16          	HalUARTWrite(UART_DEBUG, data, len);	
+   \   000004                ; Setup parameters for call to function HalUARTWrite
+   \   000004   7900         MOV     R1,#0x0
+   \   000006   12....       LCALL   `??HalUARTWrite::?relay`; Banked call to: HalUARTWrite
+     17          
+     18          }
+   \   000009   D083         POP     DPH
+   \   00000B   D082         POP     DPL
+   \   00000D   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     19          void uart_put_string_value( char *title, uint16 value, uint8 format)
+   \                     uart_put_string_value:
+     20          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 25
+   \   000005   74E7         MOV     A,#-0x19
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   8C..         MOV     ?V2,R4
+   \   000010   8D..         MOV     ?V3,R5
+   \   000012   89..         MOV     ?V0,R1
+     21           uint8 tmpLen;
+     22            uint8 buf[HAL_LCD_MAX_BUFF];
+     23            uint32 err;
+     24            tmpLen = (uint8)osal_strlen( (char*)title );
+   \   000014                ; Setup parameters for call to function osal_strlen
+   \   000014   12....       LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
+   \   000017   EA           MOV     A,R2
+   \   000018   F5..         MOV     ?V1,A
+     25            osal_memcpy( buf, title, tmpLen );
+   \   00001A                ; Setup parameters for call to function osal_memcpy
+   \   00001A   8E..         MOV     ?V4,R6
+   \   00001C   8F..         MOV     ?V5,R7
+   \   00001E   75..00       MOV     ?V6,#0x0
+   \   000021   78..         MOV     R0,#?V4
+   \   000023   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000026   AC..         MOV     R4,?V1
+   \   000028   7D00         MOV     R5,#0x0
+   \   00002A   7403         MOV     A,#0x3
+   \   00002C   12....       LCALL   ?XSTACK_DISP101_8
+   \   00002F   12....       LCALL   `??osal_memcpy::?relay`; Banked call to: osal_memcpy
+   \   000032   7403         MOV     A,#0x3
+   \   000034   12....       LCALL   ?DEALLOC_XSTACK8
+     26            buf[tmpLen] = ' ';
+   \   000037   A8..         MOV     R0,?V1
+   \   000039   85..82       MOV     DPL,?XSP + 0
+   \   00003C   85..83       MOV     DPH,?XSP + 1
+   \   00003F   E582         MOV     A,DPL
+   \   000041   28           ADD     A,R0
+   \   000042   F582         MOV     DPL,A
+   \   000044   E4           CLR     A
+   \   000045   3583         ADDC    A,DPH
+   \   000047   F583         MOV     DPH,A
+   \   000049   7420         MOV     A,#0x20
+   \   00004B   F0           MOVX    @DPTR,A
+     27            err = (uint32)(value);
+     28            _ltoa( err, &buf[tmpLen+1], format );
+   \   00004C                ; Setup parameters for call to function _ltoa
+   \   00004C   A3           INC     DPTR
+   \   00004D   8582..       MOV     ?V4,DPL
+   \   000050   8583..       MOV     ?V5,DPH
+   \   000053   78..         MOV     R0,#?V4
+   \   000055   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000058   A9..         MOV     R1,?V0
+   \   00005A   AA..         MOV     R2,?V2
+   \   00005C   AB..         MOV     R3,?V3
+   \   00005E   E4           CLR     A
+   \   00005F   FC           MOV     R4,A
+   \   000060   FD           MOV     R5,A
+   \   000061   12....       LCALL   `??_ltoa::?relay`    ; Banked call to: _ltoa
+   \   000064   7402         MOV     A,#0x2
+   \   000066   12....       LCALL   ?DEALLOC_XSTACK8
+     29            uart_put_string(buf);
+   \   000069                ; Setup parameters for call to function uart_put_string
+   \   000069   AA..         MOV     R2,?XSP + 0
+   \   00006B   AB..         MOV     R3,?XSP + 1
+   \   00006D   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+     30          }
+   \   000070   7419         MOV     A,#0x19
+   \   000072   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000075   7F07         MOV     R7,#0x7
+   \   000077   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??uart_put_string::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_put_string
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??uart_put_byte_array::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_put_byte_array
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??uart_put_string_value::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_put_string_value
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      2      0   uart_put_byte_array
+        2      0   -> HalUARTWrite
+      0     49   uart_put_string
+        0      9   -> HalUARTWrite
+        0      9   -> strlen
+      0     43   uart_put_string_value
+        0     42   -> _ltoa
+        0     43   -> osal_memcpy
+        0     40   -> osal_strlen
+        0     40   -> uart_put_string
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      16  uart_put_byte_array
+       6  uart_put_byte_array::?relay
+      30  uart_put_string
+       6  uart_put_string::?relay
+     122  uart_put_string_value
+       6  uart_put_string_value::?relay
+
+ 
+ 168 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+ 
+ 186 bytes of CODE memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-040-77d7-5a4eb2">
+    <release tarname="autoconf-2.68-1-msys-1.0.17-doc.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <dir path="share/doc" />
+        <dir path="share/doc/autoconf" />
+        <dir path="share/doc/autoconf/2.68" />
+        <file path="share/doc/autoconf/2.68/AUTHORS" />
+        <file path="share/doc/autoconf/2.68/BUGS" />
+        <file path="share/doc/autoconf/2.68/ChangeLog" />
+        <file path="share/doc/autoconf/2.68/ChangeLog.0" />
+        <file path="share/doc/autoconf/2.68/ChangeLog.1" />
+        <file path="share/doc/autoconf/2.68/ChangeLog.2" />
+        <file path="share/doc/autoconf/2.68/NEWS" />
+        <file path="share/doc/autoconf/2.68/README" />
+        <file path="share/doc/autoconf/2.68/THANKS" />
+        <file path="share/doc/autoconf/2.68/TODO" />
+        <dir path="share/doc/MSYS" />
+        <file path="share/doc/MSYS/autoconf.README.txt" />
+        <dir path="share/info" />
+        <file path="share/info/autoconf.info" />
+        <file path="share/info/standards.info" />
+        <dir path="share/man" />
+        <dir path="share/man/man1" />
+        <file path="share/man/man1/autoconf.1.gz" />
+        <file path="share/man/man1/autoheader.1.gz" />
+        <file path="share/man/man1/autom4te.1.gz" />
+        <file path="share/man/man1/autoreconf.1.gz" />
+        <file path="share/man/man1/autoscan.1.gz" />
+        <file path="share/man/man1/autoupdate.1.gz" />
+        <file path="share/man/man1/config.guess.1.gz" />
+        <file path="share/man/man1/config.sub.1.gz" />
+        <file path="share/man/man1/ifnames.1.gz" />
+    </manifest>
+</package>

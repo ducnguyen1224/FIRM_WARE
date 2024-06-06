@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-034-a7d9-50033a">
+    <release tarname="bzip2-1.0.6-4-mingw32-dev.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-002-a7c6-d7dbb5" />
+    </references>
+    <manifest>
+        <dir path="include" />
+        <file path="include/bzlib.h" />
+        <dir path="lib" />
+        <file path="lib/libbz2.a" />
+        <file path="lib/libbz2.dll.a" />
+    </manifest>
+</package>

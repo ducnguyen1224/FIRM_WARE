@@ -1,0 +1,13 @@
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\bin\armproc.dll" 
+
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\bin\armsim2.dll" 
+
+"C:\Users\ThaoHuyen\Downloads\swrc271a\cc2538_foundation_firmware_1_0_1_0\usblib\cc2538\bin\iar\usbcdc.lib" 
+
+--plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\bin\armbat.dll" 
+
+--device_macro "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\config\debugger\TexasInstruments\CC2538.dmac" 
+
+
+
+

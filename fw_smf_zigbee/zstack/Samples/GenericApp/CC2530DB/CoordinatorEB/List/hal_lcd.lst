@@ -1,0 +1,1338 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.20.1.2476 for 8051                14/Sep/2016  10:53:28
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Components\hal\target\CC2530EB\hal_lcd.c
+#    Command line       =  
+#        -f "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg"
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f "C:\Users\8470p\Desktop\Z-Stack Mesh
+#        1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+#        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x9669
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=2000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+#        -DREJOIN_POLL_RATE=440 "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Components\hal\target\CC2530EB\hal_lcd.c" -D ZTOOL_P1 -D
+#        HAL_UART=TRUE -D HAL_UART_DMA=1 -D HAL_DMA=TRUE -D HAL_UART_ISR=0 -D
+#        LCD_SUPPORTED=1 -D NV_RESTORE=TRUE -D POLL_RATE=1000 -lC
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\"
+#        -lA "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\"
+#        --diag_suppress Pe001,Pa010 -o "C:\Users\8470p\Desktop\Z-Stack Mesh
+#        1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj\" -e
+#        --no_code_motion --debug --core=plain --dptr=16,1 --data_model=large
+#        --code_model=banked --calling_convention=xdata_reentrant
+#        --place_constants=data_rom --nr_virtual_regs 16 -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+#        -Ohz --require_prototypes
+#    List file          =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\hal_lcd.lst
+#    Object file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj\hal_lcd.r51
+#
+###############################################################################
+
+C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0 ZED\Components\hal\target\CC2530EB\hal_lcd.c
+      1          /**************************************************************************************************
+      2            Filename:       hal_lcd.c
+      3            Revised:        $Date: 2012-09-30 16:36:36 -0700 (Sun, 30 Sep 2012) $
+      4            Revision:       $Revision: 31658 $
+      5          
+      6            Description:    This file contains the interface to the HAL LCD Service.
+      7          
+      8          
+      9            Copyright 2007-2012 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License"). You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product. Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /**************************************************************************************************
+     41           *                                           INCLUDES
+     42           **************************************************************************************************/
+     43          #include "hal_types.h"
+     44          #include "hal_lcd.h"
+     45          #include "OSAL.h"
+     46          #include "OnBoard.h"
+     47          #include "hal_assert.h"
+     48          
+     49          #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
+     50            #include "DebugTrace.h"
+     51          #endif
+     52          
+     53          #include "app_config.h"
+     54          #include "debug.h"
+     55          /**************************************************************************************************
+     56           *                                          CONSTANTS
+     57           **************************************************************************************************/
+     58          /*
+     59            LCD pins
+     60          
+     61            //control
+     62            P0.0 - LCD_MODE
+     63            P1.1 - LCD_FLASH_RESET
+     64            P1.2 - LCD_CS
+     65          
+     66            //spi
+     67            P1.5 - CLK
+     68            P1.6 - MOSI
+     69            P1.7 - MISO
+     70          */
+     71          
+     72          /* LCD Control lines */
+     73          #define HAL_LCD_MODE_PORT 0
+     74          #define HAL_LCD_MODE_PIN  0
+     75          
+     76          #define HAL_LCD_RESET_PORT 1
+     77          #define HAL_LCD_RESET_PIN  1
+     78          
+     79          #define HAL_LCD_CS_PORT 1
+     80          #define HAL_LCD_CS_PIN  2
+     81          
+     82          /* LCD SPI lines */
+     83          #define HAL_LCD_CLK_PORT 1
+     84          #define HAL_LCD_CLK_PIN  5
+     85          
+     86          #define HAL_LCD_MOSI_PORT 1
+     87          #define HAL_LCD_MOSI_PIN  6
+     88          
+     89          #define HAL_LCD_MISO_PORT 1
+     90          #define HAL_LCD_MISO_PIN  7
+     91          
+     92          /* SPI settings */
+     93          #define HAL_SPI_CLOCK_POL_LO       0x00
+     94          #define HAL_SPI_CLOCK_PHA_0        0x00
+     95          #define HAL_SPI_TRANSFER_MSB_FIRST 0x20
+     96          
+     97          /* LCD lines */
+     98          #define LCD_MAX_LINE_COUNT              3
+     99          
+    100          /* Defines for HW LCD */
+    101          
+    102          /* Set power save mode */
+    103          #define OSC_OFF                         0x00
+    104          #define OSC_ON                          0x01
+    105          #define POWER_SAVE_OFF                  0x00
+    106          #define POWER_SAVE_ON                   0x02
+    107          #define SET_POWER_SAVE_MODE(options)    HalLcd_HW_Control(0x0C | (options))
+    108          
+    109          /* Function Set */
+    110          #define CGROM                           0x00
+    111          #define CGRAM                           0x01
+    112          #define COM_FORWARD                     0x00
+    113          #define COM_BACKWARD                    0x02
+    114          #define TWO_LINE                        0x00
+    115          #define THREE_LINE                      0x04
+    116          #define FUNCTION_SET(options)           HalLcd_HW_Control(0x10 | (options))
+    117          
+    118          /* Set Display Start Line */
+    119          #define LINE1                           0x00
+    120          #define LINE2                           0x01
+    121          #define LINE3                           0x02
+    122          #define LINE4                           0x03
+    123          #define SET_DISPLAY_START_LINE(line)    HalLcd_HW_Control(0x18 | (line))
+    124          
+    125          /* Bias control */
+    126          #define BIAS_1_5                        0x00
+    127          #define BIAS_1_4                        0x01
+    128          #define SET_BIAS_CTRL(bias)             HalLcd_HW_Control(0x1C | (bias))
+    129          
+    130          /* Power control */
+    131          #define VOLTAGE_DIVIDER_OFF             0x00
+    132          #define VOLTAGE_DIVIDER_ON              0x01
+    133          #define CONVERTER_AND_REG_OFF           0x00
+    134          #define CONVERTER_AND_REG_ON            0x04
+    135          #define SET_POWER_CTRL(options)         HalLcd_HW_Control(0x20 | (options))
+    136          
+    137          // Set display control
+    138          #define DISPLAY_CTRL_ON                 0x01
+    139          #define DISPLAY_CTRL_OFF                0x00
+    140          #define DISPLAY_CTRL_BLINK_ON           0x02
+    141          #define DISPLAY_CTRL_BLINK_OFF          0x00
+    142          #define DISPLAY_CTRL_CURSOR_ON          0x04
+    143          #define DISPLAY_CTRL_CURSOR_OFF         0x00
+    144          #define SET_DISPLAY_CTRL(options)       HalLcd_HW_Control(0x28 | (options))
+    145          
+    146          /* Set DD/ CGRAM address */
+    147          #define SET_DDRAM_ADDR(charIndex)       HalLcd_HW_Control(0x80 | (charIndex))
+    148          #define SET_GCRAM_CHAR(specIndex)       HalLcd_HW_Control(0xC0 | (specIndex))
+    149          
+    150          /* Set ICONRAM address */
+    151          #define CONTRAST_CTRL_REGISTER          0x10
+    152          #define SET_ICONRAM_ADDR(addr)          HalLcd_HW_Control(0x40 | (addr))
+    153          
+    154          /* Set double height */
+    155          #define LINE_1_AND_2                    0x01
+    156          #define LINE_2_AND_3                    0x02
+    157          #define NORMAL_DISPLAY                  0x00
+    158          #define SET_DOUBLE_HEIGHT(options)      HalLcd_HW_Control(0x08 | (options))
+    159          
+    160          /**************************************************************************************************
+    161           *                                           MACROS
+    162           **************************************************************************************************/
+    163          
+    164          #define HAL_IO_SET(port, pin, val)        HAL_IO_SET_PREP(port, pin, val)
+    165          #define HAL_IO_SET_PREP(port, pin, val)   st( P##port##_##pin## = val; )
+    166          
+    167          #define HAL_CONFIG_IO_OUTPUT(port, pin, val)      HAL_CONFIG_IO_OUTPUT_PREP(port, pin, val)
+    168          #define HAL_CONFIG_IO_OUTPUT_PREP(port, pin, val) st( P##port##SEL &= ~BV(pin); \
+    169                                                                P##port##_##pin## = val; \
+    170                                                                P##port##DIR |= BV(pin); )
+    171          
+    172          #define HAL_CONFIG_IO_PERIPHERAL(port, pin)      HAL_CONFIG_IO_PERIPHERAL_PREP(port, pin)
+    173          #define HAL_CONFIG_IO_PERIPHERAL_PREP(port, pin) st( P##port##SEL |= BV(pin); )
+    174          
+    175          
+    176          
+    177          /* SPI interface control */
+    178          #define LCD_SPI_BEGIN()     HAL_IO_SET(HAL_LCD_CS_PORT,  HAL_LCD_CS_PIN,  0); /* chip select */
+    179          #define LCD_SPI_END()                                                         \
+    180          {                                                                             \
+    181            asm("NOP");                                                                 \
+    182            asm("NOP");                                                                 \
+    183            asm("NOP");                                                                 \
+    184            asm("NOP");                                                                 \
+    185            HAL_IO_SET(HAL_LCD_CS_PORT,  HAL_LCD_CS_PIN,  1); /* chip select */         \
+    186          }
+    187          /* clear the received and transmit byte status, write tx data to buffer, wait till transmit done */
+    188          #define LCD_SPI_TX(x)                   { U1CSR &= ~(BV(2) | BV(1)); U1DBUF = x; while( !(U1CSR & BV(1)) ); }
+    189          #define LCD_SPI_WAIT_RXRDY()            { while(!(U1CSR & BV(1))); }
+    190          
+    191          
+    192          /* Control macros */
+    193          #define LCD_DO_WRITE()        HAL_IO_SET(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
+    194          #define LCD_DO_CONTROL()      HAL_IO_SET(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  0);
+    195          
+    196          #define LCD_ACTIVATE_RESET()  HAL_IO_SET(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 0);
+    197          #define LCD_RELEASE_RESET()   HAL_IO_SET(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
+    198          
+    199          #if (HAL_LCD == TRUE)
+    200          /**************************************************************************************************
+    201           *                                       LOCAL VARIABLES
+    202           **************************************************************************************************/
+    203          
+    204          static uint8 *Lcd_Line1;
+    205          
+    206          /**************************************************************************************************
+    207           *                                       FUNCTIONS - API
+    208           **************************************************************************************************/
+    209          
+    210          void HalLcd_HW_Init(void);
+    211          void HalLcd_HW_WaitUs(uint16 i);
+    212          void HalLcd_HW_Clear(void);
+    213          void HalLcd_HW_ClearAllSpecChars(void);
+    214          void HalLcd_HW_Control(uint8 cmd);
+    215          void HalLcd_HW_Write(uint8 data);
+    216          void HalLcd_HW_SetContrast(uint8 value);
+    217          void HalLcd_HW_WriteChar(uint8 line, uint8 col, char text);
+    218          void HalLcd_HW_WriteLine(uint8 line, const char *pText);
+    219          #endif //LCD
+    220          
+    221          /**************************************************************************************************
+    222           * @fn      HalLcdInit
+    223           *
+    224           * @brief   Initilize LCD Service
+    225           *
+    226           * @param   init - pointer to void that contains the initialized value
+    227           *
+    228           * @return  None
+    229           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    230          void HalLcdInit(void)
+   \                     HalLcdInit:
+    231          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    232          #if (HAL_LCD == TRUE)
+    233            Lcd_Line1 = NULL;
+    234            HalLcd_HW_Init();
+    235          #endif
+    236          }
+   \   000000   02....       LJMP    ?BRET
+    237          
+    238          /*************************************************************************************************
+    239           *                    LCD EMULATION FUNCTIONS
+    240           *
+    241           * Some evaluation boards are equipped with Liquid Crystal Displays
+    242           * (LCD) which may be used to display diagnostic information. These
+    243           * functions provide LCD emulation, sending the diagnostic strings
+    244           * to Z-Tool via the RS232 serial port. These functions are enabled
+    245           * when the "LCD_SUPPORTED" compiler flag is placed in the makefile.
+    246           *
+    247           * Most applications update both lines (1 and 2) of the LCD whenever
+    248           * text is posted to the device. This emulator assumes that line 1 is
+    249           * updated first (saved locally) and the formatting and send operation
+    250           * is triggered by receipt of line 2. Nothing will be transmitted if
+    251           * only line 1 is updated.
+    252           *
+    253           *************************************************************************************************/
+    254          
+    255          
+    256          /**************************************************************************************************
+    257           * @fn      HalLcdWriteString
+    258           *
+    259           * @brief   Write a string to the LCD
+    260           *
+    261           * @param   str    - pointer to the string that will be displayed
+    262           *          option - display options
+    263           *
+    264           * @return  None
+    265           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    266          void HalLcdWriteString ( char *str, uint8 option)
+   \                     HalLcdWriteString:
+    267          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    268          #if (HAL_LCD == TRUE)
+    269          
+    270            uint8 strLen = 0;
+    271            uint8 totalLen = 0;
+    272            uint8 *buf;
+    273            uint8 tmpLen;
+    274          
+    275            if ( Lcd_Line1 == NULL )
+    276            {
+    277              Lcd_Line1 = osal_mem_alloc( HAL_LCD_MAX_CHARS+1 );
+    278              HalLcdWriteString( "TexasInstruments", 1 );
+    279            }
+    280          
+    281            strLen = (uint8)osal_strlen( (char*)str );
+    282          
+    283            /* Check boundries */
+    284            if ( strLen > HAL_LCD_MAX_CHARS )
+    285              strLen = HAL_LCD_MAX_CHARS;
+    286          
+    287            if ( option == HAL_LCD_LINE_1 )
+    288            {
+    289              /* Line 1 gets saved for later */
+    290              osal_memcpy( Lcd_Line1, str, strLen );
+    291              Lcd_Line1[strLen] = '\0';
+    292            }
+    293            else
+    294            {
+    295              /* Line 2 triggers action */
+    296              tmpLen = (uint8)osal_strlen( (char*)Lcd_Line1 );
+    297              totalLen =  tmpLen + 1 + strLen + 1;
+    298              buf = osal_mem_alloc( totalLen );
+    299              if ( buf != NULL )
+    300              {
+    301                /* Concatenate strings */
+    302                osal_memcpy( buf, Lcd_Line1, tmpLen );
+    303                buf[tmpLen++] = ' ';
+    304                osal_memcpy( &buf[tmpLen], str, strLen );
+    305                buf[tmpLen+strLen] = '\0';
+    306          
+    307                /* Send it out */
+    308          #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
+    309          
+    310          #if defined(SERIAL_DEBUG_SUPPORTED)
+    311                debug_str( (uint8*)buf );
+    312          #endif //LCD_SUPPORTED
+    313          
+    314          #endif //ZTOOL_P1
+    315          
+    316                /* Free mem */
+    317                osal_mem_free( buf );
+    318              }
+    319            }
+    320          
+    321            /* Display the string */
+    322            HalLcd_HW_WriteLine (option, str);
+    323          
+    324          #endif //HAL_LCD
+    325          #ifdef DEBUG_UART
+    326            DBG_PRINTF(str);
+                              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "unsigned char *"
+   \   000004                ; Setup parameters for call to function uart_put_string
+   \   000004   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    327            DBG_PRINTF("\r\n");
+   \   000007                ; Setup parameters for call to function uart_put_string
+   \   000007   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   000009   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   00000B   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    328          #endif
+    329          }
+   \   00000E   D083         POP     DPH
+   \   000010   D082         POP     DPL
+   \   000012   02....       LJMP    ?BRET
+    330          
+    331          /**************************************************************************************************
+    332           * @fn      HalLcdWriteValue
+    333           *
+    334           * @brief   Write a value to the LCD
+    335           *
+    336           * @param   value  - value that will be displayed
+    337           *          radix  - 8, 10, 16
+    338           *          option - display options
+    339           *
+    340           * @return  None
+    341           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    342          void HalLcdWriteValue ( uint32 value, const uint8 radix, uint8 option)
+   \                     HalLcdWriteValue:
+    343          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 25
+   \   000005   74E7         MOV     A,#-0x19
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   E9           MOV     A,R1
+   \   00000B   FE           MOV     R6,A
+    344          #if (HAL_LCD == TRUE)
+    345            uint8 buf[HAL_LCD_MAX_BUFF];
+    346          
+    347            _ltoa( value, &buf[0], radix );
+    348            HalLcdWriteString( (char*)buf, option );
+    349          #endif
+    350          #ifdef DEBUG_UART
+    351             uint8 buf[HAL_LCD_MAX_BUFF];
+    352            _ltoa( value, &buf[0], radix );
+   \   00000C                ; Setup parameters for call to function _ltoa
+   \   00000C   A8..         MOV     R0,?XSP + 0
+   \   00000E   A9..         MOV     R1,?XSP + 1
+   \   000010   88..         MOV     ?V4,R0
+   \   000012   89..         MOV     ?V5,R1
+   \   000014   78..         MOV     R0,#?V4
+   \   000016   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000019   EE           MOV     A,R6
+   \   00001A   F9           MOV     R1,A
+   \   00001B   12....       LCALL   `??_ltoa::?relay`    ; Banked call to: _ltoa
+   \   00001E   7402         MOV     A,#0x2
+   \   000020   12....       LCALL   ?DEALLOC_XSTACK8
+    353            DBG_PRINTF(buf);  
+   \   000023                ; Setup parameters for call to function uart_put_string
+   \   000023   AA..         MOV     R2,?XSP + 0
+   \   000025   AB..         MOV     R3,?XSP + 1
+   \   000027   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    354            DBG_PRINTF("\r\n");
+   \   00002A                ; Setup parameters for call to function uart_put_string
+   \   00002A   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   00002C   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   00002E   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    355          
+    356          #endif
+    357          }
+   \   000031   7419         MOV     A,#0x19
+   \   000033   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000036   7F06         MOV     R7,#0x6
+   \   000038   02....       LJMP    ?BANKED_LEAVE_XDATA
+    358          
+    359          /**************************************************************************************************
+    360           * @fn      HalLcdWriteScreen
+    361           *
+    362           * @brief   Write a value to the LCD
+    363           *
+    364           * @param   line1  - string that will be displayed on line 1
+    365           *          line2  - string that will be displayed on line 2
+    366           *
+    367           * @return  None
+    368           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    369          void HalLcdWriteScreen( char *line1, char *line2 )
+   \                     HalLcdWriteScreen:
+    370          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+   \   000005   8C..         MOV     ?V0,R4
+   \   000007   8D..         MOV     ?V1,R5
+    371          #if (HAL_LCD == TRUE)
+    372            HalLcdWriteString( line1, 1 );
+    373            HalLcdWriteString( line2, 2 );
+    374          #endif
+    375            #ifdef DEBUG_UART
+    376          
+    377            DBG_PRINTF(line1);  
+                              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "unsigned char *"
+   \   000009                ; Setup parameters for call to function uart_put_string
+   \   000009   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    378            DBG_PRINTF("\r\n");
+   \   00000C                ; Setup parameters for call to function uart_put_string
+   \   00000C   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   00000E   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   000010   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    379            DBG_PRINTF(line2);  
+                              ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "unsigned char *"
+   \   000013                ; Setup parameters for call to function uart_put_string
+   \   000013   AA..         MOV     R2,?V0
+   \   000015   AB..         MOV     R3,?V1
+   \   000017   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    380            DBG_PRINTF("\r\n");
+   \   00001A                ; Setup parameters for call to function uart_put_string
+   \   00001A   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   00001C   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   00001E   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    381          #endif
+    382            
+    383          }
+   \   000021   7F02         MOV     R7,#0x2
+   \   000023   02....       LJMP    ?BANKED_LEAVE_XDATA
+    384          
+    385          /**************************************************************************************************
+    386           * @fn      HalLcdWriteStringValue
+    387           *
+    388           * @brief   Write a string followed by a value to the LCD
+    389           *
+    390           * @param   title  - Title that will be displayed before the value
+    391           *          value  - value
+    392           *          format - redix
+    393           *          line   - line number
+    394           *
+    395           * @return  None
+    396           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    397          void HalLcdWriteStringValue( char *title, uint16 value, uint8 format, uint8 line )
+   \                     HalLcdWriteStringValue:
+    398          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000   74F1         MOV     A,#-0xf
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 15
+   \   000005                ; Auto size: 25
+   \   000005   74E7         MOV     A,#-0x19
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   8C..         MOV     ?V2,R4
+   \   000010   8D..         MOV     ?V3,R5
+   \   000012   89..         MOV     ?V0,R1
+    399          #if (HAL_LCD == TRUE)
+    400            uint8 tmpLen;
+    401            uint8 buf[HAL_LCD_MAX_BUFF];
+    402            uint32 err;
+    403          
+    404            tmpLen = (uint8)osal_strlen( (char*)title );
+    405            osal_memcpy( buf, title, tmpLen );
+    406            buf[tmpLen] = ' ';
+    407            err = (uint32)(value);
+    408            _ltoa( err, &buf[tmpLen+1], format );
+    409            HalLcdWriteString( (char*)buf, line );		
+    410          #endif
+    411          #ifdef DEBUG_UART
+    412              uint8 tmpLen;
+    413            uint8 buf[HAL_LCD_MAX_BUFF];
+    414            uint32 err;
+    415          
+    416            tmpLen = (uint8)osal_strlen( (char*)title );
+   \   000014                ; Setup parameters for call to function osal_strlen
+   \   000014   12....       LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
+   \   000017   EA           MOV     A,R2
+   \   000018   F5..         MOV     ?V1,A
+    417            osal_memcpy( buf, title, tmpLen );
+   \   00001A                ; Setup parameters for call to function osal_memcpy
+   \   00001A   8E..         MOV     ?V4,R6
+   \   00001C   8F..         MOV     ?V5,R7
+   \   00001E   75..00       MOV     ?V6,#0x0
+   \   000021   78..         MOV     R0,#?V4
+   \   000023   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000026   AC..         MOV     R4,?V1
+   \   000028   7D00         MOV     R5,#0x0
+   \   00002A   7403         MOV     A,#0x3
+   \   00002C   12....       LCALL   ?XSTACK_DISP101_8
+   \   00002F   12....       LCALL   `??osal_memcpy::?relay`; Banked call to: osal_memcpy
+   \   000032   7403         MOV     A,#0x3
+   \   000034   12....       LCALL   ?DEALLOC_XSTACK8
+    418            buf[tmpLen] = ' ';
+   \   000037   A8..         MOV     R0,?V1
+   \   000039   12....       LCALL   ?Subroutine0 & 0xFFFF
+    419            err = (uint32)(value);
+    420            _ltoa( err, &buf[tmpLen+1], format );
+   \                     ??CrossCallReturnLabel_0:
+   \   00003C                ; Setup parameters for call to function _ltoa
+   \   00003C   A3           INC     DPTR
+   \   00003D   8582..       MOV     ?V4,DPL
+   \   000040   8583..       MOV     ?V5,DPH
+   \   000043   78..         MOV     R0,#?V4
+   \   000045   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000048   A9..         MOV     R1,?V0
+   \   00004A   AA..         MOV     R2,?V2
+   \   00004C   AB..         MOV     R3,?V3
+   \   00004E   E4           CLR     A
+   \   00004F   FC           MOV     R4,A
+   \   000050   FD           MOV     R5,A
+   \   000051   12....       LCALL   `??_ltoa::?relay`    ; Banked call to: _ltoa
+   \   000054   7402         MOV     A,#0x2
+   \   000056   12....       LCALL   ?DEALLOC_XSTACK8
+    421            DBG_PRINTF(buf);  
+   \   000059                ; Setup parameters for call to function uart_put_string
+   \   000059   AA..         MOV     R2,?XSP + 0
+   \   00005B   AB..         MOV     R3,?XSP + 1
+   \   00005D   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    422            DBG_PRINTF("\r\n");
+   \   000060                ; Setup parameters for call to function uart_put_string
+   \   000060   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   000062   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   000064   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    423          #endif
+    424            
+    425          }
+   \   000067   7419         MOV     A,#0x19
+   \   000069   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00006C   7F07         MOV     R7,#0x7
+   \   00006E   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   85..82       MOV     DPL,?XSP + 0
+   \   000003   85..83       MOV     DPH,?XSP + 1
+   \   000006   E582         MOV     A,DPL
+   \   000008   28           ADD     A,R0
+   \   000009   F582         MOV     DPL,A
+   \   00000B   E4           CLR     A
+   \   00000C   3583         ADDC    A,DPH
+   \   00000E   F583         MOV     DPH,A
+   \   000010   7420         MOV     A,#0x20
+   \   000012   F0           MOVX    @DPTR,A
+   \   000013   22           RET
+    426          
+    427          /**************************************************************************************************
+    428           * @fn      HalLcdWriteStringValue
+    429           *
+    430           * @brief   Write a string followed by a value to the LCD
+    431           *
+    432           * @param   title   - Title that will be displayed before the value
+    433           *          value1  - value #1
+    434           *          format1 - redix of value #1
+    435           *          value2  - value #2
+    436           *          format2 - redix of value #2
+    437           *          line    - line number
+    438           *
+    439           * @return  None
+    440           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    441          void HalLcdWriteStringValueValue( char *title, uint16 value1, uint8 format1,
+   \                     HalLcdWriteStringValueValue:
+    442                                            uint16 value2, uint8 format2, uint8 line )
+    443          {
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V8
+   \   000000                REQUIRE ?V9
+   \   000000                REQUIRE ?V10
+   \   000000   74ED         MOV     A,#-0x13
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 19
+   \   000005                ; Auto size: 25
+   \   000005   74E7         MOV     A,#-0x19
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   8C..         MOV     ?V4,R4
+   \   000010   8D..         MOV     ?V5,R5
+   \   000012   89..         MOV     ?V0,R1
+    444          
+    445          #if (HAL_LCD == TRUE)
+    446          
+    447            uint8 tmpLen;
+    448            uint8 buf[HAL_LCD_MAX_BUFF];
+    449            uint32 err;
+    450          
+    451            tmpLen = (uint8)osal_strlen( (char*)title );
+    452            if ( tmpLen )
+    453            {
+    454              osal_memcpy( buf, title, tmpLen );
+    455              buf[tmpLen++] = ' ';
+    456            }
+    457          
+    458            err = (uint32)(value1);
+    459            _ltoa( err, &buf[tmpLen], format1 );
+    460            tmpLen = (uint8)osal_strlen( (char*)buf );
+    461          
+    462            buf[tmpLen++] = ',';
+    463            buf[tmpLen++] = ' ';
+    464            err = (uint32)(value2);
+    465            _ltoa( err, &buf[tmpLen], format2 );
+    466          
+    467            HalLcdWriteString( (char *)buf, line );		
+    468          
+    469          #endif
+    470           #ifdef DEBUG_UART
+    471            uint8 tmpLen;
+    472            uint8 buf[HAL_LCD_MAX_BUFF];
+    473            uint32 err;
+    474          
+    475            tmpLen = (uint8)osal_strlen( (char*)title );
+   \   000014                ; Setup parameters for call to function osal_strlen
+   \   000014   12....       LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
+   \   000017   EA           MOV     A,R2
+   \   000018   F5..         MOV     ?V2,A
+    476            if ( tmpLen )
+   \   00001A   6024         JZ      ??HalLcdWriteStringValueValue_0
+    477            {
+    478              osal_memcpy( buf, title, tmpLen );
+   \   00001C                ; Setup parameters for call to function osal_memcpy
+   \   00001C   8E..         MOV     ?V8,R6
+   \   00001E   8F..         MOV     ?V9,R7
+   \   000020   75..00       MOV     ?V10,#0x0
+   \   000023   78..         MOV     R0,#?V8
+   \   000025   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000028   AC..         MOV     R4,?V2
+   \   00002A   7D00         MOV     R5,#0x0
+   \   00002C   7403         MOV     A,#0x3
+   \   00002E   12....       LCALL   ?XSTACK_DISP101_8
+   \   000031   12....       LCALL   `??osal_memcpy::?relay`; Banked call to: osal_memcpy
+   \   000034   7403         MOV     A,#0x3
+   \   000036   12....       LCALL   ?DEALLOC_XSTACK8
+    479              buf[tmpLen++] = ' ';
+   \   000039   A8..         MOV     R0,?V2
+   \   00003B   12....       LCALL   ?Subroutine0 & 0xFFFF
+    480            }
+   \                     ??CrossCallReturnLabel_1:
+   \   00003E   05..         INC     ?V2
+    481          
+    482            err = (uint32)(value1);
+    483            _ltoa( err, &buf[tmpLen], format1 );
+   \                     ??HalLcdWriteStringValueValue_0:
+   \   000040                ; Setup parameters for call to function _ltoa
+   \   000040   A8..         MOV     R0,?V2
+   \   000042   12....       LCALL   ?Subroutine1 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   000045   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000048   A9..         MOV     R1,?V0
+   \   00004A   AA..         MOV     R2,?V4
+   \   00004C   AB..         MOV     R3,?V5
+   \   00004E   E4           CLR     A
+   \   00004F   FC           MOV     R4,A
+   \   000050   FD           MOV     R5,A
+   \   000051   12....       LCALL   `??_ltoa::?relay`    ; Banked call to: _ltoa
+   \   000054   7402         MOV     A,#0x2
+   \   000056   12....       LCALL   ?DEALLOC_XSTACK8
+    484            tmpLen = (uint8)osal_strlen( (char*)buf );
+   \   000059                ; Setup parameters for call to function osal_strlen
+   \   000059   AA..         MOV     R2,?XSP + 0
+   \   00005B   AB..         MOV     R3,?XSP + 1
+   \   00005D   12....       LCALL   `??osal_strlen::?relay`; Banked call to: osal_strlen
+   \   000060   EA           MOV     A,R2
+   \   000061   F5..         MOV     ?V2,A
+    485          
+    486            buf[tmpLen++] = ',';
+   \   000063   F8           MOV     R0,A
+   \   000064   85..82       MOV     DPL,?XSP + 0
+   \   000067   85..83       MOV     DPH,?XSP + 1
+   \   00006A   E582         MOV     A,DPL
+   \   00006C   2A           ADD     A,R2
+   \   00006D   F582         MOV     DPL,A
+   \   00006F   E4           CLR     A
+   \   000070   3583         ADDC    A,DPH
+   \   000072   F583         MOV     DPH,A
+   \   000074   742C         MOV     A,#0x2c
+   \   000076   F0           MOVX    @DPTR,A
+    487            buf[tmpLen++] = ' ';
+   \   000077   08           INC     R0
+   \   000078   12....       LCALL   ?Subroutine0 & 0xFFFF
+    488            err = (uint32)(value2);
+    489            _ltoa( err, &buf[tmpLen], format2 );
+   \                     ??CrossCallReturnLabel_2:
+   \   00007B                ; Setup parameters for call to function _ltoa
+   \   00007B   08           INC     R0
+   \   00007C   12....       LCALL   ?Subroutine1 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   00007F   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000082   7430         MOV     A,#0x30
+   \   000084   12....       LCALL   ?XSTACK_DISP0_8
+   \   000087   E0           MOVX    A,@DPTR
+   \   000088   F9           MOV     R1,A
+   \   000089   742E         MOV     A,#0x2e
+   \   00008B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00008E   E0           MOVX    A,@DPTR
+   \   00008F   F5..         MOV     ?V2,A
+   \   000091   A3           INC     DPTR
+   \   000092   E0           MOVX    A,@DPTR
+   \   000093   AA..         MOV     R2,?V2
+   \   000095   FB           MOV     R3,A
+   \   000096   E4           CLR     A
+   \   000097   FC           MOV     R4,A
+   \   000098   FD           MOV     R5,A
+   \   000099   12....       LCALL   `??_ltoa::?relay`    ; Banked call to: _ltoa
+   \   00009C   7402         MOV     A,#0x2
+   \   00009E   12....       LCALL   ?DEALLOC_XSTACK8
+    490            DBG_PRINTF(buf);  
+   \   0000A1                ; Setup parameters for call to function uart_put_string
+   \   0000A1   AA..         MOV     R2,?XSP + 0
+   \   0000A3   AB..         MOV     R3,?XSP + 1
+   \   0000A5   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    491            DBG_PRINTF("\r\n");
+   \   0000A8                ; Setup parameters for call to function uart_put_string
+   \   0000A8   7A..         MOV     R2,#`?<Constant "\\r\\n">` & 0xff
+   \   0000AA   7B..         MOV     R3,#(`?<Constant "\\r\\n">` >> 8) & 0xff
+   \   0000AC   12....       LCALL   `??uart_put_string::?relay`; Banked call to: uart_put_string
+    492          #endif
+    493          }
+   \   0000AF   7419         MOV     A,#0x19
+   \   0000B1   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000B4   7F0B         MOV     R7,#0xb
+   \   0000B6   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   85..82       MOV     DPL,?XSP + 0
+   \   000003   85..83       MOV     DPH,?XSP + 1
+   \   000006   E582         MOV     A,DPL
+   \   000008   28           ADD     A,R0
+   \   000009   F5..         MOV     ?V2,A
+   \   00000B   E4           CLR     A
+   \   00000C   3583         ADDC    A,DPH
+   \   00000E   F5..         MOV     ?V3,A
+   \   000010   78..         MOV     R0,#?V2
+   \   000012   22           RET
+    494          
+    495          /**************************************************************************************************
+    496           * @fn      HalLcdDisplayPercentBar
+    497           *
+    498           * @brief   Display percentage bar on the LCD
+    499           *
+    500           * @param   title   -
+    501           *          value   -
+    502           *
+    503           * @return  None
+    504           **************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    505          void HalLcdDisplayPercentBar( char *title, uint8 value )
+   \                     HalLcdDisplayPercentBar:
+    506          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    507          #if (HAL_LCD == TRUE)
+    508          
+    509            uint8 percent;
+    510            uint8 leftOver;
+    511            uint8 buf[17];
+    512            uint32 err;
+    513            uint8 x;
+    514          
+    515            /* Write the title: */
+    516            HalLcdWriteString( title, HAL_LCD_LINE_1 );
+    517          
+    518            if ( value > 100 )
+    519              value = 100;
+    520          
+    521            /* convert to blocks */
+    522            percent = (uint8)(value / 10);
+    523            leftOver = (uint8)(value % 10);
+    524          
+    525            /* Make window */
+    526            osal_memcpy( buf, "[          ]  ", 15 );
+    527          
+    528            for ( x = 0; x < percent; x ++ )
+    529            {
+    530              buf[1+x] = '>';
+    531            }
+    532          
+    533            if ( leftOver >= 5 )
+    534              buf[1+x] = '+';
+    535          
+    536            err = (uint32)value;
+    537            _ltoa( err, (uint8*)&buf[13], 10 );
+    538          
+    539            HalLcdWriteString( (char*)buf, HAL_LCD_LINE_2 );
+    540          
+    541          #endif
+    542          
+    543          }
+   \   000000   02....       LJMP    ?BRET
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdInit::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdWriteString::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdWriteString
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdWriteValue::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdWriteValue
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdWriteScreen::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdWriteScreen
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdWriteStringValue::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdWriteStringValue
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdWriteStringValueValue::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdWriteStringValueValue
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??HalLcdDisplayPercentBar::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalLcdDisplayPercentBar
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "\\r\\n">`:
+   \   000000   0D0A00       DB "\015\012"
+    544          
+    545          #if (HAL_LCD == TRUE)
+    546          /**************************************************************************************************
+    547           *                                    HARDWARE LCD
+    548           **************************************************************************************************/
+    549          
+    550          /**************************************************************************************************
+    551           * @fn      halLcd_ConfigIO
+    552           *
+    553           * @brief   Configure IO lines needed for LCD control.
+    554           *
+    555           * @param   None
+    556           *
+    557           * @return  None
+    558           **************************************************************************************************/
+    559          static void halLcd_ConfigIO(void)
+    560          {
+    561            /* GPIO configuration */
+    562            HAL_CONFIG_IO_OUTPUT(HAL_LCD_MODE_PORT,  HAL_LCD_MODE_PIN,  1);
+    563            HAL_CONFIG_IO_OUTPUT(HAL_LCD_RESET_PORT, HAL_LCD_RESET_PIN, 1);
+    564            HAL_CONFIG_IO_OUTPUT(HAL_LCD_CS_PORT,    HAL_LCD_CS_PIN,    1);
+    565          }
+    566          
+    567          /**************************************************************************************************
+    568           * @fn      halLcd_ConfigSPI
+    569           *
+    570           * @brief   Configure SPI lines needed for talking to LCD.
+    571           *
+    572           * @param   None
+    573           *
+    574           * @return  None
+    575           **************************************************************************************************/
+    576          static void halLcd_ConfigSPI(void)
+    577          {
+    578            /* UART/SPI Peripheral configuration */
+    579          
+    580             uint8 baud_exponent;
+    581             uint8 baud_mantissa;
+    582          
+    583            /* Set SPI on UART 1 alternative 2 */
+    584            PERCFG |= 0x02;
+    585          
+    586            /* Configure clk, master out and master in lines */
+    587            HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_CLK_PORT,  HAL_LCD_CLK_PIN);
+    588            HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MOSI_PORT, HAL_LCD_MOSI_PIN);
+    589            HAL_CONFIG_IO_PERIPHERAL(HAL_LCD_MISO_PORT, HAL_LCD_MISO_PIN);
+    590          
+    591          
+    592            /* Set SPI speed to 1 MHz (the values assume system clk of 32MHz)
+    593             * Confirm on board that this results in 1MHz spi clk.
+    594             */
+    595            baud_exponent = 15;
+    596            baud_mantissa =  0;
+    597          
+    598            /* Configure SPI */
+    599            U1UCR  = 0x80;      /* Flush and goto IDLE state. 8-N-1. */
+    600            U1CSR  = 0x00;      /* SPI mode, master. */
+    601            U1GCR  = HAL_SPI_TRANSFER_MSB_FIRST | HAL_SPI_CLOCK_PHA_0 | HAL_SPI_CLOCK_POL_LO | baud_exponent;
+    602            U1BAUD = baud_mantissa;
+    603          }
+    604          
+    605          /**************************************************************************************************
+    606           * @fn      HalLcd_HW_Init
+    607           *
+    608           * @brief   Initilize HW LCD Driver.
+    609           *
+    610           * @param   None
+    611           *
+    612           * @return  None
+    613           **************************************************************************************************/
+    614          void HalLcd_HW_Init(void)
+    615          {
+    616            /* Initialize LCD IO lines */
+    617            halLcd_ConfigIO();
+    618          
+    619            /* Initialize SPI */
+    620            halLcd_ConfigSPI();
+    621          
+    622            /* Perform reset */
+    623            LCD_ACTIVATE_RESET();
+    624            HalLcd_HW_WaitUs(15000); // 15 ms
+    625            LCD_RELEASE_RESET();
+    626            HalLcd_HW_WaitUs(15); // 15 us
+    627          
+    628            /* Perform the initialization sequence */
+    629            FUNCTION_SET(CGRAM | COM_FORWARD | THREE_LINE);
+    630          
+    631            /* Set contrast */
+    632            HalLcd_HW_SetContrast(15);
+    633          
+    634            /* Set power */
+    635            SET_POWER_SAVE_MODE(OSC_OFF | POWER_SAVE_ON);
+    636            SET_POWER_CTRL(VOLTAGE_DIVIDER_ON | CONVERTER_AND_REG_ON);
+    637            SET_BIAS_CTRL(BIAS_1_5);
+    638            HalLcd_HW_WaitUs(21000);// 21 ms
+    639          
+    640            /* Clear the display */
+    641            HalLcd_HW_Clear();
+    642            HalLcd_HW_ClearAllSpecChars();
+    643            SET_DISPLAY_CTRL(DISPLAY_CTRL_ON | DISPLAY_CTRL_BLINK_OFF | DISPLAY_CTRL_CURSOR_OFF);
+    644          }
+    645          
+    646          /**************************************************************************************************
+    647           * @fn      HalLcd_HW_Control
+    648           *
+    649           * @brief   Write 1 command to the LCD
+    650           *
+    651           * @param   uint8 cmd - command to be written to the LCD
+    652           *
+    653           * @return  None
+    654           **************************************************************************************************/
+    655          void HalLcd_HW_Control(uint8 cmd)
+    656          {
+    657            LCD_SPI_BEGIN();
+    658            LCD_DO_CONTROL();
+    659            LCD_SPI_TX(cmd);
+    660            LCD_SPI_WAIT_RXRDY();
+    661            LCD_SPI_END();
+    662          }
+    663          
+    664          /**************************************************************************************************
+    665           * @fn      HalLcd_HW_Write
+    666           *
+    667           * @brief   Write 1 byte to the LCD
+    668           *
+    669           * @param   uint8 data - data to be written to the LCD
+    670           *
+    671           * @return  None
+    672           **************************************************************************************************/
+    673          void HalLcd_HW_Write(uint8 data)
+    674          {
+    675            LCD_SPI_BEGIN();
+    676            LCD_DO_WRITE();
+    677            LCD_SPI_TX(data);
+    678            LCD_SPI_WAIT_RXRDY();
+    679            LCD_SPI_END();
+    680          }
+    681          
+    682          /**************************************************************************************************
+    683           * @fn          HalLcd_HW_SetContrast
+    684           *
+    685           * @brief       Set display contrast
+    686           *
+    687           * @param       uint8 value - contrast value
+    688           *
+    689           * @return      none
+    690           **************************************************************************************************/
+    691          void HalLcd_HW_SetContrast(uint8 value)
+    692          {
+    693            SET_ICONRAM_ADDR(CONTRAST_CTRL_REGISTER);
+    694            HalLcd_HW_Write(value);
+    695          }
+    696          
+    697          /**************************************************************************************************
+    698           * @fn      HalLcd_HW_Clear
+    699           *
+    700           * @brief   Clear the HW LCD
+    701           *
+    702           * @param   None
+    703           *
+    704           * @return  None
+    705           **************************************************************************************************/
+    706          void HalLcd_HW_Clear(void)
+    707          {
+    708            uint8 n;
+    709          
+    710            SET_DDRAM_ADDR(0x00);
+    711            for (n = 0; n < (LCD_MAX_LINE_COUNT * HAL_LCD_MAX_CHARS); n++)
+    712            {
+    713              HalLcd_HW_Write(' ');
+    714            }
+    715          }
+    716          
+    717          /**************************************************************************************************
+    718           * @fn      HalLcd_HW_ClearAllSpecChars
+    719           *
+    720           * @brief   Clear all special chars
+    721           *
+    722           * @param   None
+    723           *
+    724           * @return  None
+    725           **************************************************************************************************/
+    726          void HalLcd_HW_ClearAllSpecChars(void)
+    727          {
+    728            uint8 n = 0;
+    729          
+    730            SET_GCRAM_CHAR(0);
+    731            for (n = 0; n < (8 * 8); n++)
+    732            {
+    733              HalLcd_HW_Write(0x00);
+    734            }
+    735          }
+    736          
+    737          /**************************************************************************************************
+    738           * @fn      HalLcd_HW_WriteChar
+    739           *
+    740           * @brief   Write one char to the display
+    741           *
+    742           * @param   uint8 line - line number that the char will be displayed
+    743           *          uint8 col - colum where the char will be displayed
+    744           *
+    745           * @return  None
+    746           **************************************************************************************************/
+    747          void HalLcd_HW_WriteChar(uint8 line, uint8 col, char text)
+    748          {
+    749            if (col < HAL_LCD_MAX_CHARS)
+    750            {
+    751              SET_DDRAM_ADDR((line - 1) * HAL_LCD_MAX_CHARS + col);
+    752              HalLcd_HW_Write(text);
+    753            }
+    754            else
+    755            {
+    756              return;
+    757            }
+    758          }
+    759          
+    760          /**************************************************************************************************
+    761           * @fn          halLcdWriteLine
+    762           *
+    763           * @brief       Write one line on display
+    764           *
+    765           * @param       uint8 line - display line
+    766           *              char *pText - text buffer to write
+    767           *
+    768           * @return      none
+    769           **************************************************************************************************/
+    770          void HalLcd_HW_WriteLine(uint8 line, const char *pText)
+    771          {
+    772            uint8 count;
+    773            uint8 totalLength = (uint8)osal_strlen( (char *)pText );
+    774          
+    775            /* Write the content first */
+    776            for (count=0; count<totalLength; count++)
+    777            {
+    778              HalLcd_HW_WriteChar(line, count, (*(pText++)));
+    779            }
+    780          
+    781            /* Write blank spaces to rest of the line */
+    782            for(count=totalLength; count<HAL_LCD_MAX_CHARS;count++)
+    783            {
+    784              HalLcd_HW_WriteChar(line, count, ' ');
+    785            }
+    786          }
+    787          
+    788          /**************************************************************************************************
+    789           * @fn      HalLcd_HW_WaitUs
+    790           *
+    791           * @brief   wait for x us. @ 32MHz MCU clock it takes 32 "nop"s for 1 us delay.
+    792           *
+    793           * @param   x us. range[0-65536]
+    794           *
+    795           * @return  None
+    796           **************************************************************************************************/
+    797          void HalLcd_HW_WaitUs(uint16 microSecs)
+    798          {
+    799            while(microSecs--)
+    800            {
+    801              /* 32 NOPs == 1 usecs */
+    802              asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    803              asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    804              asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    805              asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    806              asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    807              asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    808              asm("nop"); asm("nop");
+    809            }
+    810          }
+    811          #endif
+    812          
+    813          
+    814          /**************************************************************************************************
+    815          **************************************************************************************************/
+    816          
+    817          
+    818          
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0      0   HalLcdDisplayPercentBar
+      0      0   HalLcdInit
+      0     10   HalLcdWriteScreen
+        0     10   -> uart_put_string
+      2      0   HalLcdWriteString
+        2      0   -> uart_put_string
+      0     44   HalLcdWriteStringValue
+        0     42   -> _ltoa
+        0     43   -> osal_memcpy
+        0     40   -> osal_strlen
+        0     40   -> uart_put_string
+      0     51   HalLcdWriteStringValueValue
+        0     46   -> _ltoa
+        0     47   -> osal_memcpy
+        0     44   -> osal_strlen
+        0     44   -> uart_put_string
+      0     42   HalLcdWriteValue
+        0     41   -> _ltoa
+        0     39   -> uart_put_string
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       3  ?<Constant "\r\n">
+      20  ?Subroutine0
+      19  ?Subroutine1
+       3  HalLcdDisplayPercentBar
+       6  HalLcdDisplayPercentBar::?relay
+       3  HalLcdInit
+       6  HalLcdInit::?relay
+      38  HalLcdWriteScreen
+       6  HalLcdWriteScreen::?relay
+      21  HalLcdWriteString
+       6  HalLcdWriteString::?relay
+     113  HalLcdWriteStringValue
+       6  HalLcdWriteStringValue::?relay
+     185  HalLcdWriteStringValueValue
+       6  HalLcdWriteStringValueValue::?relay
+      59  HalLcdWriteValue
+       6  HalLcdWriteValue::?relay
+
+ 
+ 461 bytes in segment BANKED_CODE
+  42 bytes in segment BANK_RELAYS
+   3 bytes in segment XDATA_ROM_C
+ 
+ 503 bytes of CODE  memory
+   3 bytes of CONST memory
+
+Errors: none
+Warnings: 3

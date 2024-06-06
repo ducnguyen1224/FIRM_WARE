@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\GenericApp.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>GenericApp</project>
+        <configuration>Coordinator</configuration>
+      </member>
+      <member>
+        <project>GenericApp</project>
+        <configuration>EndDevice</configuration>
+      </member>
+      <member>
+        <project>GenericApp</project>
+        <configuration>Router</configuration>
+      </member>
+      <member>
+        <project>GenericApp</project>
+        <configuration>Coordinator-SBL</configuration>
+      </member>
+      <member>
+        <project>GenericApp</project>
+        <configuration>EndDevice-SBL</configuration>
+      </member>
+      <member>
+        <project>GenericApp</project>
+        <configuration>Router-SBL</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
+
+

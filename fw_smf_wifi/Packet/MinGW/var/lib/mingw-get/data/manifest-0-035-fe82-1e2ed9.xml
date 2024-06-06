@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-035-fe82-1e2ed9">
+    <release tarname="PDCurses-3.4-1-mingw32-bin.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-002-a7c6-d7dbb5" />
+    </references>
+    <manifest>
+        <dir path="lib/pdcurses" />
+        <dir path="lib/pdcurses/demos" />
+        <file path="lib/pdcurses/demos/firework.exe" />
+        <file path="lib/pdcurses/demos/newdemo.exe" />
+        <file path="lib/pdcurses/demos/ptest.exe" />
+        <file path="lib/pdcurses/demos/rain.exe" />
+        <file path="lib/pdcurses/demos/testcurs.exe" />
+        <file path="lib/pdcurses/demos/tuidemo.exe" />
+        <file path="lib/pdcurses/demos/worm.exe" />
+        <file path="lib/pdcurses/demos/xmas.exe" />
+        <dir path="lib/pdcurses/demosu" />
+        <file path="lib/pdcurses/demosu/firework.exe" />
+        <file path="lib/pdcurses/demosu/newdemo.exe" />
+        <file path="lib/pdcurses/demosu/ptest.exe" />
+        <file path="lib/pdcurses/demosu/rain.exe" />
+        <file path="lib/pdcurses/demosu/testcurs.exe" />
+        <file path="lib/pdcurses/demosu/tuidemo.exe" />
+        <file path="lib/pdcurses/demosu/worm.exe" />
+        <file path="lib/pdcurses/demosu/xmas.exe" />
+        <dir path="lib/pdcurses/demosw" />
+        <file path="lib/pdcurses/demosw/firework.exe" />
+        <file path="lib/pdcurses/demosw/newdemo.exe" />
+        <file path="lib/pdcurses/demosw/ptest.exe" />
+        <file path="lib/pdcurses/demosw/rain.exe" />
+        <file path="lib/pdcurses/demosw/testcurs.exe" />
+        <file path="lib/pdcurses/demosw/tuidemo.exe" />
+        <file path="lib/pdcurses/demosw/worm.exe" />
+        <file path="lib/pdcurses/demosw/xmas.exe" />
+    </manifest>
+</package>

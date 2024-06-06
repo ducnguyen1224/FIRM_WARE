@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-037-844b-81e9f7">
+    <release tarname="mktemp-1.6-2-msys-1.0.13-lic.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <file path="share/doc/mktemp/1.6/LICENSE" />
+    </manifest>
+</package>

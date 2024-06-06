@@ -1,0 +1,877 @@
+#!/bin/bash
+################################################################################
+#
+# mgwport - MinGW/MSYS packaging application
+#
+# Copyright (C) 2006, 2007, 2008, 2009, 2010, 2011 Yaakov Selkowitz
+# Copyright (C) 2011 Charles Wilson
+# Provided by the MinGW project <http://mingw.org/>
+#
+# mgwport is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# mgwport is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with mgwport.  If not, see <http://www.gnu.org/licenses/>.
+#
+################################################################################
+set -e;
+
+
+################################################################################
+#
+# Initialization
+#
+################################################################################
+
+# for regexes, sort, etc.
+export LC_COLLATE=C
+
+declare -r  _version=0.10.6;
+
+declare _privlibdir=c:/MinGW/lib/mgwport;
+declare _privdatadir=c:/MinGW/share/mgwport;
+declare _privclassdir=c:/MinGW/share/mgwport/mgwclass;
+declare _privdocdir=c:/MinGW/share/doc/mgwport/0.10.6;
+declare _privgnuconfigdir=c:/MinGW/share/mgwport;
+declare _sysconfdir=c:/MinGW/etc;
+
+################################################################################
+#
+# The following functions must be defined inline (rather than in external,
+# "sourced" files, because they are used to refine the location variables
+# above, which are used to locate those external files.  These relocation
+# functions were adapted from gettextize.in.
+#     func_tmpdir ()
+#     func_find_curr_installdir ()
+#     func_find_prefixes ()
+#     func_do_relocate ()
+# Global Variables:
+#     PATH_SEPARATOR
+#     IFS
+#     tmp
+#     curr_installdir
+#     orig_installdir
+#     orig_installprefix
+#     curr_installprefix
+#
+################################################################################
+
+
+################################################################################
+# func_tmpdir
+# creates a temporary directory.
+# Sets variable
+# - tmp             pathname of freshly created temporary directory
+################################################################################
+func_tmpdir ()
+{
+  # Use the environment variable TMPDIR, falling back to /tmp. This allows
+  # users to specify a different temporary directory, for example, if their
+  # /tmp is filled up or too small.
+  : ${TMPDIR=/tmp}
+  {
+    # Use the mktemp program if available. If not available, hide the error
+    # message.
+    tmp=`(umask 077 && mktemp -d "$TMPDIR/gtXXXXXX") 2>/dev/null` &&
+    test -n "$tmp" && test -d "$tmp"
+  } ||
+  {
+    # Use a simple mkdir command. It is guaranteed to fail if the directory
+    # already exists.  $RANDOM is bash specific and expands to empty in shells
+    # other than bash, ksh and zsh.  Its use does not increase security;
+    # rather, it minimizes the probability of failure in a very cluttered /tmp
+    # directory.
+    tmp=$TMPDIR/gt$$-$RANDOM
+    (umask 077 && mkdir "$tmp")
+  } ||
+  {
+    echo "$0: cannot create a temporary directory in $TMPDIR" >&2
+    { (exit 1); exit 1; }
+  }
+}
+
+
+################################################################################
+# Support for relocatability.
+################################################################################
+func_find_curr_installdir ()
+{
+  local curr_executable
+  local save_IFS
+  local dir
+  local exec_ext
+  local sed_dirname
+  local sed_linkdest
+  local lsline
+  local linkdest
+  # Determine curr_installdir, even taking into account symlinks.
+  curr_executable="$0"
+  case "$curr_executable" in
+    */* | *\\*) ;;
+    *) # Need to look in the PATH.
+      if test "${PATH_SEPARATOR+set}" != set; then
+        func_tmpdir
+        { echo "#! /bin/sh"; echo "exit 0"; } > "$tmp"/conf.sh
+        chmod +x "$tmp"/conf.sh
+        if (PATH="/nonexistent;$tmp"; conf.sh) >/dev/null 2>&1; then
+          PATH_SEPARATOR=';'
+        else
+          PATH_SEPARATOR=:
+        fi
+        rm -rf "$tmp"
+      fi
+      save_IFS="$IFS"; IFS="$PATH_SEPARATOR"
+      for dir in $PATH; do
+        IFS="$save_IFS"
+        test -z "$dir" && dir=.
+        for exec_ext in ''; do
+          if test -f "$dir/$curr_executable$exec_ext"; then
+            curr_executable="$dir/$curr_executable$exec_ext"
+            break 2
+          fi
+        done
+      done
+      IFS="$save_IFS"
+      ;;
+  esac
+  # Make absolute.
+  case "$curr_executable" in
+    /* | ?:/* | ?:\\*) ;;
+    *) curr_executable=`pwd`/"$curr_executable" ;;
+  esac
+  # Resolve symlinks.
+  sed_dirname='s,/[^/]*$,,'
+  sed_linkdest='s,^.* -> \(.*\),\1,p'
+  while : ; do
+    lsline=`LC_ALL=C ls -l "$curr_executable"`
+    case "$lsline" in
+      *" -> "*)
+        linkdest=`echo "$lsline" | sed -n -e "$sed_linkdest"`
+        case "$linkdest" in
+          /* | ?:/* | ?:\\*) curr_executable="$linkdest" ;;
+          *) curr_executable=`echo "$curr_executable" | sed -e "$sed_dirname"`/"$linkdest" ;;
+        esac ;;
+      *) break ;;
+    esac
+  done
+  curr_installdir=`echo "$curr_executable" | sed -e 's,/[^/]*$,,'`
+  # Canonicalize.
+  curr_installdir=`cd "$curr_installdir" && pwd`
+}
+func_find_prefixes ()
+{
+  local orig_last
+  local curr_last
+
+  # Compute the original/current installation prefixes by stripping the
+  # trailing directories off the original/current installation directories.
+  orig_installprefix="$orig_installdir"
+  curr_installprefix="$curr_installdir"
+  while true; do
+    orig_last=`echo "$orig_installprefix" | sed -n -e 's,^.*/\([^/]*\)$,\1,p'`
+    curr_last=`echo "$curr_installprefix" | sed -n -e 's,^.*/\([^/]*\)$,\1,p'`
+    if test -z "$orig_last" || test -z "$curr_last"; then
+      break
+    fi
+    if test "$orig_last" != "$curr_last"; then
+      break
+    fi
+    orig_installprefix=`echo "$orig_installprefix" | sed -e 's,/[^/]*$,,'`
+    curr_installprefix=`echo "$curr_installprefix" | sed -e 's,/[^/]*$,,'`
+  done
+}
+func_do_relocate () {
+  local sed_dirname='s,/[^/]*$,,'
+  local exec_prefix="c:/MinGW"
+  local bindir="c:/MinGW/bin"
+  local sysconfdir="c:/MinGW/etc"
+  local prev_originstpref
+  local copy_orig_installprefix
+  local copy_curr_installprefix
+
+  orig_installdir="$bindir"
+  func_find_curr_installdir # determine curr_installdir
+  func_find_prefixes
+  # Relocate the directory variables that we use.
+  _privlibdir=`echo "$_privlibdir/" | sed -e "s%^${orig_installprefix}/%${curr_installprefix}/%" | sed -e 's,/$,,'`
+  _privdatadir=`echo "$_privdatadir/" | sed -e "s%^${orig_installprefix}/%${curr_installprefix}/%" | sed -e 's,/$,,'`
+  _privclassdir=`echo "$_privclassdir/" | sed -e "s%^${orig_installprefix}/%${curr_installprefix}/%" | sed -e 's,/$,,'`
+  _privdocdir=`echo "$_privdocdir/" | sed -e "s%^${orig_installprefix}/%${curr_installprefix}/%" | sed -e 's,/$,,'`
+  _privgnuconfigdir=`echo "$_privgnuconfigdir/" | sed -e "s%^${orig_installprefix}/%${curr_installprefix}/%" | sed -e 's,/$,,'`
+
+  # Special handling for sysconfdir, because often it is not "under" the
+  # prefix.  Similar precautions would be necessary for localstatedir.
+  copy_orig_installprefix=${orig_installprefix}
+  copy_curr_installprefix=${curr_installprefix}
+  prev_originstpref=${copy_orig_installprefix}
+  while [ -n "$prev_originstpref" ] # test against prev value to allow "/"
+  do
+    prev_originstpref=${copy_orig_installprefix}
+    case "${_sysconfdir}" in
+    ${prev_originstpref}/* ) # sysconfdir is "under" prefix; standard relocation will work
+      _sysconfdir=`echo "$_sysconfdir/" | sed -e "s%^${copy_orig_installprefix}/%${copy_curr_installprefix}/%" | sed -e 's,/$,,'`
+      prev_originstpref=""
+      ;;
+    * ) # otherwise...assume sysconfdir is sibling or uncle directory
+        # of installprefix: e.g. /usr -> /etc, /usr/local -> /etc
+        copy_orig_installprefix=`echo "$copy_orig_installprefix" | sed -e "$sed_dirname"`
+        copy_curr_installprefix=`echo "$copy_curr_installprefix" | sed -e "$sed_dirname"`
+        ;;
+    esac
+  done
+}
+
+if [ "yes" == "yes" ]
+then
+  func_do_relocate
+fi
+readonly _privlibdir _privdatadir _privclassdir _privdocdir _privgnuconfigdir _sysconfdir
+
+### import defined, pushd, popd
+source ${_privlibdir}/relocatable.mgwpart
+source ${_privlibdir}/syntax.mgwpart
+###
+
+
+################################################################################
+#
+# Command-line Help
+#
+################################################################################
+
+#****** mgwport/Introduction
+#****
+
+#****** mgwport/Usage
+#  USAGE
+#  See href:mgwport.1.html for command line options.
+#****
+
+### import _show_help, _show_version
+source ${_privlibdir}/help.mgwpart
+###
+
+# Accept --help and --version arguments without specifying a mgwport file
+case ${1} in
+	--help|-h|-\?)
+		__show_help;
+		exit 0;
+		;;
+	--version|-v)
+		__show_version;
+		exit 0;
+		;;
+	--debug)
+		set -x;
+		shift;
+		;;
+	-*)
+		echo "${0}: unknown argument ${1}";
+		__show_help;
+		exit 1;
+		;;
+esac
+
+declare -ar argv=(${0} ${@})
+declare -ir argc=$(( $# + 1 ))
+
+# Show help if no commands are given
+if ! defined argv[1] || ! defined argv[2]
+then
+	__show_help;
+	exit 1;
+fi
+
+
+################################################################################
+#
+# System checks
+#
+################################################################################
+
+#****** mgwport/Configuration
+#****
+
+#****** mgwport/Format
+#****
+
+#****** mgwport/Checks
+#****
+
+### import check_prog and friends
+source ${_privlibdir}/check_funcs.mgwpart
+###
+
+# check now for all mandatory programs
+for _myprog in bzip2 cat chmod cp diff diffstat find grep gzip install \
+               ln mkdir mv patch rm rsync sed sort tar xargs
+do
+	if ! check_prog ${_myprog}
+	then
+		error "${_myprog} is required to run mgwport";
+	fi
+done
+
+unset _myprog;
+
+if check_prog pbzip2
+then
+	readonly _tar_bz2_flag="-I pbzip2 -"
+else
+	# bzip2 is required, no need to check
+	readonly _tar_bz2_flag="-j"
+fi
+
+
+################################################################################
+#
+# Import user settings
+#
+################################################################################
+
+# Values which can be overridden either system-wide or per package
+
+# can't use check_prog yet
+if hash nproc &> /dev/null
+then
+declare    MAKEOPTS="-j$(($(nproc 2>/dev/null) + 1)) ";
+else
+declare    MAKEOPTS="-j1 ";
+fi
+
+# Do this early, in order to determine MPFLAVOR
+# argv[1] may or may not include the .mgwport extension
+            PF=${argv[1]##*/}
+            PF=${PF%.mgwport}
+declare -r  PF=${PF%.msysport}
+
+_topdir=${argv[1]%/*};
+
+if [ "x${_topdir}" = "x${argv[1]}" ]
+then
+	if [ -f /mingw/src/${PF}.mgwport ]
+	then
+		_topdir=/mingw/src;
+	elif [ -f /usr/src/${PF}.msysport ]
+	then
+		_topdir=/usr/src;
+	else
+		_topdir=.;
+	fi
+fi
+
+declare -r top=$(cd ${_topdir}; pwd);
+unset _topdir;
+
+declare -r workdir="${top}/${PF}";
+declare -r srcdir="${workdir}/src";
+declare -r origsrcdir="${workdir}/origsrc";
+declare -r configdir="${workdir}/config";
+declare -r logdir="${workdir}/log";
+declare -r patchdir="${workdir}/patch";
+declare -r spkgdir="${workdir}/spkg";
+declare -r distdir="${workdir}/dist";
+
+#****v* Globals/MPFLAVOR
+#  DESCRIPTION
+#  Controls whether this script acts in its "mingw" flavor, or its "msys"
+#  flavor.  This is a property of the script itself, not the buildhost.
+#  Conceptually, "mgwport in its mingw flavor" is a *different product*
+#  than "mgwport in its msys flavor".  This variable is "set" depending
+#  on whether argv[1] ends in .mgwport or .msysport.  It should be set
+#  to a cpu-vendor-os triple, such as i686-pc-msys or i686-pc-mingw32.
+#****
+
+### Now set MPFLAVOR (and mgwport filename)
+if [ -e ${top}/${PF}.mgwport ]
+then
+	declare -r MPFLAVOR=i686-pc-mingw32
+	declare -r mgwportfile=${PF}.mgwport
+elif [ -e ${top}/${PF}.msysport ]
+then
+	declare -r MPFLAVOR=i686-pc-msys
+	declare -r mgwportfile=${PF}.msysport
+else
+	error "${PF}.[mgw|msys]port not found.";
+fi
+
+# load configuration
+case "${MPFLAVOR}" in
+*mingw32* )
+for conf in ${_sysconfdir}/mgwport.conf \
+			"${HOME}/.mgwportrc" \
+			"${HOME}/.mgwport.conf" \
+			"${HOME}/.mgwport/mgwport.conf"
+do
+	if [ -e "${conf}" ]
+	then
+		source "${conf}" || error "could not read ${conf}"
+	fi
+done
+unset conf;
+;;
+
+*msys* )
+# ideally, _sysconfdir is different for msys and mingw, so can
+# use the same name. However, ${HOME} is shared...
+for conf in ${_sysconfdir}/mgwport.conf \
+			"${HOME}/.msysportrc" \
+			"${HOME}/.msysport.conf" \
+			"${HOME}/.msysport/msysport.conf"
+do
+	if [ -e "${conf}" ]
+	then
+		source "${conf}" || error "could not read ${conf}"
+	fi
+done
+unset conf;
+;;
+esac
+
+################################################################################
+#
+# Function definitions
+#
+################################################################################
+
+#****** mgwport/Downloading
+#****
+
+#****** mgwport/Compiling
+#****
+
+#****** mgwport/Testing
+#****
+
+#****** mgwport/Installing
+#  NOTE
+#  In the context of mgwport, "installing" always means into the DESTDIR $D.
+#  However, the syntax of the convenience functions is as if one were
+#  installing to the system.
+#****
+
+#****** mgwport/Postinstall
+#****
+
+#****** mgwport/Information
+#****
+
+#****** mgwport/Packaging
+#****
+
+#****** mgwport/mgwclasses
+#  DESCRIPTION
+#  * autotools.mgwclass
+#  * cvs.mgwclass
+#  * cross.mgwclass
+#  * git.mgwclass
+#  * svn.mgwclass
+#  * tcl.mgwclass
+#  * toolchain.mgwclass
+#  * utils.mgwclass
+#  BUGS
+#  Why do the mgwclasses get listed in reverse order?!?
+#****
+
+### __config_get/set and friends
+source ${_privlibdir}/config_registry.mgwpart
+###
+
+### inherit and friends
+source ${_privlibdir}/inheritance.mgwpart
+###
+
+### fetch and friends
+source ${_privlibdir}/src_fetch.mgwpart
+###
+
+### mirrors list
+source ${_privdatadir}/mirrors
+###
+
+### unpack, mgwpatch, __src_prep and friends
+source ${_privlibdir}/src_prep.mgwpart
+###
+
+### CC/CXX, CFLAGS/CXXFLAGS, etc.
+source ${_privlibdir}/compilers.mgwpart
+###
+
+### lndirs, mgwmake
+source ${_privlibdir}/src_compile.mgwpart
+###
+
+### mgwtest and friends
+source ${_privlibdir}/src_test.mgwpart
+###
+
+### mgwinstall, do*, new*, *into, and friends
+source ${_privlibdir}/src_install.mgwpart
+###
+
+### __src_postinst and friends
+source ${_privlibdir}/src_postinst.mgwpart
+###
+
+### __list_files, __list_deps, __show_info, __show_web
+source ${_privlibdir}/pkg_info.mgwpart
+###
+
+### __pkg_* functions
+source ${_privlibdir}/pkg_pkg.mgwpart
+###
+
+### __finish
+source ${_privlibdir}/pkg_cleanup.mgwpart
+###
+
+# Auto-inherit autotools for backwards compatibility. But we
+# want to allow it to be inherited one more time in order to
+# reset src_compile() when other mgwclasses override it.
+_autotools_MGWCLASS_stage1_=1
+inherit autotools;
+unset _autotools_MGWCLASS_ _autotools_MGWCLASS_stage1_
+
+
+################################################################################
+#
+# Import the .mgwport file
+#
+################################################################################
+
+#****** Format/Globals
+#****
+
+#****d* Globals/P
+#  DESCRIPTION
+#  The package name and version, equivalent to PN-PV.
+#****
+#****d* Globals/PN
+#  DESCRIPTION
+#  The mgw (primary) package name.  Generally, this is the same as the
+#  upstream package name, but need not be.  A common reason for deviating from
+#  the upstream name is to append a version "slot" where multiple versions of
+#  a package are completely parallel installable (e.g. gtk1.2 and gtk2.0, both
+#  from gtk+).  In this case, define ORIG_PN to the upstream package name.
+#****
+#****d* Globals/PV
+#  DESCRIPTION
+#  The upstream package version number.  PV must begin with a digit 0-9, and
+#  subsequent characters can be a digit, letter, dot, or underscore.
+#****
+#****d* Globals/PS
+#  DESCRIPTION
+#  The package subsystem name.  This will be either 'mingw32' or 'msys'.
+#****
+#****d* Globals/PR
+#  DESCRIPTION
+#  The mgw package release number, e.g. the "1" in foo-2.3.4-1.  The first
+#  release of a new version is usually 1, and is incremented if subsequent
+#  releases are made of the same version.  PR must be an integer.
+#****
+#****d* Globals/PVR
+#  DESCRIPTION
+#  The package version and release, equivalent to PV-PR.
+#****
+#****d* Globals/PF
+#  DESCRIPTION
+#  The full package descriptor, equivalent to PN-PV-PR.
+#****
+
+# these must be defined now to be available in SRC_URI
+#
+# PN must begin with letter, may contain hyphens but must be followed by letter
+# PV must begin with digit and may be hyphenated
+# PR must be an integer
+declare -r  PN=${PF%%-[0-9]*};
+declare -r  PR=${PF##*-};
+            PV=$(echo ${PF} | sed -e "s/${PN}\-\(.*\)\-${PR}$/\1/");
+declare -r  P=${PN}-${PV};
+declare -r  PVR=${PV}-${PR};
+declare -ar PVP=(${PV//[-\._]/ });
+declare -r  PV=(${PV} ${PVP[*]});
+declare -r  PV_MAJ=${PV[1]};
+declare -r  PV_MAJ_MIN="${PV[1]}.${PV[2]}";
+            PS=""    # Subsystem         (autoset below)
+            PSV=""   # Subsystem Version (usually only msys; autoset below)
+declare     PSB=""   # Subsystem Build   (#, rare)
+declare     PRS=""   # Release Status    (alpha, pre, cvs, ...)
+declare     PRR=""   # Release Reference (#, YYYYMMDD, etc)
+
+### set package subsystem, mgwport filename
+case "${MPFLAVOR}" in
+  *mingw* )
+	declare -r PS=mingw32
+	declare -r PSV=""
+	;;
+  *msys* )
+	declare -r PS=msys
+	case $(uname -s) in
+	  MSYS* ) _sysver=$(uname -r)
+		  declare    PSV=${_sysver%%\(*} ;;
+	  * )     declare    PSV=1.0.17 ;; # FIXME default
+	esac
+	;;
+esac
+
+### load .mgwport
+source ${top}/${mgwportfile} || error "could not read ${mgwportfile}"
+###
+
+if defined mgwPORT_DEPEND
+then
+	if ! __version_at_least ${mgwPORT_DEPEND} ${_version}
+	then
+		error "This package requires mgwport ${mgwPORT_DEPEND} or newer";
+	fi
+fi
+
+
+#****v* Globals/RESTRICT
+#****
+for restrict in ${RESTRICT}
+do
+	export _MGWPORT_RESTRICT_${restrict//-/_}_=1
+done
+
+#****v* Information/DESCRIPTION
+#****
+
+#****v* Information/HOMEPAGE
+#****
+
+################################################################################
+#
+# Define package-dependant variables
+#
+################################################################################
+
+SRC_DIR=${SRC_DIR:-${ORIG_PN:-${PN}}-${PV}};
+if [ "x${SRC_DIR}" = "x." ]
+then
+	declare -r S=${srcdir};
+else
+	declare -r S=${srcdir}/${SRC_DIR};
+fi
+
+#****d* Globals/S
+#  The source directory.  Build tool regeneration (e.g. mgwautoreconf) occurs
+#  in this directory, but other build steps should occur in B.
+#****
+
+#****d* Globals/B
+#  DESCRIPTION
+#  The build directory.  All configuring and compiling steps should occur in
+#  this directory.
+#****
+
+#****d* Globals/M
+#  DESCRIPTION
+#  The MINGW-PATCHES or MSYS-PATCHES directory where MinGW/MSYS READMEs,
+#  setup.hint files, custom postinstall scripts, and other MinGW/MSYS-specific
+#  files are placed before packaging.
+#****
+
+#****d* Globals/D
+#  DESCRIPTION
+#  The installation staging directory.  All installation and postinstall steps
+#  occur in or into this directory.
+#****
+
+declare -r B="${workdir}/build";
+declare -r D="${workdir}/inst";
+declare -r T="${workdir}/temp";
+
+case "$PS" in
+  mingw32)  declare -r M="${S}/MINGW-PATCHES";;
+  msys)     declare -r M="${S}/MSYS-PATCHES";;
+  *)        error "Unsupported subsystem type: '$PS'";;
+esac
+
+declare -r compilelog="${logdir}/${PF}-compile.log";
+declare -r checklog="${logdir}/${PF}-check.log";
+declare -r installlog="${logdir}/${PF}-install.log";
+declare -r pkglog="${logdir}/${PF}-pkg.log";
+
+if ! defined SRC_URI
+then
+	error "SRC_URI must be defined";
+fi
+
+for _src_uri in ${SRC_URI}
+do
+	_src_uri="${_src_uri%\?*}"
+	_src_orig_pkgs+=" ${_src_uri##*/}";
+done
+readonly _src_orig_pkgs;
+unset _src_uri;
+
+for _patch_uri in ${PATCH_URI}
+do
+	_patch_uri="${_patch_uri%\?*}"
+	_src_orig_patches+=" ${_patch_uri##*/}";
+done
+readonly _src_orig_patches;
+unset _patch_uri;
+
+case ${MPFLAVOR} in
+*mingw* ) declare -r mgw_patchfile=${PF}.mgw.patch ;;
+*msys*  ) declare -r mgw_patchfile=${PF}.msys.patch ;;
+esac
+declare -r  src_patchfile=${PF}.src.patch;
+
+declare -ar pkg_ctype=(${PKG_COMPTYPES:-bin});
+declare -r  pkg_ct_count=${#pkg_ctype[*]};
+
+_pkg_name=(${PKG_NAMES:-${PN}});
+_pkg_count=${#_pkg_name[*]};
+if (( $_pkg_count != $pkg_ct_count ))
+then
+	if (( $_pkg_count == 1 ))
+	then
+		# assume multiple packages with same basename
+		while (( $_pkg_count < $pkg_ct_count ))
+		do
+			_pkg_name[$_pkg_count]="${_pkg_name[0]}"
+			_pkg_count=${#_pkg_name[*]};
+		done
+	else
+		error "PKG_NAMES and PKG_COMPTYPES must have same number of entries"
+	fi
+fi
+declare -ar pkg_name=(${_pkg_name[*]});
+declare -r  pkg_count=${#pkg_name[*]};
+
+################################################################################
+#
+# Command processing
+#
+################################################################################
+
+declare -i arg_n=2
+
+# When adding commands here, also add them to mgwport-bash-completion
+while (( arg_n < argc ))
+do
+	case ${argv[${arg_n}]} in
+		download|fetch|wget|get)
+			__src_fetch;
+			_status=$?;
+			;;
+		prep|unpack)
+			__stage Preparing;
+			__src_prep;
+			_status=$?;
+			;;
+		compile|build|make)
+			__stage Compiling;
+			__log_init ${compilelog};
+			src_compile 2>&1 | tee -a ${compilelog};
+			_status=$?;
+			;;
+		check|test)
+			__stage Testing;
+			__log_init ${checklog};
+			src_test 2>&1 | tee -a ${checklog};
+			_status=$?;
+			;;
+		inst*)
+			__stage Installing;
+			__log_init ${installlog};
+			(__prepinstalldirs && src_install && __src_postinst) 2>&1 | tee -a ${installlog};
+			_status=$?;
+			;;
+		postinst*)
+			__src_postinst;
+			_status=$?;
+			;;
+		list)
+			__list_files;
+			_status=$?;
+			;;
+		dep*)
+			__list_deps;
+			_status=$?;
+			;;
+		info*)
+			__show_info;
+			_status=$?;
+			;;
+		homepage|web*|www*)
+			__show_web;
+			_status=$?;
+			;;
+		package|pkg)
+			__stage Packaging;
+			__log_init ${pkglog};
+			(__pkg_binpkg && __pkg_pkgcheck && __pkg_srcpkg && __pkg_dist) 2>&1 | tee -a ${pkglog};
+			_status=$?;
+			;;
+		diff|mkdiff|mkpatch)
+			__pkg_diff;
+			_status=$?;
+			;;
+		finish)
+			__finish;
+			_status=$?;
+			;;
+		almostall)
+			__stage Preparing && __src_prep && \
+			__log_init ${compilelog} && \
+			__stage Compiling && src_compile 2>&1 | tee -a ${compilelog} && \
+			__log_init ${installlog} && \
+			__stage Installing && (__prepinstalldirs && src_install && __src_postinst) 2>&1 | tee -a ${installlog} && \
+			__log_init ${pkglog} && \
+			__stage Packaging && (__pkg_binpkg && __pkg_pkgcheck && __pkg_srcpkg && __pkg_dist) 2>&1 | tee -a ${pkglog}
+			_status=$?;
+			;;
+		all)
+			__stage Preparing && __src_prep && \
+			__log_init ${compilelog} && \
+			__stage Compiling && src_compile 2>&1 | tee -a ${compilelog} && \
+			__log_init ${installlog} && \
+			__stage Installing && (__prepinstalldirs && src_install && __src_postinst) 2>&1 | tee -a ${installlog} && \
+			__log_init ${pkglog} && \
+			__stage Packaging && (__pkg_binpkg && __pkg_pkgcheck && __pkg_srcpkg && __pkg_dist) 2>&1 | tee -a ${pkglog} && \
+			__finish;
+			_status=$?;
+			;;
+		help)
+			__show_help;
+			exit 0;
+			;;
+		version)
+			__show_version;
+			exit 0;
+			;;
+		_*)
+			error "unknown command ${argv[${arg_n}]}";
+			exit 1;
+			;;
+		*)
+			if __check_function ${argv[${arg_n}]} && ! __check_function_ro ${argv[${arg_n}]}
+			then
+				${argv[${arg_n}]};
+			else
+				error "unknown command ${argv[${arg_n}]}";
+			fi
+			_status=$?;
+			;;
+	esac
+
+	if (( _status != 0 ))
+	then
+		break;
+	fi
+
+	arg_n+=1;
+done
+
+exit ${_status};

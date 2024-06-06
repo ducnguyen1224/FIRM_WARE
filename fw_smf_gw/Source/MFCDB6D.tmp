@@ -1,0 +1,233 @@
+
+
+#include "pin_mux.h"
+#include "fsl_debug_console.h"
+#include "fsl_wdog.h"
+#include "fsl_uart.h"
+
+/* FreeRTOS kernel includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "timers.h"
+#include "semphr.h"
+    
+#include "board.h"
+
+/* Task */
+#include "LedTask.h"
+#include "SensorTask.h"
+#include "FlashTask.h"
+#include "ProcessTask.h"
+
+#include "I2C.h"
+#include "SPI.h"
+#include "UART.h"
+#include "RTC.h"
+
+#include "main.h"
+
+
+/*******************************************************************************
+ * Variables
+ ******************************************************************************/
+uint8_t uUART_Buffer[macroUART_MAX_LENGHT] = {0};
+uint16_t uiUART_Cnt = 0;
+
+Flags xFlags =
+{
+	.uUART_GPRS = true,
+	.uRTCSync = true,
+	.uSendData = true,
+	.eReadSensor = eNone
+};
+
+DataLocal xDataLocal = 
+{
+	.uiTimeUpdate 	= eTime30Minute,
+};
+
+
+taskHandle_t xTask;
+QueueHandle_t  xQueue;
+
+static WDOG_Type *wdog_base = WDOG;
+
+
+/******************************** Function ************************************/
+void vMain_InitDefaultBoard( void );
+void vMain_InitWatchdog( void );
+static inline uint32_t ulMain_GetTimerOutputValue(WDOG_Type *base);
+static void vMain_WaitWctClose(WDOG_Type *base);
+/******************************************************************************/
+
+
+
+/*******************************************************************************
+ * Function		: int main(void)
+ * Description	: Ham chinh cua chuong trinh
+ * Param		: none
+ * Return		: none
+*******************************************************************************/
+int main(void)
+{
+    /* Init board hardware. */
+    BOARD_InitPins();
+    BOARD_BootClockVLPR();
+    
+    /* Init UART for debug */
+    BOARD_InitDebugConsole();
+	
+	APP_DEBUG("\r\n");
+    APP_DEBUG("-------------------------------------------------------------------\r\n");
+    APP_DEBUG("*******************************************************************\r\n");
+    APP_DEBUG("***************->> GasSensor Project is Welcome <<-****************\r\n");
+    APP_DEBUG("*******************************************************************\r\n");
+    APP_DEBUG("-------------------------------------------------------------------\r\n");
+    APP_DEBUG("\r\n");
+    
+    vMain_InitDefaultBoard();
+    vMain_InitWatchdog();	
+	
+	vUART_Init(macroUART_GPRS_BASE, macroUART_GPRS_CLKSRC, macroUART_GPRS_BAUDRATE_115200, true, macroUART_GPRS_IRQn);
+	vI2C_InitModule0();
+	eSPI_InitModule0();
+	
+	//Set RTC
+	vRTC_Init();
+	
+	//Enable MC60
+	macroMC60_PWRKEY_DISABLE(macroMC60_POWERKEY_GPIO, macroMC60_POWERKEY_PIN);
+	
+	
+    xQueue = xQueueCreate( SIZEOF_QUEUE_SAVE_FLASH, sizeof( pxMessageFlash_t ));
+    if( xQueue == NULL )
+    {
+        APP_DEBUG("--- Main: Failed to create the xqueue\r\n");
+    }
+	
+	if(xTaskCreate(vProcessTask_Task, "vProcessTask_Task", configMINIMAL_STACK_SIZE + 120, NULL, macroPRIORITY_TASK_PROCESS, &xTask.xTaskHandle_Process) != pdPASS)
+    {
+        APP_DEBUG("--- Main: Failed to create process task\r\n");
+    }
+    
+    if(xTaskCreate(vSensorTask_Task, "vSensorTask_Task", configMINIMAL_STACK_SIZE + 60, NULL, macroPRIORITY_TASK_SENSOR, &xTask.xTaskHandle_Sensor) != pdPASS)
+    {
+        APP_DEBUG("--- Main: Failed to create sensor task\r\n");
+    }
+	
+//    if(xTaskCreate(flash_task, "flash_task", configMINIMAL_STACK_SIZE + FLASH_MAX_LENGTH_MESSAGE, NULL, flash_task_PRIORITY, NULL) != pdPASS)
+//    {
+//        APP_DEBUG("--- Main: Failed to create flash task\r\n");
+//    }
+	
+	if(xTaskCreate(vLedTask_Task, "vLedTask_Task", configMINIMAL_STACK_SIZE + 60, NULL, macroPRIORITY_TASK_LED, NULL) != pdPASS) // Hien thi LED
+    {
+        APP_DEBUG("--- Main: Failed to create led task\r\n");
+    }
+    
+    vTaskStartScheduler();
+    
+    for (;;);
+}
+
+
+
+
+
+/******************************************************************************
+ * Function		: void macroUART_GPRS_IRQHandler( void )
+ * Description	: This function get data receive from UART to array data_receive
+ * Param		: none
+ * Return		: none
+*******************************************************************************/
+void macroUART_GPRS_IRQHandler( void )
+{
+	if (UART_GetStatusFlags(macroUART_GPRS_BASE))
+    {
+        uUART_Buffer[uiUART_Cnt] = UART_ReadByte( macroUART_GPRS_BASE );
+		
+        if(uiUART_Cnt >= macroUART_MAX_LENGHT - 1)
+		{
+            uiUART_Cnt = 0;
+			memset(uUART_Buffer, 0, macroUART_MAX_LENGHT);
+		}
+        else if(uUART_Buffer[uiUART_Cnt] == macroPACKET_STRING_ENDCHAR)
+        {
+            xFlags.uUART_GPRS = true;
+        }
+		uiUART_Cnt++;
+    }
+}
+
+
+
+
+/******************************************************************************
+ * Function		: uint32_t ulMain_GetTimerOutputValue(WDOG_Type *base)
+ * Description	: Gets the Watchdog timer output
+ * Param		: base WDOG peripheral base address
+ * Return		: Current value of watchdog timer counter
+*******************************************************************************/
+static inline uint32_t ulMain_GetTimerOutputValue(WDOG_Type *base)
+{
+    return (uint32_t)((((uint32_t)base->TMROUTH) << 16U) | (base->TMROUTL));
+}
+
+
+
+/******************************************************************************
+ * Function		: void vMain_WaitWctClose(WDOG_Type *base)
+ * Description	: N/A
+ * Param		: none
+ * Return		: none
+*******************************************************************************/
+static void vMain_WaitWctClose(WDOG_Type *base)
+{
+    /* Accessing register by bus clock */
+    for (uint32_t i = 0; i < WDOG_WCT_INSTRUCITON_COUNT; i++)
+    {
+        (void)base->RSTCNT;
+    }
+}
+
+
+
+/******************************************************************************
+ * Function		: void vMain_InitWatchdog( void )
+ * Description	: Ham khoi tao WDT
+ * Param		: none
+ * Return		: none
+*******************************************************************************/
+void vMain_InitWatchdog( void )
+{
+    wdog_config_t xWDTConfig;
+
+    WDOG_GetDefaultConfig(&xWDTConfig);
+    xWDTConfig.timeoutValue = TIME_WATCHDOG_DELAY;
+    
+    /* wdog refresh test in window mode */
+    WDOG_Init(wdog_base, &xWDTConfig);
+    vMain_WaitWctClose(wdog_base);
+    
+    /* Delay watchdog 1 second */
+    while (ulMain_GetTimerOutputValue(wdog_base) < (1000));
+    APP_DEBUG("--- Main: Init watchdog time delay: %d ms complete\r\n", TIME_WATCHDOG_DELAY);
+}
+
+
+
+/******************************************************************************
+ * Function		: void vMain_InitDefaultBoard( void )
+ * Description	: Ham khoi tao cac tham so cua chuong trinh
+ * Param		: none
+ * Return		: none
+*******************************************************************************/
+void vMain_InitDefaultBoard( void )
+{
+    // Init variables of board config
+}
+
+
+
+

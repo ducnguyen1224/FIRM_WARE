@@ -1,0 +1,49 @@
+PDCurses
+========================================================================
+Public Domain Curses, aka PDCurses, is an implementation of X/Open 
+curses for multiple platforms. The latest version can be found at:
+
+   http://pdcurses.sourceforge.net/  
+
+Release: pdcurses-3.4-1-mingw32
+
+Files:  PDCurses-3.4-1-mingw32-src.tar.lzma     (full source code)
+        PDCurses-3.4-1-mingw32-doc.tar.lzma     (documentation)
+        PDCurses-3.4-1-mingw32-lic.tar.lzma     (licensing terms)
+        PDCurses-3.4-1-mingw32-bin.tar.lzma     (demonstration programs)
+        libpdcurses-3.4-1-mingw32-dev.tar.lzma  (libraries and headers)
+        libpdcurses-3.4-1-mingw32-dll.tar.lzma  (DLLs)
+
+Build requirements: gcc >= 3, gnu make, coreutils, sed, mktemp
+
+Runtime requirements: none.
+
+Notes:  Three versions of the library are included (static and DLL):
+
+        libpdcurses           console
+        libpdcursesw          console, with Unicode
+        libpdcursesu          console, with Unicode/UTF-8
+
+        When you use a Windows DLL library, you must always define
+        PDC_DLL_BUILD when linking against it.
+
+        Define PDC_WIDE if you use the Unicode or Unicode/UTF-8 library.
+
+        The Unicode/UTF-8 library ignores the system locale, and treats
+        all narrow-character strings as UTF-8.  Use it to get around the
+        poor support for UTF-8 in the Win32 console.
+
+Installation paths (relative to $prefix):
+
+        documentation:   share/doc/PDCurses/
+        license:         share/doc/PDCurses/
+        release notes:   share/doc/MinGW/
+        demo programs:   lib/pdcurses/
+        libraries:       lib/
+        headers:         include/
+        DLLs:            bin/
+
+
+Packaged for www.mingw.org by:
+Erwin Waterlander <waterlan@xs4all.nl>
+

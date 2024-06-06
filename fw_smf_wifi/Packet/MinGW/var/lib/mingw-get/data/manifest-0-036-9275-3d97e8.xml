@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-036-9275-3d97e8">
+    <release tarname="m4-1.4.16-2-msys-1.0.17-doc.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <dir path="share/doc" />
+        <dir path="share/doc/m4" />
+        <dir path="share/doc/m4/1.4.16" />
+        <file path="share/doc/m4/1.4.16/AUTHORS" />
+        <file path="share/doc/m4/1.4.16/ChangeLog" />
+        <file path="share/doc/m4/1.4.16/NEWS" />
+        <file path="share/doc/m4/1.4.16/README" />
+        <file path="share/doc/m4/1.4.16/THANKS" />
+        <file path="share/doc/m4/1.4.16/TODO" />
+        <dir path="share/doc/MSYS" />
+        <file path="share/doc/MSYS/m4.README.txt" />
+        <dir path="share/info" />
+        <file path="share/info/m4.info" />
+        <file path="share/info/m4.info-1" />
+        <file path="share/info/m4.info-2" />
+        <dir path="share/man" />
+        <dir path="share/man/man1" />
+        <file path="share/man/man1/m4.1.gz" />
+    </manifest>
+</package>

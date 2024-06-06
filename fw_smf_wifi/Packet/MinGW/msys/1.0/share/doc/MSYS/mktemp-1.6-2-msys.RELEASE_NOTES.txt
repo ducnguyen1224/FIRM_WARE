@@ -1,0 +1,87 @@
+msys mktemp
+========================================================================
+The mktemp utility takes the given filename template and overwrites a
+portion of it to create a unique filename. The template may be any
+filename with some number of `Xs' appended to it, for example
+/tmp/tfile.XXXXXXXXXX. It is used by scripts to safely generate
+temporary files and directories.
+
+This version has been modified and compiled for use in the MSYS
+environment. It should be installed into the / == /usr directory,
+which is usually but not always, C:\msys\1.0.
+
+NOTE: there exists a different implementation of mktemp in versions
+of coreutils (http://www.gnu.org/software/coreutils) since 6.10
+(22-Jan-2008). However, the current MSYS coreutils package, 5.97,
+does not provide mktemp -- hence, this package.
+
+Runtime requirements:
+  msysCORE-1.0.13-2-msys-1.0.13-bin
+
+
+Build requirements (these, or newer)
+  MSYS toolchain
+    binutils-2.19.51-3-msys-1.0.13-bin
+    gcc-3.4.4-3-msys-1.0.13-bin
+    w32api-3.14-3-msys-1.0.12-dev
+    msysCORE-1.0.13-2-msys-1.0.13-dev
+ 
+  Devel Tools and Dependent Libraries 
+ 
+  MSYS Environment
+    msysCORE-1.0.13-2-msys-1.0.13-bin
+    coreutils-5.97-2-msys-1.0.11-bin
+    make-3.81-2-msys-1.0.11-bin
+    bash-3.1.17-2-msys-1.0.11-bin
+    tar-1.22-1-msys-1.0.11-bin
+    xz-4.999.9beta_20100401-1-msys-1.0.13-bin
+    liblzma-4.999.9beta_20100401-1-msys-1.0.13-dll-1
+    file-5.03-1-msys-1.0.11-bin
+    grep-2.5.4-1-msys-1.0.11-bin
+    sed-4.2.1-1-msys-1.0.11-bin
+    gawk-3.1.7-1-msys-1.0.11-bin
+    patch-2.5.9-1-msys-1.0.11-bin
+    gzip-1.3.12-1-msys-1.0.11-bin
+
+Canonical homepage:
+  http://www.mktemp.org/
+
+Canonical download:
+  ftp://ftp.mktemp.org/pub/mktemp/
+
+License:
+  ISC (similar to MIT/X)
+
+Language:
+  C
+
+========================================================================
+
+Build instructions:
+  unpack mktemp-1.6-2-msys-1.0.11-src.tar.lzma
+  ./msys-build-mktemp mktemp-1.6.tar.gz
+
+This will create:
+  mktemp-1.6-2-msys-1.0.11-src.tar.lzma
+  mktemp-1.6-2-msys-1.0.11-bin.tar.lzma
+  mktemp-1.6-2-msys-1.0.11-doc.tar.lzma
+  mktemp-1.6-2-msys-1.0.11-lic.tar.lzma
+
+========================================================================
+
+Test suite results
+
+This section of this document is updated with each new release.
+No history is maintained here.
+
+Manually tested the executable; seems to work properly.
+
+========================================================================
+
+Port Notes:
+
+----------  mktemp-1.6-2 -- 2010 Apr 14 -----------
+* Rebuild using new msys-gcc-3.x and msys 1.0.13
+
+----------  mktemp-1.6-1 -- 2009 Aug 08 -----------
+* First release of mktemp for msys using new packaging standard. 

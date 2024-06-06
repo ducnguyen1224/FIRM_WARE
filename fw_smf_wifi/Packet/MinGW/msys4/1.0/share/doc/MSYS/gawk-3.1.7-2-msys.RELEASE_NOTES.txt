@@ -1,0 +1,113 @@
+msys gawk
+========================================================================
+Many computer users need to manipulate text files: extract and then
+operate on data from parts of certain lines while discarding the rest,
+make changes in various text files wherever certain patterns appear, and
+so on. To write a program to do these things in a language such as C or
+Pascal is a time-consuming inconvenience that may take many lines of
+code. The job is easy with awk, especially the GNU implementation: Gawk.
+
+The awk utility interprets a special-purpose programming language that
+makes it possible to handle many data-reformatting jobs with just a few
+lines of code. 
+
+This version has been modified and compiled for use in the MSYS
+environment. It should be installed into the / == /usr directory, which
+is usually but not always, C:\msys\1.0.
+
+Runtime requirements:
+  msysCORE-1.0.13-2-msys-1.0.13-bin
+  libintl-0.17-2-msys-1.0.13-dll-8
+  libiconv-1.13.1-2-msys-dll-2
+
+Build requirements (these, or newer)
+  MSYS toolchain
+    binutils-2.19.51-3-msys-1.0.13-bin
+    gcc-3.4.4-3-msys-1.0.13-bin
+    w32api-3.14-3-msys-1.0.12-dev
+    msysCORE-1.0.13-2-msys-1.0.13-dev
+
+  Devel Tools and Dependent Libraries
+    autoconf-2.65-1-msys-1.0.13-bin
+    automake-1.11.1-1-msys-1.0.13-bin
+    libiconv-1.13.1-2-msys-1.0.13-bin
+    libiconv-1.13.1-2-msys-1.0.13-dev
+    gettext-0.17-2-msys-1.0.13-bin
+    gettext-0.17-2-msys-1.0.13-dev
+    libgettextpo-0.17-2-msys-1.0.13-dll-0
+    libtool-2.2.7a-2-msys-1.0.13-bin
+
+  MSYS Environment
+    perl-5.6.1_2-2-msys-1.0.13-bin
+    libcrypt-1.1_1-3-msys-1.0.13-dll-0
+    libgdbm-1.8.3-3-msys-1.0.13-dll-3
+    zlib-1.2.3-2-msys-1.0.13-dll
+    coreutils-5.97-2-msys-1.0.11-bin
+    make-3.81-2-msys-1.0.11-bin
+    bash-3.1.17-2-msys-1.0.11-bin
+    tar-1.22-1-msys-1.0.11-bin
+    xz-4.999.9beta_20100401-1-msys-1.0.13-bin
+    bzip2-1.0.5-2-msys-1.0.13-bin
+    gzip-1.3.12-1-msys-1.0.11-bin
+    liblzma-4.999.9beta_20100401-1-msys-1.0.13-dll-1
+    libbz2-1.0.5-2-msys-1.0.13-dll-1
+    file-5.04-2-msys-1.0.13-bin
+    grep-2.5.4-2-msys-1.0.13-bin
+    sed-4.2.1-2-msys-1.0.13-bin
+    gawk-3.1.7-1-msys-1.0.11-bin
+    cvs-1.12.13-1-msys-1.0.11-bin
+ 
+Canonical homepage:
+  http://www.gnu.org/software/gawk/ 
+
+Canonical download:
+  http://ftp.gnu.org/pub/gnu/gawk/
+
+License:
+  GPLv3
+
+Language:
+  C
+
+========================================================================
+
+Build instructions:
+  unpack gawk-3.1.7-2-msys-1.0.13-src.tar.lzma
+  ./msys-build-gawk gzip-3.1.7.tar.gz
+
+This will create:
+  gawk-3.1.7-2-msys-1.0.13-src.tar.lzma
+  gawk-3.1.7-2-msys-1.0.13-bin.tar.lzma
+  gawk-3.1.7-2-msys-1.0.13-lang.tar.lzma
+  gawk-3.1.7-2-msys-1.0.13-doc.tar.lzma
+  gawk-3.1.7-2-msys-1.0.13-lic.tar.lzma
+
+========================================================================
+
+Test suite results
+
+This section of this document is updated with each new release.
+No history is maintained here.
+
+libsigsegv testsuits: all five tests skipped
+
+6 TESTS FAILED (of 271)
+space:     different error message
+strftime:  MSYS strftime doesn't support %Z
+fmtspcl:   MSYS bug in printing NaN value
+lc_num1:   MSYS printf doesn't support %' (comma) specification
+mbfw1:     MSYS and multibyte chars? are you kidding?
+mbprintf1: ditto
+
+========================================================================
+
+Port Notes:
+
+----------  gawk-3.1.7-2 -- 2010 Apr 16 -----------
+* Rebuild with latest msys-gcc-3.x compiler, against msys 1.0.13
+  and DLL versions of libintl and libiconv.
+* Split i18n files into separate -lang package
+
+----------  gawk-3.1.7-1 -- 2009 Aug 11 -----------
+* First release of gawk for msys using new packaging standard. 
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-040-9d8b-3c944e">
+    <release tarname="autoconf-2.68-1-msys-1.0.17-lic.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <file path="share/doc/autoconf/2.68/COPYING" />
+        <file path="share/doc/autoconf/2.68/COPYINGv3" />
+        <file path="share/doc/autoconf/2.68/COPYING.EXCEPTION" />
+    </manifest>
+</package>

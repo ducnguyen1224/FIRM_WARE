@@ -1,0 +1,1104 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V9.20.1.2476 for 8051                14/Sep/2016  10:53:27
+# Copyright 2004-2015 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\gpio.c
+#    Command line       =  
+#        -f "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg"
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+#        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+#        -DZDO_COORDINATOR -DRTR_NWK) -f "C:\Users\8470p\Desktop\Z-Stack Mesh
+#        1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg"
+#        (-DZIGBEEPRO -DSECURE=1 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x9669
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=2000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)
+#        -DREJOIN_POLL_RATE=440 "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\gpio.c" -D ZTOOL_P1 -D
+#        HAL_UART=TRUE -D HAL_UART_DMA=1 -D HAL_DMA=TRUE -D HAL_UART_ISR=0 -D
+#        LCD_SUPPORTED=1 -D NV_RESTORE=TRUE -D POLL_RATE=1000 -lC
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\"
+#        -lA "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\"
+#        --diag_suppress Pe001,Pa010 -o "C:\Users\8470p\Desktop\Z-Stack Mesh
+#        1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj\" -e
+#        --no_code_motion --debug --core=plain --dptr=16,1 --data_model=large
+#        --code_model=banked --calling_convention=xdata_reentrant
+#        --place_constants=data_rom --nr_virtual_regs 16 -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\Source\" -I
+#        "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\ZMain\TI2530DB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\high_level\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\mt\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\osal\include\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\saddr\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\services\sdata\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\af\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\nwk\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sapi\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sec\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\sys\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\stack\zdo\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\"
+#        -I "C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\..\..\..\..\..\Components\zmac\f8w\"
+#        -Ohz --require_prototypes
+#    List file          =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\List\gpio.lst
+#    Object file        =  
+#        C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0
+#        ZED\Projects\zstack\Samples\GenericApp\CC2530DB\CoordinatorEB\Obj\gpio.r51
+#
+###############################################################################
+
+C:\Users\8470p\Desktop\Z-Stack Mesh 1.0.0 ZED\Projects\zstack\Samples\GenericApp\CC2530DB\gpio.c
+      1          #include "gpio.h"
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xa0
+   \   union <unnamed> volatile __sfr _A_P2
+   \                     _A_P2:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf5
+   \   unsigned char volatile __sfr P2SEL
+   \                     P2SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xff
+   \   unsigned char volatile __sfr P2DIR
+   \                     P2DIR:
+   \   000000                DS 1
+      2          #include "common.h"
+      3          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      4          static uint8 sht_resolution = 0;
+   \                     sht_resolution:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+      5          static int8 sht_write_byte(uint8 data);
+      6          static uint8 sht_read_byte(uint8 ack);
+      7          static void sht_reset_conn(void);
+      8          
+      9          /*****************************************
+     10           * @fn:  sht_init()
+     11           * @brief: khoi tao module sht
+     12           * @param: none
+     13           * @return: none
+     14           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     15          void sht_start(void) {
+   \                     sht_start:
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     16          //  SHT_DIR |= SHT_SCK_PIN | SHT_DATA_PIN;    /* Set pin direction to output */
+     17              SHT_SCK_DIR_OUTPUT();
+   \   000004   12....       LCALL   ?Subroutine2 & 0xFFFF
+     18              SHT_DATA_DIR_OUTPUT();
+     19          //  LED_PORT_SEL &= ~(LED_BIT);    /* Set pin function to GPIO */
+     20          //  LED_PORT_DIR |= LED_BIT;    
+     21            
+     22            DATA_HIGH();
+     23            SCK_LOW();
+   \                     ??CrossCallReturnLabel_0:
+   \   000007   C297         CLR     0x90.7
+     24            delay_us(2);
+   \   000009                ; Setup parameters for call to function delay_us
+   \   000009   90....       MOV     DPTR,#__Constant_2
+   \   00000C   12....       LCALL   ?XLOAD_R2345
+   \   00000F   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     25            SCK_HIGH();
+   \   000012   D297         SETB    0x90.7
+     26            delay_us(2);
+   \   000014                ; Setup parameters for call to function delay_us
+   \   000014   90....       MOV     DPTR,#__Constant_2
+   \   000017   12....       LCALL   ?XLOAD_R2345
+   \   00001A   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     27            DATA_LOW();
+   \   00001D   C2A0         CLR     0xa0.0
+     28            delay_us(2);
+   \   00001F                ; Setup parameters for call to function delay_us
+   \   00001F   90....       MOV     DPTR,#__Constant_2
+   \   000022   12....       LCALL   ?XLOAD_R2345
+   \   000025   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     29          
+     30            SCK_LOW();
+   \   000028   C297         CLR     0x90.7
+     31            delay_us(2);
+   \   00002A                ; Setup parameters for call to function delay_us
+   \   00002A   90....       MOV     DPTR,#__Constant_2
+   \   00002D   12....       LCALL   ?XLOAD_R2345
+   \   000030   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     32            SCK_HIGH();
+   \   000033   D297         SETB    0x90.7
+     33            delay_us(2);
+   \   000035                ; Setup parameters for call to function delay_us
+   \   000035   90....       MOV     DPTR,#__Constant_2
+   \   000038   12....       LCALL   ?XLOAD_R2345
+   \   00003B   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     34          
+     35            DATA_HIGH();
+   \   00003E   D2A0         SETB    0xa0.0
+     36            delay_us(2);
+   \   000040                ; Setup parameters for call to function delay_us
+   \   000040   90....       MOV     DPTR,#__Constant_2
+   \   000043   12....       LCALL   ?XLOAD_R2345
+   \   000046   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     37            SCK_LOW();
+   \   000049   C297         CLR     0x90.7
+     38          }
+   \   00004B                REQUIRE ?Subroutine0
+   \   00004B                REQUIRE P1DIR
+   \   00004B                REQUIRE P2DIR
+   \   00004B                REQUIRE _A_P2
+   \   00004B                REQUIRE _A_P1
+   \   00004B                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   43FE80       ORL     0xfe,#0x80
+   \   000003   43FF01       ORL     0xff,#0x1
+   \   000006   D2A0         SETB    0xa0.0
+   \   000008   22           RET
+     39          
+     40          /*****************************************
+     41           * @fn: sht_rese_conn
+     42           * @brief: reset connection
+     43           * @param: 
+     44           * @return: 
+     45           */
+     46          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     47          static void sht_reset_conn(void) {
+   \                     sht_reset_conn:
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+     48            uint8 i = 0;
+     49            SHT_SCK_DIR_OUTPUT();
+   \   000005   12....       LCALL   ?Subroutine2 & 0xFFFF
+     50            SHT_DATA_DIR_OUTPUT();
+     51            DATA_HIGH();
+     52            for(i = 0; i < 9; i++) {
+   \                     ??CrossCallReturnLabel_1:
+   \   000008   7E09         MOV     R6,#0x9
+     53              SCK_HIGH();
+   \                     ??sht_reset_conn_0:
+   \   00000A   D297         SETB    0x90.7
+     54              delay_us(2);
+   \   00000C                ; Setup parameters for call to function delay_us
+   \   00000C   90....       MOV     DPTR,#__Constant_2
+   \   00000F   12....       LCALL   ?XLOAD_R2345
+   \   000012   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     55              SCK_LOW();
+   \   000015   C297         CLR     0x90.7
+     56              delay_us(2);
+   \   000017                ; Setup parameters for call to function delay_us
+   \   000017   90....       MOV     DPTR,#__Constant_2
+   \   00001A   12....       LCALL   ?XLOAD_R2345
+   \   00001D   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     57            }
+   \   000020   DEE8         DJNZ    R6,??sht_reset_conn_0
+     58            sht_start();
+   \   000022                ; Setup parameters for call to function sht_start
+   \   000022   12....       LCALL   `??sht_start::?relay`; Banked call to: sht_start
+     59          }
+   \   000025   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000028                REQUIRE P1DIR
+   \   000028                REQUIRE P2DIR
+   \   000028                REQUIRE _A_P2
+   \   000028                REQUIRE _A_P1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+     60          /*****************************************
+     61           * @fn:  sht_write_byte()
+     62           * @brief: write 1 byte to sht sensor
+     63           * @param: data - 1 byte data
+     64           * @return: 1- error occured
+     65           *          0- success    
+     66           */
+     67          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     68          static int8 sht_write_byte(uint8 data) {
+   \                     sht_write_byte:
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+     69            uint8 i, err = 0;
+     70            SHT_DATA_DIR_OUTPUT();
+   \   000007   43FF01       ORL     0xff,#0x1
+     71          //  sht_start();
+     72            delay_us(2);
+   \   00000A                ; Setup parameters for call to function delay_us
+   \   00000A   90....       MOV     DPTR,#__Constant_2
+   \   00000D   12....       LCALL   ?XLOAD_R2345
+   \   000010   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     73            for (i = 0x80; i > 0; i >>= 1 ) {
+   \   000013   7E80         MOV     R6,#-0x80
+     74              SCK_LOW();
+   \                     ??sht_write_byte_0:
+   \   000015   C297         CLR     0x90.7
+     75              delay_us(2);
+   \   000017                ; Setup parameters for call to function delay_us
+   \   000017   90....       MOV     DPTR,#__Constant_2
+   \   00001A   12....       LCALL   ?XLOAD_R2345
+   \   00001D   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     76              if (i & data) {
+   \   000020   EE           MOV     A,R6
+   \   000021   5F           ANL     A,R7
+   \   000022   6004         JZ      ??sht_write_byte_1
+     77                DATA_HIGH();
+   \   000024   D2A0         SETB    0xa0.0
+   \   000026   8002         SJMP    ??sht_write_byte_2
+     78              } else {
+     79                DATA_LOW();
+   \                     ??sht_write_byte_1:
+   \   000028   C2A0         CLR     0xa0.0
+     80              }
+     81              delay_us(2);
+   \                     ??sht_write_byte_2:
+   \   00002A                ; Setup parameters for call to function delay_us
+   \   00002A   90....       MOV     DPTR,#__Constant_2
+   \   00002D   12....       LCALL   ?XLOAD_R2345
+   \   000030   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     82              SCK_HIGH();
+   \   000033   D297         SETB    0x90.7
+     83              delay_us(2);   
+   \   000035                ; Setup parameters for call to function delay_us
+   \   000035   90....       MOV     DPTR,#__Constant_2
+   \   000038   12....       LCALL   ?XLOAD_R2345
+   \   00003B   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     84            }
+   \   00003E   EE           MOV     A,R6
+   \   00003F   C3           CLR     C
+   \   000040   13           RRC     A
+   \   000041   FE           MOV     R6,A
+   \   000042   70D1         JNZ     ??sht_write_byte_0
+     85            SCK_LOW();
+   \   000044   C297         CLR     0x90.7
+     86            SHT_DATA_DIR_INPUT();
+   \   000046   53FFFE       ANL     0xff,#0xfe
+     87            delay_us(2);
+   \   000049                ; Setup parameters for call to function delay_us
+   \   000049   90....       MOV     DPTR,#__Constant_2
+   \   00004C   12....       LCALL   ?XLOAD_R2345
+   \   00004F   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     88            SCK_HIGH();
+   \   000052   D297         SETB    0x90.7
+     89            delay_us(2);
+   \   000054                ; Setup parameters for call to function delay_us
+   \   000054   90....       MOV     DPTR,#__Constant_2
+   \   000057   12....       LCALL   ?XLOAD_R2345
+   \   00005A   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+     90            err = SHT_DATA_STATE();
+   \   00005D   AEA0         MOV     R6,0xa0+0x0
+     91            SCK_LOW();
+   \   00005F   C297         CLR     0x90.7
+     92            delay_ms(250);
+   \   000061                ; Setup parameters for call to function delay_ms
+   \   000061   90....       MOV     DPTR,#__Constant_fa
+   \   000064   12....       LCALL   ?XLOAD_R2345
+   \   000067   12....       LCALL   `??delay_ms::?relay` ; Banked call to: delay_ms
+     93            if (err) {
+   \   00006A   EE           MOV     A,R6
+   \   00006B   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00006D   5004         JNC     ??sht_write_byte_3
+     94              return -1;
+   \   00006F   79FF         MOV     R1,#-0x1
+   \   000071   8002         SJMP    ??sht_write_byte_4
+     95            } 
+     96            return 0;
+   \                     ??sht_write_byte_3:
+   \   000073   7900         MOV     R1,#0x0
+   \                     ??sht_write_byte_4:
+   \   000075   80..         SJMP    ?Subroutine1
+   \   000077                REQUIRE P2DIR
+   \   000077                REQUIRE _A_P1
+   \   000077                REQUIRE _A_P2
+     97          } 
+     98          
+     99          /*****************************************
+    100           * @fn:  
+    101           * @brief: 
+    102           * @param: 
+    103           * @return: 
+    104           *              
+    105           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    106          static uint8 sht_read_byte(uint8 ack) {
+   \                     sht_read_byte:
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0,R1
+    107            uint8 i, ret = 0;
+   \   000007   7E00         MOV     R6,#0x0
+    108            SHT_DATA_DIR_INPUT();
+   \   000009   53FFFE       ANL     0xff,#0xfe
+    109            for (i = 0x80; i > 0; i >>= 1) {
+   \   00000C   7F80         MOV     R7,#-0x80
+    110              SCK_HIGH();
+   \                     ??sht_read_byte_0:
+   \   00000E   D297         SETB    0x90.7
+    111              delay_us(2);
+   \   000010                ; Setup parameters for call to function delay_us
+   \   000010   90....       MOV     DPTR,#__Constant_2
+   \   000013   12....       LCALL   ?XLOAD_R2345
+   \   000016   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+    112              if (SHT_DATA_STATE()) {
+   \   000019   A2A0         MOV     C,0xa0.0
+   \   00001B   5004         JNC     ??sht_read_byte_1
+    113                ret |= i;
+   \   00001D   EF           MOV     A,R7
+   \   00001E   CE           XCH     A,R6
+   \   00001F   4E           ORL     A,R6
+   \   000020   FE           MOV     R6,A
+    114              }
+    115              delay_us(2);
+   \                     ??sht_read_byte_1:
+   \   000021                ; Setup parameters for call to function delay_us
+   \   000021   90....       MOV     DPTR,#__Constant_2
+   \   000024   12....       LCALL   ?XLOAD_R2345
+   \   000027   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+    116              SCK_LOW();
+   \   00002A   C297         CLR     0x90.7
+    117              delay_us(2);
+   \   00002C                ; Setup parameters for call to function delay_us
+   \   00002C   90....       MOV     DPTR,#__Constant_2
+   \   00002F   12....       LCALL   ?XLOAD_R2345
+   \   000032   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+    118          
+    119            }
+   \   000035   EF           MOV     A,R7
+   \   000036   C3           CLR     C
+   \   000037   13           RRC     A
+   \   000038   FF           MOV     R7,A
+   \   000039   70D3         JNZ     ??sht_read_byte_0
+    120            SHT_DATA_DIR_OUTPUT();
+   \   00003B   43FF01       ORL     0xff,#0x1
+    121            delay_us(1);
+   \   00003E                ; Setup parameters for call to function delay_us
+   \   00003E   90....       MOV     DPTR,#__Constant_1
+   \   000041   12....       LCALL   ?XLOAD_R2345
+   \   000044   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+    122            if (ack) {
+   \   000047   E5..         MOV     A,?V0
+   \   000049   6004         JZ      ??sht_read_byte_2
+    123              DATA_LOW();
+   \   00004B   C2A0         CLR     0xa0.0
+   \   00004D   8002         SJMP    ??sht_read_byte_3
+    124            } else {
+    125              DATA_HIGH();
+   \                     ??sht_read_byte_2:
+   \   00004F   D2A0         SETB    0xa0.0
+    126            }
+    127            SCK_HIGH();
+   \                     ??sht_read_byte_3:
+   \   000051   D297         SETB    0x90.7
+    128            delay_us(2);
+   \   000053                ; Setup parameters for call to function delay_us
+   \   000053   90....       MOV     DPTR,#__Constant_2
+   \   000056   12....       LCALL   ?XLOAD_R2345
+   \   000059   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+    129            SCK_LOW();
+   \   00005C   C297         CLR     0x90.7
+    130            return ret;
+   \   00005E   EE           MOV     A,R6
+   \   00005F   F9           MOV     R1,A
+   \   000060                REQUIRE ?Subroutine1
+   \   000060                REQUIRE P2DIR
+   \   000060                REQUIRE _A_P1
+   \   000060                REQUIRE _A_P2
+   \   000060                ; // Fall through to label ?Subroutine1
+    131          }
+    132          
+    133          /*****************************************
+    134           * @fn:  
+    135           * @brief: 
+    136           * @param: 
+    137           * @return: 
+    138           *              
+    139           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    140          void sht_init(uint8 resolution) {
+   \                     sht_init:
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FE           MOV     R6,A
+    141            int8 test; 
+                        ^
+Warning[Pe550]: variable "test" was set but never used
+    142            SHT_SCK_SEL &= ~(SHT_SCK_PIN);
+   \   000007   53F47F       ANL     0xf4,#0x7f
+    143            SHT_DATA_SEL &= ~(SHT_DATA_PIN);    /* Set pin function to GPIO */
+   \   00000A   53F5FE       ANL     0xf5,#0xfe
+    144          
+    145            SHT_SCK_DIR_OUTPUT()
+   \   00000D   43FE80       ORL     0xfe,#0x80
+    146            SHT_DATA_DIR_OUTPUT()    /* Set pin direction to output */
+   \   000010   43FF01       ORL     0xff,#0x1
+    147            sht_reset_conn();
+   \   000013                ; Setup parameters for call to function sht_reset_conn
+   \   000013   12....       LCALL   `??sht_reset_conn::?relay`; Banked call to: sht_reset_conn
+    148            test = sht_write_byte(SHT_STATUS_REG_W);
+   \   000016                ; Setup parameters for call to function sht_write_byte
+   \   000016   7906         MOV     R1,#0x6
+   \   000018   12....       LCALL   `??sht_write_byte::?relay`; Banked call to: sht_write_byte
+    149           // if(test == 0)
+    150             // DBG_PRINTF("\r\n ngon \r\n");
+    151            //else
+    152             // DBG_PRINTF("\r\n nhu chim \r\n");
+    153              
+    154            delay_ms(300);
+   \   00001B                ; Setup parameters for call to function delay_ms
+   \   00001B   90....       MOV     DPTR,#__Constant_12c
+   \   00001E   12....       LCALL   ?XLOAD_R2345
+   \   000021   12....       LCALL   `??delay_ms::?relay` ; Banked call to: delay_ms
+    155            sht_write_byte(resolution);
+   \   000024                ; Setup parameters for call to function sht_write_byte
+   \   000024   EE           MOV     A,R6
+   \   000025   F9           MOV     R1,A
+   \   000026   12....       LCALL   `??sht_write_byte::?relay`; Banked call to: sht_write_byte
+    156            sht_resolution = resolution;
+   \   000029   EE           MOV     A,R6
+   \   00002A   90....       MOV     DPTR,#sht_resolution
+   \   00002D   F0           MOVX    @DPTR,A
+    157          }
+   \   00002E   80..         SJMP    ?Subroutine1
+   \   000030                REQUIRE P1SEL
+   \   000030                REQUIRE P2SEL
+   \   000030                REQUIRE P1DIR
+   \   000030                REQUIRE P2DIR
+    158          /*****************************************
+    159           * @fn:  
+    160           * @brief: 
+    161           * @param: 
+    162           * @return: 
+    163           *              
+    164           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    165          void sht_reset_chip(void) {
+   \                     sht_reset_chip:
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    166            sht_reset_conn();
+   \   000004                ; Setup parameters for call to function sht_reset_conn
+   \   000004   12....       LCALL   `??sht_reset_conn::?relay`; Banked call to: sht_reset_conn
+    167            sht_write_byte(SHT_RESET);
+   \   000007                ; Setup parameters for call to function sht_write_byte
+   \   000007   791E         MOV     R1,#0x1e
+   \   000009   12....       LCALL   `??sht_write_byte::?relay`; Banked call to: sht_write_byte
+    168            delay_ms(100);
+   \   00000C                ; Setup parameters for call to function delay_ms
+   \   00000C   90....       MOV     DPTR,#__Constant_64
+   \   00000F   12....       LCALL   ?XLOAD_R2345
+   \   000012   12....       LCALL   `??delay_ms::?relay` ; Banked call to: delay_ms
+    169          }
+   \   000015   02....       LJMP    ?Subroutine0 & 0xFFFF
+    170          
+    171          /*****************************************
+    172           * @fn:  
+    173           * @brief: 
+    174           * @param: 
+    175           * @return: 
+    176           *              
+    177           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    178          uint16 sht_read_cmd(uint8 cmd) {
+   \                     sht_read_cmd:
+   \   000000                REQUIRE ?V0
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0,R1
+    179            uint8 msb, lsb, crc;
+                                   ^
+Warning[Pe550]: variable "crc" was set but never used
+    180            int8 test;
+                        ^
+Warning[Pe550]: variable "test" was set but never used
+    181            sht_reset_conn();
+   \   000007                ; Setup parameters for call to function sht_reset_conn
+   \   000007   12....       LCALL   `??sht_reset_conn::?relay`; Banked call to: sht_reset_conn
+    182            test = sht_write_byte(cmd);
+   \   00000A                ; Setup parameters for call to function sht_write_byte
+   \   00000A   A9..         MOV     R1,?V0
+   \   00000C   12....       LCALL   `??sht_write_byte::?relay`; Banked call to: sht_write_byte
+    183            //if(test == 0)
+    184             // DBG_PRINTF("\r\n ngon \r\n");
+    185            //else
+    186              //DBG_PRINTF("\r\n nhu chim \r\n");
+    187            SHT_DATA_DIR_INPUT();
+   \   00000F   53FFFE       ANL     0xff,#0xfe
+    188            //while(SHT_DATA_STATE());
+    189            delay_us(500);
+   \   000012                ; Setup parameters for call to function delay_us
+   \   000012   90....       MOV     DPTR,#__Constant_1f4
+   \   000015   12....       LCALL   ?XLOAD_R2345
+   \   000018   12....       LCALL   `??delay_us::?relay` ; Banked call to: delay_us
+    190            msb = sht_read_byte(SHT_ACK);
+   \   00001B                ; Setup parameters for call to function sht_read_byte
+   \   00001B   7901         MOV     R1,#0x1
+   \   00001D   12....       LCALL   `??sht_read_byte::?relay`; Banked call to: sht_read_byte
+   \   000020   E9           MOV     A,R1
+   \   000021   FF           MOV     R7,A
+    191            lsb = sht_read_byte(SHT_ACK);
+   \   000022                ; Setup parameters for call to function sht_read_byte
+   \   000022   7901         MOV     R1,#0x1
+   \   000024   12....       LCALL   `??sht_read_byte::?relay`; Banked call to: sht_read_byte
+   \   000027   E9           MOV     A,R1
+   \   000028   FE           MOV     R6,A
+    192            crc = sht_read_byte(SHT_NOACK);
+   \   000029                ; Setup parameters for call to function sht_read_byte
+   \   000029   7900         MOV     R1,#0x0
+   \   00002B   12....       LCALL   `??sht_read_byte::?relay`; Banked call to: sht_read_byte
+    193            return ((uint16)msb << 8 | lsb);
+   \   00002E   EF           MOV     A,R7
+   \   00002F   FB           MOV     R3,A
+   \   000030   EE           MOV     A,R6
+   \   000031   FA           MOV     R2,A
+   \   000032   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000035                REQUIRE P2DIR
+    194          }
+    195          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    196          void sht_read(float *temp, float *humi) {
+   \                     sht_read:
+   \   000000                REQUIRE ?V0
+   \   000000                REQUIRE ?V1
+   \   000000                REQUIRE ?V2
+   \   000000                REQUIRE ?V3
+   \   000000                REQUIRE ?V4
+   \   000000                REQUIRE ?V5
+   \   000000                REQUIRE ?V6
+   \   000000                REQUIRE ?V7
+   \   000000                REQUIRE ?V8
+   \   000000                REQUIRE ?V9
+   \   000000                REQUIRE ?V10
+   \   000000                REQUIRE ?V11
+   \   000000                REQUIRE ?V12
+   \   000000                REQUIRE ?V13
+   \   000000                REQUIRE ?V14
+   \   000000                REQUIRE ?V15
+   \   000000   74E8         MOV     A,#-0x18
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 24
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   85..82       MOV     DPL,?XSP + 0
+   \   00000D   85..83       MOV     DPH,?XSP + 1
+   \   000010   EC           MOV     A,R4
+   \   000011   F0           MOVX    @DPTR,A
+   \   000012   A3           INC     DPTR
+   \   000013   ED           MOV     A,R5
+   \   000014   F0           MOVX    @DPTR,A
+   \   000015   EA           MOV     A,R2
+   \   000016   FE           MOV     R6,A
+   \   000017   EB           MOV     A,R3
+   \   000018   FF           MOV     R7,A
+    197           uint16 temper = 0;
+    198           uint16 humility = 0;
+    199           temper = sht_read_cmd(SHT_MEASURE_TEMP);
+   \   000019                ; Setup parameters for call to function sht_read_cmd
+   \   000019   7903         MOV     R1,#0x3
+   \   00001B   12....       LCALL   `??sht_read_cmd::?relay`; Banked call to: sht_read_cmd
+   \   00001E   8A..         MOV     ?V0,R2
+   \   000020   8B..         MOV     ?V1,R3
+    200           humility = sht_read_cmd(SHT_MEASURE_HUMI);
+   \   000022                ; Setup parameters for call to function sht_read_cmd
+   \   000022   7905         MOV     R1,#0x5
+   \   000024   12....       LCALL   `??sht_read_cmd::?relay`; Banked call to: sht_read_cmd
+    201           if (sht_resolution == SHT_14_12_BIT) {
+   \   000027   90....       MOV     DPTR,#sht_resolution
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   6003         JZ      $+5
+   \   00002D   02....       LJMP    ??sht_read_0 & 0xFFFF
+    202            *temp = (H_D1 + H_D2 * temper);
+   \   000030   E4           CLR     A
+   \   000031   F5..         MOV     ?V2,A
+   \   000033   F5..         MOV     ?V3,A
+   \   000035   78..         MOV     R0,#?V0
+   \   000037   12....       LCALL   ?UL_TO_FLT
+   \   00003A   90....       MOV     DPTR,#__Constant_3c23d70a
+   \   00003D   78..         MOV     R0,#?V8
+   \   00003F   12....       LCALL   ?L_MOV_X
+   \   000042   78..         MOV     R0,#?V0
+   \   000044   79..         MOV     R1,#?V8
+   \   000046   12....       LCALL   ?FLT_MUL
+   \   000049   90....       MOV     DPTR,#__Constant_c2200000
+   \   00004C   78..         MOV     R0,#?V8
+   \   00004E   12....       LCALL   ?L_MOV_X
+   \   000051   78..         MOV     R0,#?V0
+   \   000053   79..         MOV     R1,#?V8
+   \   000055   12....       LCALL   ?FLT_ADD
+   \   000058   8E82         MOV     DPL,R6
+   \   00005A   8F83         MOV     DPH,R7
+   \   00005C   78..         MOV     R0,#?V0
+   \   00005E   12....       LCALL   ?L_MOV_TO_X
+    203            *humi = ((H_D1 + H_D2 *temper - 25) * (H_T1 + H_T2 * humility) + H_C1 + H_C2 * humility + H_C3 * humility * humility);
+   \   000061   8A..         MOV     ?V8,R2
+   \   000063   8B..         MOV     ?V9,R3
+   \   000065   E4           CLR     A
+   \   000066   F5..         MOV     ?V10,A
+   \   000068   F5..         MOV     ?V11,A
+   \   00006A   78..         MOV     R0,#?V8
+   \   00006C   12....       LCALL   ?UL_TO_FLT
+   \   00006F   90....       MOV     DPTR,#__Constant_c1c80000
+   \   000072   78..         MOV     R0,#?V4
+   \   000074   12....       LCALL   ?L_MOV_X
+   \   000077   78..         MOV     R0,#?V0
+   \   000079   79..         MOV     R1,#?V4
+   \   00007B   12....       LCALL   ?FLT_ADD
+   \   00007E   85....       MOV     ?V4,?V8
+   \   000081   85....       MOV     ?V5,?V9
+   \   000084   85....       MOV     ?V6,?V10
+   \   000087   85....       MOV     ?V7,?V11
+   \   00008A   90....       MOV     DPTR,#__Constant_38a7c5ac
+   \   00008D   78..         MOV     R0,#?V12
+   \   00008F   12....       LCALL   ?L_MOV_X
+   \   000092   78..         MOV     R0,#?V4
+   \   000094   79..         MOV     R1,#?V12
+   \   000096   12....       LCALL   ?FLT_MUL
+   \   000099   90....       MOV     DPTR,#__Constant_3c23d70a
+   \   00009C   78..         MOV     R0,#?V12
+   \   00009E   12....       LCALL   ?L_MOV_X
+   \   0000A1   78..         MOV     R0,#?V4
+   \   0000A3   79..         MOV     R1,#?V12
+   \   0000A5   12....       LCALL   ?FLT_ADD
+   \   0000A8   78..         MOV     R0,#?V0
+   \   0000AA   79..         MOV     R1,#?V4
+   \   0000AC   12....       LCALL   ?FLT_MUL
+   \   0000AF   90....       MOV     DPTR,#__Constant_c0800000
+   \   0000B2   78..         MOV     R0,#?V4
+   \   0000B4   12....       LCALL   ?L_MOV_X
+   \   0000B7   78..         MOV     R0,#?V0
+   \   0000B9   79..         MOV     R1,#?V4
+   \   0000BB   12....       LCALL   ?FLT_ADD
+   \   0000BE   85....       MOV     ?V4,?V8
+   \   0000C1   85....       MOV     ?V5,?V9
+   \   0000C4   85....       MOV     ?V6,?V10
+   \   0000C7   85....       MOV     ?V7,?V11
+   \   0000CA   90....       MOV     DPTR,#__Constant_3d25e354
+   \   0000CD   78..         MOV     R0,#?V12
+   \   0000CF   12....       LCALL   ?L_MOV_X
+   \   0000D2   78..         MOV     R0,#?V4
+   \   0000D4   79..         MOV     R1,#?V12
+   \   0000D6   12....       LCALL   ?FLT_MUL
+   \   0000D9   78..         MOV     R0,#?V0
+   \   0000DB   79..         MOV     R1,#?V4
+   \   0000DD   12....       LCALL   ?FLT_ADD
+   \   0000E0   85....       MOV     ?V4,?V8
+   \   0000E3   85....       MOV     ?V5,?V9
+   \   0000E6   85....       MOV     ?V6,?V10
+   \   0000E9   85....       MOV     ?V7,?V11
+   \   0000EC   90....       MOV     DPTR,#__Constant_b63be7a2
+   \   0000EF   02....       LJMP    ??sht_read_1 & 0xFFFF
+    204           } else {
+    205             *temp = L_D1 + L_D2 * temper;
+   \                     ??sht_read_0:
+   \   0000F2   E4           CLR     A
+   \   0000F3   F5..         MOV     ?V2,A
+   \   0000F5   F5..         MOV     ?V3,A
+   \   0000F7   78..         MOV     R0,#?V0
+   \   0000F9   12....       LCALL   ?UL_TO_FLT
+   \   0000FC   90....       MOV     DPTR,#__Constant_3d23d70a
+   \   0000FF   78..         MOV     R0,#?V8
+   \   000101   12....       LCALL   ?L_MOV_X
+   \   000104   78..         MOV     R0,#?V0
+   \   000106   79..         MOV     R1,#?V8
+   \   000108   12....       LCALL   ?FLT_MUL
+   \   00010B   90....       MOV     DPTR,#__Constant_c2200000
+   \   00010E   78..         MOV     R0,#?V8
+   \   000110   12....       LCALL   ?L_MOV_X
+   \   000113   78..         MOV     R0,#?V0
+   \   000115   79..         MOV     R1,#?V8
+   \   000117   12....       LCALL   ?FLT_ADD
+   \   00011A   8E82         MOV     DPL,R6
+   \   00011C   8F83         MOV     DPH,R7
+   \   00011E   78..         MOV     R0,#?V0
+   \   000120   12....       LCALL   ?L_MOV_TO_X
+    206             *humi = (L_D1 + L_D2 *temper - 25) * (L_T1 + L_T2 * humility) + L_C1 + L_C2 * humility + L_C3 *humility * humility;
+   \   000123   8A..         MOV     ?V8,R2
+   \   000125   8B..         MOV     ?V9,R3
+   \   000127   E4           CLR     A
+   \   000128   F5..         MOV     ?V10,A
+   \   00012A   F5..         MOV     ?V11,A
+   \   00012C   78..         MOV     R0,#?V8
+   \   00012E   12....       LCALL   ?UL_TO_FLT
+   \   000131   90....       MOV     DPTR,#__Constant_c1c80000
+   \   000134   78..         MOV     R0,#?V4
+   \   000136   12....       LCALL   ?L_MOV_X
+   \   000139   78..         MOV     R0,#?V0
+   \   00013B   79..         MOV     R1,#?V4
+   \   00013D   12....       LCALL   ?FLT_ADD
+   \   000140   85....       MOV     ?V4,?V8
+   \   000143   85....       MOV     ?V5,?V9
+   \   000146   85....       MOV     ?V6,?V10
+   \   000149   85....       MOV     ?V7,?V11
+   \   00014C   90....       MOV     DPTR,#__Constant_3aa7c5ac
+   \   00014F   78..         MOV     R0,#?V12
+   \   000151   12....       LCALL   ?L_MOV_X
+   \   000154   78..         MOV     R0,#?V4
+   \   000156   79..         MOV     R1,#?V12
+   \   000158   12....       LCALL   ?FLT_MUL
+   \   00015B   90....       MOV     DPTR,#__Constant_3c23d70a
+   \   00015E   78..         MOV     R0,#?V12
+   \   000160   12....       LCALL   ?L_MOV_X
+   \   000163   78..         MOV     R0,#?V4
+   \   000165   79..         MOV     R1,#?V12
+   \   000167   12....       LCALL   ?FLT_ADD
+   \   00016A   78..         MOV     R0,#?V0
+   \   00016C   79..         MOV     R1,#?V4
+   \   00016E   12....       LCALL   ?FLT_MUL
+   \   000171   90....       MOV     DPTR,#__Constant_c0800000
+   \   000174   78..         MOV     R0,#?V4
+   \   000176   12....       LCALL   ?L_MOV_X
+   \   000179   78..         MOV     R0,#?V0
+   \   00017B   79..         MOV     R1,#?V4
+   \   00017D   12....       LCALL   ?FLT_ADD
+   \   000180   85....       MOV     ?V4,?V8
+   \   000183   85....       MOV     ?V5,?V9
+   \   000186   85....       MOV     ?V6,?V10
+   \   000189   85....       MOV     ?V7,?V11
+   \   00018C   90....       MOV     DPTR,#__Constant_3f25e354
+   \   00018F   78..         MOV     R0,#?V12
+   \   000191   12....       LCALL   ?L_MOV_X
+   \   000194   78..         MOV     R0,#?V4
+   \   000196   79..         MOV     R1,#?V12
+   \   000198   12....       LCALL   ?FLT_MUL
+   \   00019B   78..         MOV     R0,#?V0
+   \   00019D   79..         MOV     R1,#?V4
+   \   00019F   12....       LCALL   ?FLT_ADD
+   \   0001A2   85....       MOV     ?V4,?V8
+   \   0001A5   85....       MOV     ?V5,?V9
+   \   0001A8   85....       MOV     ?V6,?V10
+   \   0001AB   85....       MOV     ?V7,?V11
+   \   0001AE   90....       MOV     DPTR,#__Constant_ba3cbe62
+   \                     ??sht_read_1:
+   \   0001B1   78..         MOV     R0,#?V12
+   \   0001B3   12....       LCALL   ?L_MOV_X
+   \   0001B6   78..         MOV     R0,#?V4
+   \   0001B8   79..         MOV     R1,#?V12
+   \   0001BA   12....       LCALL   ?FLT_MUL
+   \   0001BD   78..         MOV     R0,#?V4
+   \   0001BF   79..         MOV     R1,#?V8
+   \   0001C1   12....       LCALL   ?FLT_MUL
+   \   0001C4   78..         MOV     R0,#?V0
+   \   0001C6   79..         MOV     R1,#?V4
+   \   0001C8   12....       LCALL   ?FLT_ADD
+   \   0001CB   85..82       MOV     DPL,?XSP + 0
+   \   0001CE   85..83       MOV     DPH,?XSP + 1
+   \   0001D1   E0           MOVX    A,@DPTR
+   \   0001D2   F8           MOV     R0,A
+   \   0001D3   A3           INC     DPTR
+   \   0001D4   E0           MOVX    A,@DPTR
+   \   0001D5   F583         MOV     DPH,A
+   \   0001D7   8882         MOV     DPL,R0
+   \   0001D9   78..         MOV     R0,#?V0
+   \   0001DB   12....       LCALL   ?L_MOV_TO_X
+    207           }
+    208          }
+   \   0001DE   7402         MOV     A,#0x2
+   \   0001E0   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0001E3   7F10         MOV     R7,#0x10
+   \   0001E5   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_2:
+   \   000000   02000000     DD 2
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_fa:
+   \   000000   FA000000     DD 250
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_1:
+   \   000000   01000000     DD 1
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_12c:
+   \   000000   2C010000     DD 300
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_64:
+   \   000000   64000000     DD 100
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_1f4:
+   \   000000   F4010000     DD 500
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3c23d70a:
+   \   000000   0AD7233C     DD 3C23D70AH
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_c2200000:
+   \   000000   000020C2     DD 0C2200000H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_c1c80000:
+   \   000000   0000C8C1     DD 0C1C80000H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_38a7c5ac:
+   \   000000   ACC5A738     DD 38A7C5ACH
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_c0800000:
+   \   000000   000080C0     DD 0C0800000H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3d25e354:
+   \   000000   54E3253D     DD 3D25E354H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_b63be7a2:
+   \   000000   A2E73BB6     DD 0B63BE7A2H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3d23d70a:
+   \   000000   0AD7233D     DD 3D23D70AH
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3aa7c5ac:
+   \   000000   ACC5A73A     DD 3AA7C5ACH
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3f25e354:
+   \   000000   54E3253F     DD 3F25E354H
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_ba3cbe62:
+   \   000000   62BE3CBA     DD 0BA3CBE62H
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_start::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_start
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_reset_conn::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_reset_conn
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_write_byte::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_write_byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_read_byte::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_read_byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_init::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_reset_chip::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_reset_chip
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_read_cmd::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_read_cmd
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     `??sht_read::?relay`:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    sht_read
+
+   Maximum stack usage in bytes:
+
+   ISTACK XSTACK Function
+   ------ ------ --------
+      0      9   sht_init
+        0      9   -> delay_ms
+        0      9   -> sht_reset_conn
+        0      9   -> sht_write_byte
+      0     26   sht_read
+        0     26   -> sht_read_cmd
+      0     18   sht_read_byte
+        0      9   -> delay_us
+      0     35   sht_read_cmd
+        0      9   -> delay_us
+        0      9   -> sht_read_byte
+        0      9   -> sht_reset_conn
+        0      9   -> sht_write_byte
+      2      0   sht_reset_chip
+        2      0   -> delay_ms
+        2      0   -> sht_reset_conn
+        2      0   -> sht_write_byte
+      0     18   sht_reset_conn
+        0      9   -> delay_us
+        0      9   -> sht_start
+      2      9   sht_start
+        2      0   -> delay_us
+      0     18   sht_write_byte
+        0      9   -> delay_ms
+        0      9   -> delay_us
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       7  ?Subroutine0
+       5  ?Subroutine1
+       9  ?Subroutine2
+       1  P1DIR
+       1  P1SEL
+       1  P2DIR
+       1  P2SEL
+       1  _A_P1
+       1  _A_P2
+       4  __Constant_1
+       4  __Constant_12c
+       4  __Constant_1f4
+       4  __Constant_2
+       4  __Constant_38a7c5ac
+       4  __Constant_3aa7c5ac
+       4  __Constant_3c23d70a
+       4  __Constant_3d23d70a
+       4  __Constant_3d25e354
+       4  __Constant_3f25e354
+       4  __Constant_64
+       4  __Constant_b63be7a2
+       4  __Constant_ba3cbe62
+       4  __Constant_c0800000
+       4  __Constant_c1c80000
+       4  __Constant_c2200000
+       4  __Constant_fa
+      48  sht_init
+       6  sht_init::?relay
+     488  sht_read
+       6  sht_read::?relay
+      96  sht_read_byte
+       6  sht_read_byte::?relay
+      53  sht_read_cmd
+       6  sht_read_cmd::?relay
+      24  sht_reset_chip
+       6  sht_reset_chip::?relay
+      40  sht_reset_conn
+       6  sht_reset_conn::?relay
+       1  sht_resolution
+      75  sht_start
+       6  sht_start::?relay
+     119  sht_write_byte
+       6  sht_write_byte::?relay
+
+ 
+ 964 bytes in segment BANKED_CODE
+  48 bytes in segment BANK_RELAYS
+   6 bytes in segment SFR_AN
+  68 bytes in segment XDATA_ROM_C
+   1 byte  in segment XDATA_Z
+ 
+ 1 012 bytes of CODE  memory
+     0 bytes of CONST memory (+ 68 bytes shared)
+     0 bytes of DATA  memory (+  6 bytes shared)
+     1 byte  of XDATA memory
+
+Errors: none
+Warnings: 3

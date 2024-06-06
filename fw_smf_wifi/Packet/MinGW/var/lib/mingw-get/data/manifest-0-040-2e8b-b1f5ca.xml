@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-040-2e8b-b1f5ca">
+    <release tarname="openssh-5.4p1-1-msys-1.0.13-doc.tar.lzma" />
+    <references>
+        <sysroot id="sysroot-0-011-664d-7cd9c6" />
+    </references>
+    <manifest>
+        <dir path="share/doc" />
+        <dir path="share/doc/MSYS" />
+        <file path="share/doc/MSYS/openssh-5.4p1-1-msys.RELEASE_NOTES.txt" />
+        <dir path="share/doc/openssh" />
+        <dir path="share/doc/openssh/5.4p1" />
+        <file path="share/doc/openssh/5.4p1/ChangeLog" />
+        <file path="share/doc/openssh/5.4p1/CREDITS" />
+        <file path="share/doc/openssh/5.4p1/OVERVIEW" />
+        <file path="share/doc/openssh/5.4p1/README" />
+        <file path="share/doc/openssh/5.4p1/README.dns" />
+        <file path="share/doc/openssh/5.4p1/README.platform" />
+        <file path="share/doc/openssh/5.4p1/README.privsep" />
+        <file path="share/doc/openssh/5.4p1/README.tun" />
+        <file path="share/doc/openssh/5.4p1/ssh-user-config" />
+        <file path="share/doc/openssh/5.4p1/TODO" />
+        <file path="share/doc/openssh/5.4p1/WARNING.RNG" />
+        <dir path="share/man" />
+        <dir path="share/man/man1" />
+        <file path="share/man/man1/scp.1" />
+        <file path="share/man/man1/sftp.1" />
+        <file path="share/man/man1/slogin.1" />
+        <file path="share/man/man1/ssh-add.1" />
+        <file path="share/man/man1/ssh-agent.1" />
+        <file path="share/man/man1/ssh-keygen.1" />
+        <file path="share/man/man1/ssh-keyscan.1" />
+        <file path="share/man/man1/ssh.1" />
+        <dir path="share/man/man5" />
+        <file path="share/man/man5/moduli.5" />
+        <file path="share/man/man5/ssh_config.5" />
+        <dir path="share/man/man8" />
+        <file path="share/man/man8/ssh-keysign.8" />
+        <file path="share/man/man8/ssh-pkcs11-helper.8" />
+    </manifest>
+</package>

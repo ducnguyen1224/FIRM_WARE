@@ -1,0 +1,5 @@
+{
+    "files.associations": {
+        "pin_mux.h": "c"
+    }
+}

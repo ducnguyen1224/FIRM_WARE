@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package id="manifest-0-031-80c7-cdd939">
+    <release tarname="gcc-4.9.3-1-mingw32-info.tar.xz" />
+    <references>
+        <sysroot id="sysroot-0-002-a7c6-d7dbb5" />
+    </references>
+    <manifest>
+        <file path="share/info/cpp.info" />
+        <file path="share/info/gcc.info" />
+    </manifest>
+</package>

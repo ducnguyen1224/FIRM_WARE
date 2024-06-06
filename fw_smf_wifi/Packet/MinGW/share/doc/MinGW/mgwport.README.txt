@@ -1,0 +1,72 @@
+mgwport
+========================================================================
+This is mgwport, a revolutionary new method for building and maintaining
+packages for the MinGW and MSYS platforms. It is based on the cygport
+tool, from cygwin.
+
+Runtime requirements:
+  msys
+  autoconf (both mingw and msys flavors)
+  automake (both mingw and msys flavors)
+  bash
+  binutils
+  bzip2
+  coreutils
+  cvs
+  diffstat
+  diffutils
+  file
+  gettext  (both mingw and msys flavors)
+  grep
+  gzip
+  libiconv (both mingw and msys flavors)
+  libtool  (both mingw and msys flavors)
+  lndir
+  make
+  patch
+  rsync
+  sed
+  tar
+  unzip
+  wget
+
+Build requirements:
+  mingw32-autoconf2.5
+  mingw32-automake1.11
+  msys-gawk
+  msys-groff
+  msys-help2man
+  msys-make
+  #robodoc-4.99.36-1
+  msys-sed
+
+Canonical website:
+  http://mingw.org/
+
+Canonical download:
+  http://downloads.sourceforge.net/mingw/
+
+========================================================================
+
+Build instructions:
+  unpack mgwport-0.10.6-1-mingw32-src.tar.lzma
+  cd mgwport-0.10.6-X-mingw32-src
+  mgwport ./mgwport-0.10.6-X.mgwport all
+
+This will create:
+  mgwport-0.10.6-1-mingw32-bin.tar.lzma
+  mgwport-0.10.6-1-mingw32-lic.tar.lzma
+  mgwport-0.10.6-1-mingw32-doc.tar.lzma
+  mgwport-0.10.6-1-mingw32-src.tar.lzma
+
+========================================================================
+
+Port Notes:
+
+----- version 0.10.6-1 -----
+Version bump.
+See ChangeLog and NEWS for more information about this and past releases.
+
+
+MinGW port maintained by:
+http://mingw.org/
